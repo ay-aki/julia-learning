@@ -1,0 +1,9 @@
+/* css styles 
+<span class="fbox">\(1.1\)</span>
+*/
+
+.fbox {
+  border: solid 1px #454545;
+  padding: 5px 20px;
+  display: inline;
+}

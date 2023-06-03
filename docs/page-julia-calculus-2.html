@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mysite</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">mysite</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">mysite</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Algorithms</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号理論</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-1.html" class="sidebar-item-text sidebar-link">数値計算</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Mathematics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">微分と積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link active">線積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link">固有値、固有ベクトルと行列関数</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#微分積分" id="toc-微分積分" class="nav-link active" data-scroll-target="#微分積分">微分積分</a>
+  <ul class="collapse">
+  <li><a href="#線積分とは" id="toc-線積分とは" class="nav-link" data-scroll-target="#線積分とは">線積分とは</a></li>
+  <li><a href="#線積分の公式" id="toc-線積分の公式" class="nav-link" data-scroll-target="#線積分の公式">線積分の公式</a></li>
+  <li><a href="#線積分の実装" id="toc-線積分の実装" class="nav-link" data-scroll-target="#線積分の実装">線積分の実装</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">mysite</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="微分積分" class="level1">
+<h1>微分積分</h1>
+<p>数学的な厳密性を無視して説明します。</p>
+<section id="線積分とは" class="level3">
+<h3 class="anchored" data-anchor-id="線積分とは">線積分とは</h3>
+<p>凄く単純に言えば線積分とは、『線に沿って』積分を行うことです。</p>
+<p>線積分のパラメータとして、以下に曲線を <span class="math inline">\(C\)</span> 、空間の任意のベクトルを <span class="math inline">\(\mathbb{r} \in \mathbb{R}^{n}\)</span> 、<span class="math inline">\(C\)</span> 上の極小の <span class="math inline">\(\mathbb{r}\)</span> の変位を <span class="math inline">\(d\mathbb{r} \in \mathbb{R}^{n}\)</span> とします。</p>
+<p><span class="math inline">\(d\mathbb{r}\)</span> は、その系での座標の表現方法によって、例えば、以下の3つのケースがあると思います。それぞれのケースで以下のような置換を行うことで、積分を計算しやすい形に変換できる可能性があります。</p>
+<hr>
+<section id="媒介変数-mathbbrmathbbrt" class="level4">
+<h4 class="anchored" data-anchor-id="媒介変数-mathbbrmathbbrt">媒介変数 <span class="math inline">\(\mathbb{r}=\mathbb{r}(t)\)</span></h4>
+<span class="math display">\[
+d\mathbb{r} = \frac{d\mathbb{r}(t)}{dt} dt
+\]</span>
+<details>
+<summary>
+例(曲線の長さ)
+</summary>
+<p><span class="math inline">\(\mathbb{r} = x(t) \mathbb{i}_x + y(t) \mathbb{i}_z + z(t) \mathbb{i}_z\)</span> と表される曲線 <span class="math inline">\(C\)</span> がある。この曲線の長さについて <span class="math inline">\(t \in [t_0, t_1]\)</span> の区間内で積分すると，以下の式が得られる。</p>
+<p><span class="math display">\[
+L = \int_C |d\mathbb{r}| = \int_{t_0}^{t_1} |\frac{d\mathbb{r}}{dt}| dt
+  = \int_{t_0}^{t_1} \| \frac{dx}{dt} \mathbb{i}_x + \frac{dy}{dt} \mathbb{i}_y + \frac{dz}{dt} \mathbb{i}_z \| dt
+  = \int_{t_0}^{t_1} \sqrt{(\frac{dx}{dt})^2 + (\frac{dy}{dt})^2 + (\frac{dz}{dt})^2} dt
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="y-や-x-が-yfx-などと関数で表されるケース-rleftbeginmatrix-x-fx-endmatrixright" class="level4">
+<h4 class="anchored" data-anchor-id="y-や-x-が-yfx-などと関数で表されるケース-rleftbeginmatrix-x-fx-endmatrixright"><span class="math inline">\(y\)</span> や <span class="math inline">\(x\)</span> が <span class="math inline">\(y=f(x)\)</span> などと関数で表されるケース <span class="math inline">\(r=\left[\begin{matrix} x \\ f(x) \end{matrix}\right]\)</span></h4>
+<span class="math display">\[
+d\mathbb{r} = \frac{d\mathbb{r}}{dx} dx
+\]</span>
+<details>
+<summary>
+例(曲線の長さ)
+</summary>
+<p><span class="math inline">\(\mathbb{r} = \left[\begin{matrix} x \\ y(x) \end{matrix}\right]\)</span> と表される曲線 <span class="math inline">\(C\)</span> がある。この曲線の長さについて <span class="math inline">\(x \in [x_0, x_1]\)</span> の区間内で積分すると，以下の式が得られる。</p>
+<p>(これは実質媒介変数と同じ)</p>
+<p><span class="math display">\[
+L = \int_C |d\mathbb{r}| = \int_{x_0}^{x_1} |\frac{d\mathbb{r}}{dx}| dx
+  = \int_{x_0}^{x_1} |\left[\begin{matrix} d(x)/dx \\ d(y(x))/dx \end{matrix}\right]| dx
+  = \int_{x_0}^{x_1} \sqrt{1 + (\frac{dy(x)}{dx})^2} dx
+\]</span></p>
+</details>
+<hr>
+</section>
+<section id="極形式-mathbbrpolarr-theta" class="level4">
+<h4 class="anchored" data-anchor-id="極形式-mathbbrpolarr-theta">極形式 <span class="math inline">\(\mathbb{r}=Polar(r, \theta)\)</span></h4>
+<p><span class="math display">\[
+d\mathbb{r}= dr \mathbb{i}_r + r d\theta \mathbb{i}_{\theta}
+\]</span></p>
+なお、<span class="math inline">\(\mathbb{i}_r\)</span>, <span class="math inline">\(\mathbb{i}_{\theta}\)</span> はそれぞれ <span class="math inline">\(\mathbb{r}\)</span> と <span class="math inline">\(\mathbb{r}\)</span> に直交する接戦方向のベクトルです。
+<details>
+<summary>
+例(曲線の長さ)
+</summary>
+<p><span class="math inline">\(\mathbb{r} = r \mathbb{i}_r + r\theta \mathbb{i}_{\theta}\)</span> と表される曲線 <span class="math inline">\(C\)</span> がある。この曲線の長さについて <span class="math inline">\(x \in [x_0, x_1]\)</span> の区間内で積分すると，以下の式が得られる。</p>
+<p><span class="math display">\[
+L = \int_C |d\mathbb{r}| = \int_{\theta_0}^{\theta_1} |dr \mathbb{i}_r + r d\theta \mathbb{i}_{\theta}|
+  = \int_{\theta_0}^{\theta_1} \sqrt{dr^2 + (r d\theta)^2}
+  = \int_{\theta_0}^{\theta_1} \sqrt{(\frac{dr}{d\theta})^2 + r^2} d\theta
+\]</span></p>
+<p>※この導出は数学的には微妙ですが、実際この式で解けます。</p>
+</details>
+<hr>
+</section>
+</section>
+<section id="線積分の公式" class="level3">
+<h3 class="anchored" data-anchor-id="線積分の公式">線積分の公式</h3>
+<p>線積分は、ベクトル場やスカラー場を沿って積分する方法です。</p>
+<p>主に物理学や数学で使用され、曲線や経路上のベクトル量やスカラー量を解析するのに役立ちます。 以下では、線積分の基本的な考え方と計算方法について説明します。</p>
+<p>線積分は、スカラー場かベクトル場かの２つの問題形式があります。 また、線分の長さを求める方法についても説明します。</p>
+<section id="スカラー場の積分" class="level4">
+<h4 class="anchored" data-anchor-id="スカラー場の積分">スカラー場の積分</h4>
+<p>空間の至る所に値が紐づけされているようなものだと思ってください。 例えば、温度は僕らの生きるこの3次元空間においてそれぞれ違う値をとっています。</p>
+<p>スカラー場の積分は以下の式で表されます。 線の長さが正であることから、 <span class="math inline">\(dr\)</span> には通常絶対値を付けていることに気を付けてください。 <span class="math display">\[
+w = \int_{C} f(r) |dr|
+\]</span></p>
+</section>
+<section id="ベクトル場の積分" class="level4">
+<h4 class="anchored" data-anchor-id="ベクトル場の積分">ベクトル場の積分</h4>
+<p>ベクトル場とは、空間の至る所にベクトル値が紐づけされているようなものだと思ってください。 例えば、クーロン力は電荷の位置などで異なる方向に働く力です。</p>
+<p>ベクトル場の積分は以下の式で表されます。 <span class="math inline">\(dr\)</span> や <span class="math inline">\(F(r)\)</span> はベクトルであることに気を付けてください。(ちなみに、<span class="math inline">\(\cdot\)</span> は内積です) <span class="math display">\[
+W = \int_{C} F(r) \cdot dr
+\]</span></p>
+</section>
+<section id="曲線の長さ" class="level4">
+<h4 class="anchored" data-anchor-id="曲線の長さ">曲線の長さ</h4>
+<p>曲線の長さは以下の式で表されます。 <span class="math display">\[
+L = \int_{C} |dr|
+\]</span></p>
+</section>
+</section>
+<section id="線積分の実装" class="level3">
+<h3 class="anchored" data-anchor-id="線積分の実装">線積分の実装</h3>
+<p><a href="https://kitchingroup.cheme.cmu.edu/blog/2018/11/16/Line-integrals-in-Python-with-autograd/">参考</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

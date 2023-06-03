@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mysite</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">mysite</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">mysite</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-3.html" class="sidebar-item-text sidebar-link">行列の使い方</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">パッケージの紹介</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">Base</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">Randomパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">MATパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">LinearAlgebraパッケージ</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Algorithms</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号理論</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-crypto-2.html" class="sidebar-item-text sidebar-link active">原初の暗号</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-1.html" class="sidebar-item-text sidebar-link">QR分解</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Mathematics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">微分と積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link">線積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link">固有値、固有ベクトルと行列関数</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#暗号理論" id="toc-暗号理論" class="nav-link active" data-scroll-target="#暗号理論">暗号理論</a>
+  <ul class="collapse">
+  <li><a href="#暗号アルゴリズム計算機登場以前" id="toc-暗号アルゴリズム計算機登場以前" class="nav-link" data-scroll-target="#暗号アルゴリズム計算機登場以前">暗号アルゴリズム（計算機登場以前）</a></li>
+  <li><a href="#シーザー暗号" id="toc-シーザー暗号" class="nav-link" data-scroll-target="#シーザー暗号">シーザー暗号</a></li>
+  <li><a href="#単一換字暗号" id="toc-単一換字暗号" class="nav-link" data-scroll-target="#単一換字暗号">単一換字暗号</a></li>
+  <li><a href="#エニグマ" id="toc-エニグマ" class="nav-link" data-scroll-target="#エニグマ">エニグマ</a></li>
+  <li><a href="#解読アルゴリズム" id="toc-解読アルゴリズム" class="nav-link" data-scroll-target="#解読アルゴリズム">解読アルゴリズム</a></li>
+  <li><a href="#ブルートフォースアタック" id="toc-ブルートフォースアタック" class="nav-link" data-scroll-target="#ブルートフォースアタック">ブルート・フォース・アタック</a></li>
+  <li><a href="#頻度分析" id="toc-頻度分析" class="nav-link" data-scroll-target="#頻度分析">頻度分析</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">mysite</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="暗号理論" class="level1 page-columns page-full">
+<h1>暗号理論</h1>
+<section id="暗号アルゴリズム計算機登場以前" class="level3">
+<h3 class="anchored" data-anchor-id="暗号アルゴリズム計算機登場以前">暗号アルゴリズム（計算機登場以前）</h3>
+<ul>
+<li><p>シーザー暗号</p>
+<p>シーザー暗号は、古代ローマの将軍であるガイウス・ユリウス・カエサルが使用したとされる、非常にシンプルな代替暗号の一種です。 シーザー暗号は、アルファベットの文字を一定の数だけシフトさせて暗号化します。</p></li>
+<li><p>単位換字暗号</p>
+<p>単一換字暗号は、平文の各文字を別の文字に1対1で置き換える暗号化手法です。</p></li>
+<li><p>エニグマ</p>
+<p>エニグマは、第二次世界大戦中にドイツが使用した複雑な電子機械式暗号装置です。</p></li>
+</ul>
+</section>
+<section id="シーザー暗号" class="level3">
+<h3 class="anchored" data-anchor-id="シーザー暗号">シーザー暗号</h3>
+<p>シーザー暗号は、「鍵」を文字のシフト数 <span class="math inline">\(n \in K=\{0,1,2,\dots,2\}\)</span> とする暗号です。 鍵空間 <span class="math inline">\(K\)</span> の大きさはここでは <span class="math inline">\(|K|=26\)</span> であり、ブルート・フォース・アタックでの突破が容易な暗号である。</p>
+<p>文字のシフトとは、例えば以下のように、表をもとに文字をずらす手法です。</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ch">'あ'</span> <span class="op">+</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="106">
+<pre><code>'ぇ': Unicode U+3047 (category Lo: Letter, other)</code></pre>
+</div>
+</div>
+<p>それぞれの文字（アルファベット）を <code>n_shift</code> だけシフトさせるプログラムは以下の通りです。</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">char_shift</span>(c, n_shift)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !<span class="fu">isletter</span>(c)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> c</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !(<span class="ch">'a'</span> <span class="op">&lt;=</span> <span class="fu">lowercase</span>(c) <span class="op">&lt;=</span> <span class="ch">'z'</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> c</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> <span class="ch">'a'</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">isuppercase</span>(c)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>        a <span class="op">=</span> <span class="ch">'A'</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    i <span class="op">=</span> c <span class="op">-</span> a</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    j <span class="op">=</span> (i <span class="op">+</span> n_shift) <span class="op">%</span> <span class="fl">26</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> j</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">char_shift</span>.([<span class="ch">'a'</span>, <span class="ch">'X'</span>], <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="107">
+<pre><code>2-element Vector{Char}:
+ 'd': ASCII/Unicode U+0064 (category Ll: Letter, lowercase)
+ 'A': ASCII/Unicode U+0041 (category Lu: Letter, uppercase)</code></pre>
+</div>
+</div>
+<p>シーザー暗号の実装は以下の通りです。</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">encode_caesar</span>(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    plaintext<span class="op">::</span><span class="dt">AbstractString</span>, </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    n_shift<span class="op">::</span><span class="dt">Integer </span><span class="co"># key</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    l_plaintext  <span class="op">=</span> <span class="fu">collect</span>(plaintext)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    l_ciphertext <span class="op">=</span> <span class="fu">char_shift</span>.(l_plaintext, n_shift)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    ciphertext   <span class="op">=</span> <span class="fu">join</span>(l_ciphertext)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ciphertext</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">decode_caesar</span>(ciphertext, n_shift)</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">encode_caesar</span>(ciphertext, <span class="fl">26</span> <span class="op">-</span> n_shift)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># key</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>mykey <span class="op">=</span> <span class="fl">3</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co"># encode</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>plaintext  <span class="op">=</span> <span class="st">"hello world"</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="fu">encode_caesar</span>(plaintext, mykey)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="co"># decode</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plaintext_ <span class="op">=</span> <span class="fu">decode_caesar</span>(ciphertext, mykey)</span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plaintext_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="108">
+<pre><code>"hello world"</code></pre>
+</div>
+</div>
+</section>
+<section id="単一換字暗号" class="level3">
+<h3 class="anchored" data-anchor-id="単一換字暗号">単一換字暗号</h3>
+<p>単一換字暗号は、「鍵」を換字表 <span class="math inline">\(\text{Tbl} \in K\)</span> とする暗号です。 鍵空間 <span class="math inline">\(K\)</span> の大きさは <span class="math inline">\(|K|=26!=403291461126605635584000000\)</span> であり、ブルート・フォース・アタックでの突破は困難ですが、頻度分析により比較的簡単に突破できます。</p>
+<p>それぞれの文字（アルファベット）を <code>Tbl</code> に従って置換するプログラムは以下の通りです。</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">char_replace</span>(c, tbl)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !<span class="fu">isletter</span>(c)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> c</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> !(<span class="ch">'a'</span> <span class="op">&lt;=</span> <span class="fu">lowercase</span>(c) <span class="op">&lt;=</span> <span class="ch">'z'</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> c</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tbl[c]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="109">
+<pre><code>char_replace (generic function with 1 method)</code></pre>
+</div>
+</div>
+<p>単一換字暗号の暗号は以下の通りです。</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">encode_monoalphabetic</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    plaintext<span class="op">::</span><span class="dt">AbstractString</span>, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    key</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    tbl <span class="op">=</span> <span class="fu">Dict</span>(</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">zip</span>(</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>            <span class="fu">collect</span>(key[<span class="fl">1</span>]), <span class="fu">collect</span>(key[<span class="fl">2</span>])</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    l_plaintext  <span class="op">=</span> <span class="fu">collect</span>(plaintext)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    l_ciphertext <span class="op">=</span> (c <span class="op">-&gt;</span> <span class="fu">char_replace</span>(c, tbl)).(l_plaintext)</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>    ciphertext   <span class="op">=</span> <span class="fu">join</span>(l_ciphertext)</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ciphertext</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">decode_monoalphabetic</span>(ciphertext, key)</span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>    key <span class="op">=</span> (key[<span class="fl">2</span>], key[<span class="fl">1</span>])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">encode_monoalphabetic</span>(ciphertext, key)</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="co"># key</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>mykey <span class="op">=</span> (</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>(<span class="st">"abcdefghijklmnopqrstuvwxyz"</span>), </span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">collect</span>(<span class="st">"gpkhayvwcoxzqntudeflmijbrs"</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="co"># encode</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>plaintext  <span class="op">=</span> <span class="st">"hello world"</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="fu">encode_monoalphabetic</span>(plaintext, mykey)</span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="co"># decode</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plaintext_ <span class="op">=</span> <span class="fu">decode_monoalphabetic</span>(ciphertext, mykey)</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>plaintext_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="110">
+<pre><code>"hello world"</code></pre>
+</div>
+</div>
+</section>
+<section id="エニグマ" class="level3">
+<h3 class="anchored" data-anchor-id="エニグマ">エニグマ</h3>
+<p>エニグマ（Enigma）は、第二次世界大戦中にドイツで使用された暗号化機械です。 当時は非常に高度な暗号化手法であるとされ、暗号文の解読が非常に困難であると考えられていました。</p>
+<p>機械式の代替暗号装置であり、電気信号を用いて文字を暗号化した暗号です。</p>
+<p>エニグマは、複数の可変ローター（回転ディスク）とプラグボード（Steckerboard）と呼ばれる接続装置から構成されており、これによって文字の置換と交換が行われました。 暗号学の歴史上、重要な節目となる装置であり、暗号解読の研究や教育においても広く取り上げられています。 平文の文字を入力すると、可変ローターの回転と接続装置の置換によって暗号文の文字が出力されます。</p>
+<p>エニグマは KEK(key encrypting key)と言われる、鍵を暗号化するための日替わり鍵を導入したことでも知られています。 そのため、同じ文字が連続して入力されても、異なる文字が出力されるため、エニグマは多重換字暗号として知られる複雑な暗号方式でした。</p>
+<p>※実装は省略します。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph LR
+    A[平文] --&gt; B((暗号化))
+    D --&gt; E[暗号化通信鍵と暗号文]
+    F[通信鍵] -.-&gt; B
+    B --&gt; C[暗号文]
+    F --&gt; H((暗号化))
+    I[KEK] -.-&gt; H
+    subgraph LR
+        B
+        C --&gt; D((結合))
+        G[暗号化通信鍵] --&gt; D
+        H --&gt; G
+    end
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="解読アルゴリズム" class="level3">
+<h3 class="anchored" data-anchor-id="解読アルゴリズム">解読アルゴリズム</h3>
+<ul>
+<li><p>ブルート・フォース・アタック</p>
+<p>ブルート・フォース・アタックは、全ての可能な組み合わせを試行することで、暗号を解読する攻撃手法です。</p></li>
+<li><p>頻度分析</p>
+<p>頻度分析は、暗号文の中の文字や記号の出現頻度を解析し、元の平文を特定する手法です。</p></li>
+</ul>
+</section>
+<section id="ブルートフォースアタック" class="level3">
+<h3 class="anchored" data-anchor-id="ブルートフォースアタック">ブルート・フォース・アタック</h3>
+<p><code>encode_caesar</code>による暗号は鍵空間が小さいので、ブルート・フォース・アタックで簡単に解読できる。</p>
+<p>以下の<strong>シーザー暗号によって暗号化された</strong>暗号文を解読することを考える。</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="st">"twzgpozrd"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="111">
+<pre><code>"twzgpozrd"</code></pre>
+</div>
+</div>
+<p>復号化のアルゴリズムは知っているため、<code>decode_caesar</code>を使うことができるものと考え、鍵を</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>keys        <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">25</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>decodetexts <span class="op">=</span> (key <span class="op">-&gt;</span> <span class="fu">decode_caesar</span>(ciphertext, key)).(keys)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>outputs     <span class="op">=</span> <span class="fu">collect</span>(<span class="fu">zip</span>(keys, decodetexts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="112">
+<pre><code>26-element Vector{Tuple{Int64, String}}:
+ (0, "twzgpozrd")
+ (1, "svyfonyqc")
+ (2, "ruxenmxpb")
+ (3, "qtwdmlwoa")
+ (4, "psvclkvnz")
+ (5, "orubkjumy")
+ (6, "nqtajitlx")
+ (7, "mpszihskw")
+ (8, "loryhgrjv")
+ (9, "knqxgfqiu")
+ (10, "jmpwfepht")
+ (11, "ilovedogs")
+ (12, "hknudcnfr")
+ (13, "gjmtcbmeq")
+ (14, "filsbaldp")
+ (15, "ehkrazkco")
+ (16, "dgjqzyjbn")
+ (17, "cfipyxiam")
+ (18, "behoxwhzl")
+ (19, "adgnwvgyk")
+ (20, "zcfmvufxj")
+ (21, "ybelutewi")
+ (22, "xadktsdvh")
+ (23, "wzcjsrcug")
+ (24, "vybirqbtf")
+ (25, "uxahqpase")</code></pre>
+</div>
+</div>
+<p>この中で、意味の通る文章は<code>"ilovedogs"</code>だけです。 鍵は<code>11</code>なので、次も同じ鍵を使ってた場合、内容がバレバレになってしまいます。</p>
+<p>犬が好きらしいですね。</p>
+</section>
+<section id="頻度分析" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="頻度分析">頻度分析</h3>
+<p><code>encode_monoalphabetic</code>による暗号は鍵空間は少々大きいので、ブルート・フォース・アタックで解読するのは難しそうです。なので、頻度分析と言う手法を使います。</p>
+<p>以下の<strong>単一換字暗号によって暗号化された</strong>暗号文を解読することを考える。</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="st">"cnkerultveguwrgkcuwaetekruwaecfgngzvteclwqyteuaeyteqcnvankerulctntehakerulctngfaecaftyjazzhaycnahflauflwglkgnpaytzztjahgfguetkahmeagngzlaenglciazaffktqqtnlaeqcfankcuwaeqanlltankcuwaeteankthacfltktniaelcnyteqglctncnltkcuwaetekthacnktqqtnugezgnkakcuwaecffrntnrqtmfjclwkthagflwargeaptlwgfaltyflauflwglankerulgqaffgvawtjaiaelwaktnkaulfgeahcflcnklcnkerultveguwrafuakcgzzrkzgffckgzkerultveguwr"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>"cnkerultveguwrgkcuwaetekruwaecfgngzvteclwqyteuaeyteqcnvankerulctntehakerulctngfaecaftyjazzhaycnahflauflwglkgnpaytzztjahgfguetkahmeagngzlaenglciazaffktqqtnlaeqcfankcuwaeqanlltankcuwaeteankthacfltktniaelcnyteqglctncnltkcuwaetekthacnktqqtnugezgnkakcuwaecffrntnrqtmfjclwkthagflwargeaptlwgfaltyflauflwglankerulgqaffgvawtjaiaelwaktnkaulfgeahcflcnklcnkerultveguwrafuakcgzzrkzgffckgzkerultveguwr"</code></pre>
+</div>
+</div>
+<p>古典的な頻度分析の手法として、以下のようなアイデアがある。文字列の中に頻出する文字（文字列）を推定できる可能性がある。ただし、これらのアイデアは偏りのない巨大な文章に対しては意味があるが、そうでなければ上手くいかない。</p>
+<ul>
+<li><p>出現するアルファベットの頻度</p>
+<p>多い順に、e, t, a, o, i, n, …, j, x, q, z</p></li>
+<li><p>出現する２文字のアルファベット文字列の頻度</p>
+<p>多い順に、th, he, in, er, …</p></li>
+<li><p>出現する３文字のアルファベット文字列の頻度</p>
+<p>the, and, ing, ion,</p>
+<p><a href="https://en.wikipedia.org/wiki/Letter_frequency">参考</a></p></li>
+</ul>
+<p>これらのアイデアを利用するために、以下のようにパターンを解析するプログラムを実装した。</p>
+<div class="page-columns page-full">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">pattern_frequency_analysis</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    text<span class="op">::</span><span class="dt">AbstractString</span>, n<span class="op">::</span><span class="dt">Integer</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    pattern_counts <span class="op">=</span> <span class="fu">Dict</span>() <span class="co"># Dict{SubString, Int64}()</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="fl">1</span><span class="op">:</span><span class="fu">length</span>(text)<span class="op">-</span> n <span class="op">+</span> <span class="fl">1</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        pattern <span class="op">=</span> text[i<span class="op">:</span>i<span class="op">+</span>n<span class="op">-</span><span class="fl">1</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="fu">haskey</span>(pattern_counts, pattern)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>            pattern_counts[pattern] <span class="op">+=</span> <span class="fl">1</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>            pattern_counts[pattern] <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> <span class="fu">sort</span>(<span class="fu">collect</span>(pattern_counts), by <span class="op">=</span> x <span class="op">-&gt;</span> x[<span class="fl">2</span>], rev<span class="op">=</span><span class="cn">true</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">frequency_analysis</span>(ciphertext, N)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> n <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>N</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>        result <span class="op">=</span> <span class="fu">pattern_frequency_analysis</span>(ciphertext, n)</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        <span class="fu">display</span>(result[<span class="fl">1</span><span class="op">:</span><span class="fl">8</span>])</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a><span class="fu">frequency_analysis</span>(ciphertext, <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-execution_count="9">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "a" =&gt; 46
+ "t" =&gt; 35
+ "e" =&gt; 34
+ "l" =&gt; 30
+ "n" =&gt; 28
+ "c" =&gt; 27
+ "g" =&gt; 27
+ "k" =&gt; 27</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "ae" =&gt; 12
+ "nk" =&gt; 11
+ "uw" =&gt; 9
+ "wa" =&gt; 8
+ "tn" =&gt; 8
+ "te" =&gt; 8
+ "cn" =&gt; 8
+ "ul" =&gt; 7</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "ker" =&gt; 6
+ "wae" =&gt; 6
+ "eru" =&gt; 6
+ "rul" =&gt; 6
+ "uwa" =&gt; 6
+ "cuw" =&gt; 5
+ "kcu" =&gt; 5
+ "ank" =&gt; 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>ここで、<code>a</code>の頻度が多いことから、<code>a</code>を<code>e</code>だと考えて置換する。</p>
+<div class="page-columns page-full">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="fu">replace</span>(ciphertext, <span class="ch">'a'</span> <span class="op">=&gt;</span> <span class="ch">'e'</span>, <span class="ch">'e'</span> <span class="op">=&gt;</span> <span class="ch">'a'</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frequency_analysis</span>(ciphertext, <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-execution_count="10">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "e" =&gt; 46
+ "t" =&gt; 35
+ "a" =&gt; 34
+ "l" =&gt; 30
+ "n" =&gt; 28
+ "c" =&gt; 27
+ "g" =&gt; 27
+ "k" =&gt; 27</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "ea" =&gt; 12
+ "nk" =&gt; 11
+ "uw" =&gt; 9
+ "we" =&gt; 8
+ "tn" =&gt; 8
+ "cn" =&gt; 8
+ "ta" =&gt; 8
+ "ul" =&gt; 7</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "wea" =&gt; 6
+ "aru" =&gt; 6
+ "uwe" =&gt; 6
+ "rul" =&gt; 6
+ "kar" =&gt; 6
+ "enk" =&gt; 5
+ "cuw" =&gt; 5
+ "kcu" =&gt; 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>ここで、<code>ea</code>は<code>er</code>とすることにする。</p>
+<div class="page-columns page-full">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="fu">replace</span>(ciphertext, <span class="ch">'a'</span> <span class="op">=&gt;</span> <span class="ch">'r'</span>, <span class="ch">'r'</span> <span class="op">=&gt;</span> <span class="ch">'a'</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">frequency_analysis</span>(ciphertext, <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell column-screen-inset-shaded quarto-layout-panel" data-execution_count="11">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "e" =&gt; 46
+ "t" =&gt; 35
+ "r" =&gt; 34
+ "l" =&gt; 30
+ "n" =&gt; 28
+ "c" =&gt; 27
+ "g" =&gt; 27
+ "k" =&gt; 27</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "er" =&gt; 12
+ "nk" =&gt; 11
+ "uw" =&gt; 9
+ "we" =&gt; 8
+ "tn" =&gt; 8
+ "cn" =&gt; 8
+ "tr" =&gt; 8
+ "ul" =&gt; 7</code></pre>
+</div>
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 33.3%;justify-content: center;">
+<pre><code>8-element Vector{Pair{Any, Any}}:
+ "aul" =&gt; 6
+ "uwe" =&gt; 6
+ "rau" =&gt; 6
+ "wer" =&gt; 6
+ "kra" =&gt; 6
+ "enk" =&gt; 5
+ "cuw" =&gt; 5
+ "kcu" =&gt; 5</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>このように、頻度表を用いて試行錯誤していくことで少ない時間で解ける……場合がある。</p>
+<pre><code># 元の文章
+incryptographyacipherorcypherisanalgorithmforperformingencryptionordecryption—aseriesofwelldefinedstepsthatcanbefollowedasaprocedureanalternativelesscommontermisenciphermenttoencipherorencodeistoconvertinformationintocipherorcodeincommonparlancecipherissynonymouswithcodeastheyarebothasetofstepsthatencryptamessagehowevertheconceptsaredistinctincryptographyespeciallyclassicalcryptography</code></pre>
+<p><a href="https://en.wikipedia.org/wiki/Cipher">引用した文章</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

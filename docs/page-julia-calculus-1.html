@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mysite</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">mysite</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">mysite</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Algorithms</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号理論</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-1.html" class="sidebar-item-text sidebar-link">数値計算</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Mathematics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link active">微分と積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link">線積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link">固有値、固有ベクトルと行列関数</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#微分積分" id="toc-微分積分" class="nav-link active" data-scroll-target="#微分積分">微分積分</a>
+  <ul class="collapse">
+  <li><a href="#微分と積分" id="toc-微分と積分" class="nav-link" data-scroll-target="#微分と積分">微分と積分</a></li>
+  <li><a href="#微分公式" id="toc-微分公式" class="nav-link" data-scroll-target="#微分公式">微分公式</a></li>
+  <li><a href="#積分公式" id="toc-積分公式" class="nav-link" data-scroll-target="#積分公式">積分公式</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">mysite</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="微分積分" class="level1">
+<h1>微分積分</h1>
+<p>微分積分額について説明します。 あまり厳密には扱いません。</p>
+<section id="微分と積分" class="level3">
+<h3 class="anchored" data-anchor-id="微分と積分">微分と積分</h3>
+<p>微分と積分は、数学の基本的な操作であり、相互関係を持つ重要な概念です。 微分は関数の変化率を求める操作であり、積分は関数の面積や累積量を求める操作です。 以下にそれぞれの操作を説明し、相互関係についても触れます。</p>
+<p>微分（Differentiation）は、関数の微小な変化率や勾配を求める操作です。ある関数の微分は、その関数の各点での傾きを表します。微分は関数の変化を詳細に分析するために使用され、物理学や経済学などの科学的なモデリングにおいても重要です。 <span class="math display">\[ \frac{d}{dx} F(x) = f(x) \]</span> 左辺は以下の極限で表すこともできます。 実用上、とても大切な式です。 <span class="math display">\[ \lim_{\delta x -&gt; 0} \frac{f(x + \delta x) - f(x)}{\delta x} \]</span></p>
+<p>積分（Integration）は、関数の面積や累積量を求める操作です。積分は関数を積み上げることにより、元の関数が表す領域の面積や累積を求めます。積分は、物理学の運動方程式の解析や確率論の確率密度関数の計算などで使用されます。 <span class="math display">\[ F(x) = \int_{c}^{x} f(t) dt \]</span></p>
+<p>微分と積分の相互関係は、微分と積分の逆操作を表します。</p>
+<ul>
+<li><p>微分と積分の関係 微分と積分は基本的な定理によって関連付けられています。 ニュートン・ライプニッツの基本定理によれば、ある関数f(x)の積分とその関数の原始関数F(x)の微分は互いに逆の関係にあります。 <span class="math display">\[ \int_{a}^{b} f(x) dx = F(b) - F(a)  \]</span></p>
+<p>この定理により、積分は微分の逆操作として捉えることができます。</p></li>
+</ul>
+<p>具体的には、関数f(x)を微分して得られる導関数f’(x)を求め、その導関数を積分すると元の関数f(x)が得られます。</p>
+<p><span class="math display">\[ \frac{d}{dx} f(x) = f'(x) \]</span></p>
+<p><span class="math display">\[ \int f'(x) dx = f(x) + C \]</span></p>
+<p>ここで、Cは積分定数です。微分と積分の逆操作によって、元の関数を復元することができます。</p>
+<p>このように、微分と積分は相互に関連しており、微分によって関数の変化率や勾配を求め、積分によって関数の面積や累積量を求めることができます。微分と積分は数学の基礎であり、物理学、経済学、工学、統計学などのさまざまな分野で広く応用されています。</p>
+<p>数値積分、数値微分は数値解析の説明に譲ります。</p>
+</section>
+<section id="微分公式" class="level3">
+<h3 class="anchored" data-anchor-id="微分公式">微分公式</h3>
+<p>それぞれの微分公式をJuliaで確認しましょう。</p>
+<p>SymPyでは微分積分などを扱えますが、対応していない計算に対しては動作しないので過信しないでください。</p>
+<hr>
+<section id="fxxn" class="level4">
+<h4 class="anchored" data-anchor-id="fxxn"><span class="math inline">\(f(x)=x^n\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=nx^{n-1}\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SymPy</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@vars</span> x</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(x<span class="op">^</span><span class="fl">10</span>, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<p><span class="math inline">\(10 x^{9}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxsinx-gxcosx" class="level4">
+<h4 class="anchored" data-anchor-id="fxsinx-gxcosx"><span class="math inline">\(f(x)=\sin(x), g(x)=\cos(x)\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=\cos(x), g'(x)=-\sin(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">diff</span>(<span class="fu">sin</span>(x), x), <span class="fu">diff</span>(<span class="fu">cos</span>(x), x))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\cos{\left(x \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(- \sin{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxex" class="level4">
+<h4 class="anchored" data-anchor-id="fxex"><span class="math inline">\(f(x)=e^x\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=e^x\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">exp</span>(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<p><span class="math inline">\(e^{x}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxax" class="level4">
+<h4 class="anchored" data-anchor-id="fxax"><span class="math inline">\(f(x)=a^x\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)= a^x \log(a)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fl">10</span><span class="op">^</span>x, x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<p><span class="math inline">\(10^{x} \log{\left(10 \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxex-1" class="level4">
+<h4 class="anchored" data-anchor-id="fxex-1"><span class="math inline">\(f(x)=e^x\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=e^x\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">exp</span>(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<p><span class="math inline">\(e^{x}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxlogx" class="level4">
+<h4 class="anchored" data-anchor-id="fxlogx"><span class="math inline">\(f(x)=\log(x)\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=\frac{1}{x}\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">log</span>(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<p><span class="math inline">\(\frac{1}{x}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxsinhx-gxcoshx" class="level4">
+<h4 class="anchored" data-anchor-id="fxsinhx-gxcoshx"><span class="math inline">\(f(x)=\sinh(x), g(x)=\cosh(x)\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=\cosh(x), g'(x)=\sinh(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">diff</span>(<span class="fu">sinh</span>(x), x), <span class="fu">diff</span>(<span class="fu">cosh</span>(x), x))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\cosh{\left(x \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\sinh{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="関数の和-hxfgx" class="level4">
+<h4 class="anchored" data-anchor-id="関数の和-hxfgx">関数の和 <span class="math inline">\(h(x)=(f+g)(x)\)</span></h4>
+<p>微分すると、 <span class="math inline">\(h'(x)=(f'+g')(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"f"</span>)(x)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"g"</span>)(x)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>((f <span class="op">+</span> g)(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<p><span class="math inline">\(\frac{d}{d x} f{\left(x \right)} + \frac{d}{d x} g{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="関数の積-hxfxgx" class="level4">
+<h4 class="anchored" data-anchor-id="関数の積-hxfxgx">関数の積 <span class="math inline">\(h(x)=f(x)g(x)\)</span></h4>
+<p>微分すると、 <span class="math inline">\(h'(x)=(f'*g)(x)+(f*g')(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"f"</span>)(x)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"g"</span>)(x)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>((f <span class="op">*</span> g)(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<p><span class="math inline">\(f{\left(x \right)} \frac{d}{d x} g{\left(x \right)} + g{\left(x \right)} \frac{d}{d x} f{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="合成関数-hxfgx" class="level4">
+<h4 class="anchored" data-anchor-id="合成関数-hxfgx">合成関数 <span class="math inline">\(h(x)=f(g(x))\)</span></h4>
+<p>微分すると、 <span class="math inline">\(h'(x)=f'(g(x))g'(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"f"</span>)(x)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> sympy.<span class="fu">Function</span>(<span class="st">"g"</span>)(x)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">f</span>(<span class="fu">g</span>(x)), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<p><span class="math inline">\(\frac{d}{d g{\left(x \right)}} f{\left(g{\left(x \right)} \right)} \frac{d}{d x} g{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="例えば合成関数-fxsinx10" class="level4">
+<h4 class="anchored" data-anchor-id="例えば合成関数-fxsinx10">例えば……合成関数 <span class="math inline">\(f(x)=\sin(x^{10})\)</span></h4>
+<p>微分すると、 <span class="math inline">\(f'(x)=10x^9 cos(x^{10})\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">diff</span>(<span class="fu">sin</span>(x<span class="op">^</span><span class="fl">10</span>), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<p><span class="math inline">\(10 x^{9} \cos{\left(x^{10} \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="積分公式" class="level3">
+<h3 class="anchored" data-anchor-id="積分公式">積分公式</h3>
+<p>それぞれの積分公式をJuliaで確認しましょう。</p>
+<p>なお、今回は積分定数を無視します。</p>
+<hr>
+<section id="fxxn-gxfrac1x" class="level4">
+<h4 class="anchored" data-anchor-id="fxxn-gxfrac1x"><span class="math inline">\(f(x)=x^n, g(x)=\frac{1}{x}\)</span></h4>
+<p>積分すると、<span class="math inline">\(F(x)=\frac{1}{n+1}x^{n+1}, G(x)=\log(|x|)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">SymPy</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="pp">@vars</span> x</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">integrate</span>(x<span class="op">^</span><span class="fl">10</span>, x), <span class="fu">integrate</span>(<span class="fl">1</span><span class="op">/</span>x, x))</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\frac{x^{11}}{11}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\log{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxsinx-gxcosx-hxtanx" class="level4">
+<h4 class="anchored" data-anchor-id="fxsinx-gxcosx-hxtanx"><span class="math inline">\(f(x)=\sin(x), g(x)=\cos(x), h(x)=\tan(x)\)</span></h4>
+<p>積分すると、<span class="math inline">\(F(x)=-\cos(x), G(x)=\sin(x), H(x)=-\log(|\cos(x)|)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.(</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">integrate</span>(<span class="fu">sin</span>(x), x), <span class="fu">integrate</span>(<span class="fu">cos</span>(x), x), <span class="fu">integrate</span>(<span class="fu">tan</span>(x), x))</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(- \cos{\left(x \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\sin{\left(x \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(- \log{\left(\cos{\left(x \right)} \right)}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxex-2" class="level4">
+<h4 class="anchored" data-anchor-id="fxex-2"><span class="math inline">\(f(x)=e^x\)</span></h4>
+<p>積分すると、<span class="math inline">\(F(x)=e^x\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="fu">exp</span>(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+<p><span class="math inline">\(e^{x}\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxlogx-1" class="level4">
+<h4 class="anchored" data-anchor-id="fxlogx-1"><span class="math inline">\(f(x)=\log(x)\)</span></h4>
+<p>積分すると、<span class="math inline">\(F(x)=x \log(x) - x\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">integrate</span>(<span class="fu">log</span>(x), x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<p><span class="math inline">\(x \log{\left(x \right)} - x\)</span></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="fxsinhx-gxcoshx-1" class="level4">
+<h4 class="anchored" data-anchor-id="fxsinhx-gxcoshx-1"><span class="math inline">\(f(x)=\sinh(x), g(x)=\cosh(x)\)</span></h4>
+<p>積分すると、<span class="math inline">\(F(x)=\cosh(x), G(x)=\sinh(x)\)</span> となる。 これをJuliaで書くと以下のようになる:</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.(</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">integrate</span>(<span class="fu">sinh</span>(x)), <span class="fu">integrate</span>(<span class="fu">cosh</span>(x)))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\cosh{\left(x \right)}\)</span></p>
+</div>
+<div class="cell-output cell-output-display">
+<p><span class="math inline">\(\sinh{\left(x \right)}\)</span></p>
+</div>
+</div>
+<hr>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

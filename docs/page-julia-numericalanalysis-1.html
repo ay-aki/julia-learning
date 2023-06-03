@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>mysite</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">mysite</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">mysite</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  </div>
+</li>
+          <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">パッケージの紹介</a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">Base</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">Randomパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">MATパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">LinearAlgebraパッケージ</a>
+  </div>
+</li>
+      </ul>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Algorithms</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号理論</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-1.html" class="sidebar-item-text sidebar-link active">QR分解</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Mathematics</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">微分と積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link">線積分</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link">固有値、固有ベクトルと行列関数</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#数値解析の基礎" id="toc-数値解析の基礎" class="nav-link active" data-scroll-target="#数値解析の基礎">数値解析の基礎</a>
+  <ul class="collapse">
+  <li><a href="#qr分解" id="toc-qr分解" class="nav-link" data-scroll-target="#qr分解">QR分解</a></li>
+  <li><a href="#グラムシュミットの直交化法" id="toc-グラムシュミットの直交化法" class="nav-link" data-scroll-target="#グラムシュミットの直交化法">グラム・シュミットの直交化法</a></li>
+  <li><a href="#ハウスホルダー法" id="toc-ハウスホルダー法" class="nav-link" data-scroll-target="#ハウスホルダー法">ハウスホルダー法</a></li>
+  <li><a href="#ギブンス回転" id="toc-ギブンス回転" class="nav-link" data-scroll-target="#ギブンス回転">ギブンス回転</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">mysite</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="数値解析の基礎" class="level1">
+<h1>数値解析の基礎</h1>
+<section id="qr分解" class="level3">
+<h3 class="anchored" data-anchor-id="qr分解">QR分解</h3>
+<p>QR分解（QR decomposition）は、行列 <span class="math inline">\(A\)</span> を直交行列 <span class="math inline">\(Q\)</span> と上三角行列 <span class="math inline">\(R\)</span> の積に分解する手法です。</p>
+<p>QR分解は数値解析や線形代数の応用分野で広く使われています。</p>
+<p><span class="math display">\[
+A = QR
+\]</span></p>
+<p>QR分解は正方行列に限らず、 <span class="math inline">\(A \in \mathbb{R}^{m\times n}, m \ge n\)</span> の行列に適用できます。その時の式は以下の通りです。</p>
+<p>この場合も <span class="math inline">\(Q \in \mathbb{R}^{m \times m}, R \in \mathbb{R}^{m \times n}\)</span> の形式を使うのが一般的ですが、数値計算上の効率性を考えると <span class="math inline">\(Q_1 \in \mathbb{R}^{m \times n}, R_1 \in \mathbb{R}^{n \times n}\)</span> の形式（エコノミー分解形式）を使う方がより適切です。</p>
+<p><span class="math display">\[
+A = Q R = \begin{bmatrix} Q_1 &amp; Q_2 \end{bmatrix} \begin{bmatrix} R_1 \\ O \end{bmatrix}
+  = Q_1 R_1
+\]</span></p>
+</section>
+<section id="グラムシュミットの直交化法" class="level3">
+<h3 class="anchored" data-anchor-id="グラムシュミットの直交化法">グラム・シュミットの直交化法</h3>
+<p>「グラム・シュミットの直交化法によるQR分解」は、QR分解を分かりやすく説明するうえで重要なアルゴリズムです。</p>
+<p>ただし、実際の実装では使いにくいため、このアルゴリズムを用いて数値計算を行うことは稀です。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">graph LR
+  A[A] -- 直交化 --&gt; B[Q]
+  B --&gt; C[R]
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<section id="a-からグラムシュミットの直交化によりq-を構築" class="level4">
+<h4 class="anchored" data-anchor-id="a-からグラムシュミットの直交化によりq-を構築"><span class="math inline">\(A\)</span> からグラム・シュミットの直交化により、<span class="math inline">\(Q\)</span> を構築</h4>
+<p>グラム・シュミットの直交化は、ベクトル <span class="math inline">\(\{x_j \in \mathbb{R}^{m}\}_{j=1}^{n}\)</span> を使って直交する <span class="math inline">\(n\)</span> 本のベクトル <span class="math inline">\(\{e_j \in \mathbb{R}^{m}\}_{j=1}^{n}\)</span> を作るアルゴリズムです。</p>
+<p>この手法は、次のような漸化式で計算されます(<span class="math inline">\(e_j\)</span> などは縦ベクトルを想定)。</p>
+<p>これをプログラムで実装することを考える。</p>
+<p><span class="math display">\[
+e_i = \frac{u_i}{\|u_i\|}, \;\;\; u_i = x_i - \sum_{j=1}^{i-1} e_j e_j^\mathrm{T} x_i, \;\;\; e_1 = \frac{x_1}{\|x_1\|}
+\]</span></p>
+<p><span class="math inline">\(n\)</span> についての漸化式によって、<span class="math inline">\(e_i\)</span> を求めるプログラムを実装すると、以下の通りになる。</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">e_orth!</span>(x, E, i)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    u <span class="op">=</span> x <span class="op">-</span> <span class="fu">sum</span>( E[<span class="op">:</span>,j]<span class="ch">' * x * E[:,j] for j = 1:i-1 )</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">e</span> <span class="op">=</span> u <span class="op">/</span> <span class="fu">norm</span>(u)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    E[<span class="op">:</span>,i] <span class="op">=</span> <span class="cn">e</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>よって、グラム・シュミットの直交化は以下のように実装される。</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">orth_gram_schmidt</span>(X)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>   E <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">size</span>(X))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>   E[<span class="op">:</span>, <span class="fl">1</span>] <span class="op">=</span> X[<span class="op">:</span>,<span class="fl">1</span>] <span class="op">/</span> <span class="fu">norm</span>(X[<span class="op">:</span>,<span class="fl">1</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">for</span> i <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fu">size</span>(X, <span class="fl">2</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>       xi <span class="op">=</span> X[<span class="op">:</span>,i]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">e_orth!</span>(xi, E, i)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>   <span class="cf">end</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>   <span class="cf">return</span> E</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>E <span class="op">=</span> <span class="fu">orth_gram_schmidt</span>(<span class="fu">rand</span>(<span class="fl">3</span>, <span class="fl">3</span>))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>E<span class="op">'</span> <span class="op">*</span> E <span class="co"># 単位行列になっている。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="119">
+<pre><code>3×3 Matrix{Float64}:
+  1.0          2.25514e-16  -1.02349e-16
+  2.25514e-16  1.0           2.22045e-16
+ -1.02349e-16  2.22045e-16   1.0</code></pre>
+</div>
+</div>
+</section>
+<section id="q-から-r-を構築" class="level4">
+<h4 class="anchored" data-anchor-id="q-から-r-を構築"><span class="math inline">\(Q\)</span> から <span class="math inline">\(R\)</span> を構築</h4>
+<p>作成した直交行列を用いると、行列 <span class="math inline">\(A=[a_1, a_2, ..., a_n]\)</span> の各ベクトル <span class="math inline">\(a_i\)</span> は以下のように表現されることになります。</p>
+<p><span class="math display">\[
+a_i = \sum_{j=1}^{i} e_j e_j' a_i = [e_1, \dots, e_i, e_{i+1}, \dots, e_n] \begin{bmatrix}e_1' a_i \\ \vdots \\ e_i' a_i \\ 0 \\ \vdots \\ 0 \end{bmatrix}
+\]</span></p>
+<p>よって、<span class="math inline">\(A\)</span> は以下のようになります。</p>
+<p><span class="math display">\[
+A = \begin{bmatrix}
+  e_1'a_1 &amp; e_1'a_2 &amp; e_1'a_3 &amp; \dots \\
+  0       &amp; e_2'a_2 &amp; e_2'a_3 &amp; \dots \\
+  0       &amp; 0       &amp; e_2'a_3 &amp; \dots \\
+  \vdots  &amp; \vdots  &amp; \vdots  &amp; \vdots
+\end{bmatrix}
+\]</span></p>
+<p>これをプログラムで実装すると、以下の通りになります。</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Q_to_R</span>(Q, A)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="fu">size</span>(A, <span class="fl">2</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> <span class="fu">zeros</span>(n, n)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>n</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">=</span> i<span class="op">:</span>n</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            ei, aj <span class="op">=</span> Q[<span class="op">:</span>,i],  A[<span class="op">:</span>,j]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>            R[i,j] <span class="op">=</span> ei<span class="op">'</span> <span class="op">*</span> aj</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> R</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">5</span>, <span class="fl">4</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="fu">orth_gram_schmidt</span>(A)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fu">Q_to_R</span>(Q, A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<pre><code>4×4 Matrix{Float64}:
+ 1.18889  1.30738   0.609978  1.05868
+ 0.0      0.647188  0.401242  0.657774
+ 0.0      0.0       0.575256  0.658712
+ 0.0      0.0       0.0       0.594718</code></pre>
+</div>
+</div>
+</section>
+<section id="qr分解の実装" class="level4">
+<h4 class="anchored" data-anchor-id="qr分解の実装">QR分解の実装</h4>
+<p>グラム・シュミットの直交化法によりQR分解を行う関数<code>myqr_gram_schmidt</code>は以下の通りになります。</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">myqr_gram_schmidt</span>(A)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> <span class="fu">orth_gram_schmidt</span>(A)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> <span class="fu">Q_to_R</span>(Q, A)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q, R</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">6</span>, <span class="fl">4</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> <span class="fu">myqr_gram_schmidt</span>(A)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="121">
+<pre><code>4.526797389797801e-16</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="ハウスホルダー法" class="level3">
+<h3 class="anchored" data-anchor-id="ハウスホルダー法">ハウスホルダー法</h3>
+<p>「ハウスホルダー法によるQR分解」は、QR分解の実用的なアルゴリズムの１つです。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">graph LR
+  A[A] --&gt; B[A']
+  B -- 変換 --&gt; C[Qi]
+  C -- 小行列化 --&gt; B
+  C --&gt; D[R]
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<section id="ハウスホルダー変換の意味" class="level4">
+<h4 class="anchored" data-anchor-id="ハウスホルダー変換の意味">ハウスホルダー変換の意味</h4>
+<p>ハウスホルダー変換とは、法線ベクトル <span class="math inline">\(e\)</span> の超平面に対して対称に点を写す変換のことです。</p>
+<p>変換を表す以下の行列 <span class="math inline">\(H\)</span> は直交行列かつ対称行列です。</p>
+<p><span class="math display">\[
+H = I - 2 e e^\mathrm{T}
+\]</span></p>
+<p>ハウスホルダー変換は直交変換であるため、どんな超平面を選んでも元のベクトルのノルムを半径とした超球面上にしか変換を行うことはできないことに注意します。</p>
+<p>そうすると、例えば、以下のような変換を行うように <span class="math inline">\(e\)</span> を選んでやることもできます。</p>
+<p><span class="math display">\[
+y = Hx, \;\;\;  y = \begin{bmatrix} \|x\| \\ 0_{m-1} \end{bmatrix}
+\]</span></p>
+<p>このときの <span class="math inline">\(e\)</span> は以下のベクトルになる。</p>
+<p><span class="math display">\[
+e =\frac{x-y}{\|x-y\|}
+\]</span></p>
+</section>
+<section id="qr法でのハウスホルダー変換" class="level4">
+<h4 class="anchored" data-anchor-id="qr法でのハウスホルダー変換">QR法でのハウスホルダー変換</h4>
+<p>以下、全体の変換により得られる行列を <span class="math inline">\(A_i\)</span> 、行列Aを変換していく際の小行列として表れる行列を <span class="math inline">\(B_i\)</span> と定めます。</p>
+<p><span class="math display">\[
+A_1 = A = B_1
+\]</span></p>
+<p>行列 <span class="math inline">\(A_1 = A=[a_!, \dots , a_n]\)</span> に対して、 <span class="math inline">\(x=a_1, \;\;\; y=[\|x\|, 0_{m-1}^\mathrm{T}]^\mathrm{T}\)</span> とした時のハウスホルダー変換行列 <span class="math inline">\(H_1\)</span> を作用させると以下のようになります。</p>
+<p><span class="math display">\[
+A_2 = H_1 A_1 = [H_1 a_1 , \dots , H_1 a_n] =
+\begin{bmatrix}
+    \|a_1\| &amp; * \\
+    0_{m-1} &amp; B_2
+\end{bmatrix}
+\]</span></p>
+<p>ここで、小行列を逐次作用させていくことで、<span class="math inline">\(k\)</span> 次上三角行列 <span class="math inline">\(R_k\)</span> と小行列 <span class="math inline">\(B_k\)</span> により、以下のような行列が作れるものとする。</p>
+<p><span class="math display">\[
+A_k =
+\begin{bmatrix}
+    R_k &amp; * \\
+    O   &amp; B_{k}
+\end{bmatrix}
+\]</span></p>
+<p>ここで、<span class="math inline">\(B_k\)</span> という行列に対しても同じようにハウスホルダー変換を施すことができるので、その行列を <span class="math inline">\(H_k\)</span> とすると、以下のように、<span class="math inline">\(A_k\)</span> から <span class="math inline">\(A_{k+1}\)</span> を得る式が求められます。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+    I &amp; O^\mathrm{T}\\
+    O   &amp; H_{k}
+\end{bmatrix}
+A_k
+=
+\begin{bmatrix}
+    I &amp; O^\mathrm{T}\\
+    O   &amp; H_{k}
+\end{bmatrix}
+\begin{bmatrix}
+    R_k &amp; * \\
+    O   &amp; B_{k}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    R_k &amp; *\\
+    O   &amp; H_{k}B_{k}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    R_{k+1} &amp; * \\
+    O       &amp; B_{k+1}
+\end{bmatrix}
+=
+A_{k+1}
+\]</span></p>
+</section>
+<section id="qr法でのハウスホルダー変換の漸化式" class="level4">
+<h4 class="anchored" data-anchor-id="qr法でのハウスホルダー変換の漸化式">QR法でのハウスホルダー変換の漸化式</h4>
+<p>まとめると、<span class="math inline">\(Q\)</span>、<span class="math inline">\(R\)</span> を構築する以下の漸化式が得られます。</p>
+<p><span class="math display">\[
+R = A_n, \;\;\; Q = Q_1^\mathrm{T} Q_2^\mathrm{T} \dots Q_t^\mathrm{T}, \;\;\; t=\text{min}(m-1, n)
+\]</span></p>
+<p><span class="math display">\[
+A_{k+1} = Q_k A_k, \;\;\; A_k=\begin{bmatrix} R_k &amp; * \\ O &amp; B_k \end{bmatrix} \;\;\; A_1 = A = B_1
+\]</span></p>
+<p>ここで、直行行列 <span class="math inline">\(Q_k\)</span> は以下の式で表されます。 なお、<span class="math inline">\(I\)</span> は <span class="math inline">\(k\)</span> 次単位行列、<span class="math inline">\(O\)</span> はそれぞれの大きさのゼロ行列です。</p>
+<p><span class="math display">\[
+Q_k =
+\begin{bmatrix}
+    I &amp; O^\mathrm{T}\\
+    O   &amp; H_{k}
+\end{bmatrix}, \;\;\;
+H_k = I - 2 ee', \;\;\;
+e =\frac{x-y}{\|x-y\|}, \;\;\;
+x = b_1, \;\;\;
+y=\begin{bmatrix} \|b_1\| \\ 0 \end{bmatrix}, \;\;\;
+b_1 = B_k[:, 1]
+\]</span></p>
+</section>
+<section id="qr分解の実装-1" class="level4">
+<h4 class="anchored" data-anchor-id="qr分解の実装-1">QR分解の実装</h4>
+<p>ハウスホルダー変換を行う行列を生成するプログラムは以下の通りです。</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e を使って行列 H_k を構築する。</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">H</span>(<span class="cn">e</span>)    <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, <span class="fu">length</span>(<span class="cn">e</span>), <span class="fu">length</span>(<span class="cn">e</span>)) <span class="op">-</span> <span class="fl">2</span> <span class="op">*</span> <span class="cn">e</span> <span class="op">*</span> e<span class="op">'</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># x, y を使って行列 H_k を構築する。</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">H</span>(x, y) <span class="op">=</span> <span class="fu">H</span>((v <span class="op">-&gt;</span> v <span class="op">/</span> <span class="fu">norm</span>(v))(x <span class="op">-</span> y))</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># b1 を使って行列 H_k を構築する。</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Bk_to_Hk</span>(Bk)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    b1 <span class="op">=</span> Bk[<span class="op">:</span>,<span class="fl">1</span>]</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    x  <span class="op">=</span> b1</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    y  <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">size</span>(b1)); y[<span class="fl">1</span>] <span class="op">=</span> <span class="fu">norm</span>(b1)</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">H</span>(x, y)</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 行列 Q_k を構築する。</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">Ak_to_Qk!</span>(Qk, Ak, k)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>    Qk[<span class="op">:</span>, <span class="op">:</span>] <span class="op">.=</span> <span class="fl">0</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>    Qk[<span class="fl">1</span><span class="op">:</span>k, <span class="fl">1</span><span class="op">:</span>k]     <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, k, k)</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>    Qk[k<span class="op">:</span><span class="kw">end</span>, k<span class="op">:</span><span class="kw">end</span>] <span class="op">=</span> <span class="fu">Bk_to_Hk</span>(Ak[k<span class="op">:</span><span class="kw">end</span>, k<span class="op">:</span><span class="kw">end</span>])</span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>以下のように、本来計算上0になるべき部分にごく小さい値が入っているため、効率はやや悪いですが、細かい部分なのでそこを気にするのは取り敢えず止めておきます。</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">5</span>, <span class="fl">5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Q <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">size</span>(A))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Ak_to_Qk!</span>(Q, A, <span class="fl">1</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Q <span class="op">*</span> A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="123">
+<pre><code>5×5 Matrix{Float64}:
+  1.00313       0.920552   0.768176    0.749072    1.33285
+  1.18378e-17   0.35075    0.441408    0.0692224   0.158048
+ -8.65606e-18  -0.104659   0.48109     0.240854    0.724849
+ -1.06844e-17  -0.141282  -0.112075   -0.325437    0.23565
+ -3.9054e-17   -0.503089   0.0529677  -0.130842   -0.48772</code></pre>
+</div>
+</div>
+<p>漸化式を適用していく部分を実装すると以下の通りになります。</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">A_next!</span>(Q, Qk, Ak, k)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">Ak_to_Qk!</span>(Qk, Ak, k)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    Ak <span class="op">.=</span> Qk<span class="op">*</span>Ak </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    Q  <span class="op">.=</span> Q<span class="op">*</span>Qk<span class="op">'</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>QR分解の実装は以下の通りになります。</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">myqr_house</span>(AA)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    m, n  <span class="op">=</span> <span class="fu">size</span>(AA)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    Ak <span class="op">=</span> <span class="fu">copy</span>(AA)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    Qk <span class="op">=</span> <span class="fu">zeros</span>(m, m)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    Q  <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, m, m)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> <span class="fu">min</span>(m<span class="op">-</span><span class="fl">1</span>, n)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>t</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">A_next!</span>(Q, Qk, Ak, k)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> Ak</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q, R</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">4</span>, <span class="fl">4</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> <span class="fu">myqr_house</span>(A)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>6.715136547999446e-16</code></pre>
+</div>
+</div>
+<p><a href="https://en.wikipedia.org/w/index.php?title=QR_decomposition&amp;oldid=983984255">参考</a></p>
+</section>
+</section>
+<section id="ギブンス回転" class="level3">
+<h3 class="anchored" data-anchor-id="ギブンス回転">ギブンス回転</h3>
+<p>「ギブンス回転」を用いる方法は、QR分解の実用的なアルゴリズムの１つです。 並列化に向いている手法です。</p>
+<p>説明は暇があったら書きます。</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 行列の下三角の部分だけを返す</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">tril_indices</span>(m, n)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> []</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>m</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>i<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> j <span class="op">&gt;</span> n</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>                <span class="cf">break</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            <span class="cf">end</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            <span class="fu">push!</span>(idx, (i,j))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> idx</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cos_givens_rotation</span>(a, b)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> <span class="fu">√</span>(a<span class="op">^</span><span class="fl">2</span> <span class="op">+</span> b<span class="op">^</span><span class="fl">2</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    rot <span class="op">=</span> [</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        a<span class="op">/</span>r <span class="op">-</span>b<span class="op">/</span>r; <span class="co">#  cos sin</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        b<span class="op">/</span>r  a<span class="op">/</span>r  <span class="co"># -sin cos</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    ]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> rot</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">myqr_givens_rotation</span>(A)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    m, n <span class="op">=</span> <span class="fu">size</span>(A)</span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    Q <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, m, m)</span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    R <span class="op">=</span> <span class="fu">copy</span>(A)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ij <span class="op">=</span> <span class="fu">tril_indices</span>(m, n)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>        i, j <span class="op">=</span> ij</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> R[i, j] <span class="op">==</span> <span class="fl">0</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>            <span class="cf">continue</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">end</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>        G <span class="op">=</span> <span class="fu">Matrix</span><span class="dt">{Float64}</span>(I, m, m)</span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>        G[[j, i], [j, i]] <span class="op">=</span> <span class="fu">cos_givens_rotation</span>(R[j, j], R[i, j])</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>        R <span class="op">=</span> G <span class="op">*</span> R</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>        Q <span class="op">=</span> Q <span class="op">*</span> G<span class="op">'</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Q, R</span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">6</span>, <span class="fl">4</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>Q, R <span class="op">=</span> <span class="fu">myqr_givens_rotation</span>(A)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="128">
+<pre><code>9.987428430015201e-16</code></pre>
+</div>
+</div>
+<p><a href="https://www.kaggle.com/code/navidkhezrian/qr-decomposition-using-givens-rotation">参考</a></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
