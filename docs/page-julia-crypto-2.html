@@ -184,6 +184,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./page-julia-langwiredpart.html" class="sidebar-item-text sidebar-link">Juliaの変なところ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./page-julia-langbasic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
   </div>
 </li>
@@ -212,12 +217,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">Pkgパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Revise.html" class="sidebar-item-text sidebar-link">Reviseパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">Randomパッケージ</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">MATパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-Plots.html" class="sidebar-item-text sidebar-link">Plotsパッケージ</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -239,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号理論</a>
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号の土台</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -249,7 +269,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-1.html" class="sidebar-item-text sidebar-link">QR分解</a>
+  <a href="./page-julia-numericalanalysis-QR.html" class="sidebar-item-text sidebar-link">QR分解</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">モンテカルロ法</a>
   </div>
 </li>
       </ul>
@@ -353,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>文字のシフトとは、例えば以下のように、表をもとに文字をずらす手法です。</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ch">'あ'</span> <span class="op">+</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="106">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>'ぇ': Unicode U+3047 (category Lo: Letter, other)</code></pre>
 </div>
 </div>
@@ -376,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">char_shift</span>.([<span class="ch">'a'</span>, <span class="ch">'X'</span>], <span class="fl">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="107">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>2-element Vector{Char}:
  'd': ASCII/Unicode U+0064 (category Ll: Letter, lowercase)
  'A': ASCII/Unicode U+0041 (category Lu: Letter, uppercase)</code></pre>
@@ -409,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>plaintext_ <span class="op">=</span> <span class="fu">decode_caesar</span>(ciphertext, mykey)</span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>plaintext_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="108">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>"hello world"</code></pre>
 </div>
 </div>
@@ -428,7 +453,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> tbl[c]</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="109">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>char_replace (generic function with 1 method)</code></pre>
 </div>
 </div>
@@ -468,7 +493,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>plaintext_ <span class="op">=</span> <span class="fu">decode_monoalphabetic</span>(ciphertext, mykey)</span>
 <span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>plaintext_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="110">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>"hello world"</code></pre>
 </div>
 </div>
@@ -521,7 +546,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下の<strong>シーザー暗号によって暗号化された</strong>暗号文を解読することを考える。</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="st">"twzgpozrd"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="111">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>"twzgpozrd"</code></pre>
 </div>
 </div>
@@ -530,7 +555,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>keys        <span class="op">=</span> <span class="fu">collect</span>(<span class="fl">0</span><span class="op">:</span><span class="fl">25</span>)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>decodetexts <span class="op">=</span> (key <span class="op">-&gt;</span> <span class="fu">decode_caesar</span>(ciphertext, key)).(keys)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>outputs     <span class="op">=</span> <span class="fu">collect</span>(<span class="fu">zip</span>(keys, decodetexts))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="112">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>26-element Vector{Tuple{Int64, String}}:
  (0, "twzgpozrd")
  (1, "svyfonyqc")
@@ -569,7 +594,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下の<strong>単一換字暗号によって暗号化された</strong>暗号文を解読することを考える。</p>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ciphertext <span class="op">=</span> <span class="st">"cnkerultveguwrgkcuwaetekruwaecfgngzvteclwqyteuaeyteqcnvankerulctntehakerulctngfaecaftyjazzhaycnahflauflwglkgnpaytzztjahgfguetkahmeagngzlaenglciazaffktqqtnlaeqcfankcuwaeqanlltankcuwaeteankthacfltktniaelcnyteqglctncnltkcuwaetekthacnktqqtnugezgnkakcuwaecffrntnrqtmfjclwkthagflwargeaptlwgfaltyflauflwglankerulgqaffgvawtjaiaelwaktnkaulfgeahcflcnklcnkerultveguwrafuakcgzzrkzgffckgzkerultveguwr"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="113">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>"cnkerultveguwrgkcuwaetekruwaecfgngzvteclwqyteuaeyteqcnvankerulctntehakerulctngfaecaftyjazzhaycnahflauflwglkgnpaytzztjahgfguetkahmeagngzlaenglciazaffktqqtnlaeqcfankcuwaeqanlltankcuwaeteankthacfltktniaelcnyteqglctncnltkcuwaetekthacnktqqtnugezgnkakcuwaecffrntnrqtmfjclwkthagflwargeaptlwgfaltyflauflwglankerulgqaffgvawtjaiaelwaktnkaulfgeahcflcnklcnkerultveguwrafuakcgzzrkzgffckgzkerultveguwr"</code></pre>
 </div>
 </div>

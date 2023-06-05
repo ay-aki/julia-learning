@@ -122,6 +122,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 }</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -185,7 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link active">制御構文</a>
+  <a href="./page-julia-langbasic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -265,7 +266,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">モンテカルロ法</a>
+  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link active">モンテカルロ法</a>
   </div>
 </li>
       </ul>
@@ -317,13 +318,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#juliaの文法基礎" id="toc-juliaの文法基礎" class="nav-link active" data-scroll-target="#juliaの文法基礎">Juliaの文法基礎</a>
+  <li><a href="#数値解析の基礎" id="toc-数値解析の基礎" class="nav-link active" data-scroll-target="#数値解析の基礎">数値解析の基礎</a>
   <ul class="collapse">
-  <li><a href="#if文" id="toc-if文" class="nav-link" data-scroll-target="#if文"><code>if</code>文</a></li>
-  <li><a href="#for文" id="toc-for文" class="nav-link" data-scroll-target="#for文"><code>for</code>文</a></li>
-  <li><a href="#while文" id="toc-while文" class="nav-link" data-scroll-target="#while文"><code>while</code>文</a></li>
-  <li><a href="#continue文" id="toc-continue文" class="nav-link" data-scroll-target="#continue文"><code>continue</code>文</a></li>
-  <li><a href="#break文" id="toc-break文" class="nav-link" data-scroll-target="#break文"><code>break</code>文</a></li>
+  <li><a href="#モンテカルロ法" id="toc-モンテカルロ法" class="nav-link" data-scroll-target="#モンテカルロ法">モンテカルロ法</a></li>
+  <li><a href="#モンテカルロ法で公式を求める" id="toc-モンテカルロ法で公式を求める" class="nav-link" data-scroll-target="#モンテカルロ法で公式を求める">モンテカルロ法で公式を求める</a></li>
+  <li><a href="#モンテカルロ法で数値積分" id="toc-モンテカルロ法で数値積分" class="nav-link" data-scroll-target="#モンテカルロ法で数値積分">モンテカルロ法で数値積分</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -348,198 +347,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="juliaの文法基礎" class="level1">
-<h1>Juliaの文法基礎</h1>
-<section id="if文" class="level3">
-<h3 class="anchored" data-anchor-id="if文"><code>if</code>文</h3>
-<p><code>if</code>文は真理値(以下の<code>(x == 0):: Bool</code>)が<code>true</code>のとき内部のコードを実行します。</p>
-<pre><code>if 真理値
-  コード
-end</code></pre>
-<p>実際の例は以下の通りです：</p>
+<section id="数値解析の基礎" class="level1">
+<h1>数値解析の基礎</h1>
+<section id="モンテカルロ法" class="level3">
+<h3 class="anchored" data-anchor-id="モンテカルロ法">モンテカルロ法</h3>
+<p>モンテカルロ法とは、シミュレーションや数値計算を乱数を用いて行う手法の総称です。 元々は、中性子が物質中を動き回る様子を探るためにスタニスワフ・ウラムが考案しジョン・フォン・ノイマンにより命名された手法です。 カジノで有名な国家モナコ公国の4つの地区（カルティ）の1つであるモンテカルロから名付けられた。ランダム法とも呼ばれます。</p>
+<p>円周率の計算が例として挙げられますが、上記の通りとてもふわふわした定義なので、応用範囲もとても膨大です。</p>
+<p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%83%86%E3%82%AB%E3%83%AB%E3%83%AD%E6%B3%95">参考</a></p>
+</section>
+<section id="モンテカルロ法で公式を求める" class="level3">
+<h3 class="anchored" data-anchor-id="モンテカルロ法で公式を求める">モンテカルロ法で公式を求める</h3>
+<p>円周率や四角錐や球などの公式は、<strong>数理モデルを上手く予測できれば</strong>、モンテカルロ法で簡単に解くことができます。</p>
+<section id="円の公式を求める" class="level4">
+<h4 class="anchored" data-anchor-id="円の公式を求める">円の公式を求める</h4>
+<p>円の面積の公式を求めたいものとします。 面積は <span class="math inline">\(r^2\)</span> に比例するというモデルを採用し、 <span class="math inline">\(A = p r^2\)</span> という式を予測します。</p>
+<p>円を囲う正方形の面積は、<span class="math inline">\(B=4r^2\)</span> であり、<span class="math inline">\(A:B = p:4\)</span> となることが分かります。</p>
+<p>ここで、一様に乱数を <span class="math inline">\(B\)</span> 内部に発生させた場合、その乱数が <span class="math inline">\(A\)</span> に入っている割合は <span class="math inline">\(\frac{A}{B}=\frac{p}{4}\)</span> に収束するはずです。</p>
+<p>実際にやってみます。</p>
+<p>まず、乱数を生成します。なお、0~1範囲で考えます。</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x が 0 と等しい場合にそれを出力します。</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">==</span> <span class="fl">0</span> <span class="co"># x == 0 は比較演算子の返り値＝真理値型</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は同じ値です"</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0と0は同じ値です</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Plots</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n    <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>([0.4552384158732863, 0.5476424498276177, 0.7733535276924052, 0.9405848223512736, 0.02964765308691042, 0.74694291453392, 0.7468008914093891, 0.9766699015845924, 0.32933536727734813, 0.6720006783993265  …  0.7072449674757433, 0.15432438066942566, 0.3355867684577334, 0.11787146264666937, 0.4326256342755368, 0.3263459955343042, 0.5040915702513394, 0.4363318426010223, 0.06184246643407698, 0.5336768573898811], [0.16014320814891514, 0.5011358617291459, 0.018743665453639813, 0.8601828553599953, 0.6556360448565952, 0.7746656838366666, 0.7817315740767116, 0.5553797706980106, 0.6028345068808697, 0.5690620902865082  …  0.6889826593908546, 0.9148951558240528, 0.1436759291283286, 0.5991633714310699, 0.312059069800222, 0.5199998247362753, 0.7200565636157686, 0.05883652803392858, 0.7601316084452316, 0.7233055822178146])</code></pre>
 </div>
 </div>
-<p><code>if ~ else</code>文は真理値が<code>true</code>のとき内部のコード1を実行し、それ以外の場合に<code>else</code>の内部のコード2を実行します。</p>
-<pre><code>if 真理値
-  コード1
-else
-  コード2
-end</code></pre>
-<p>実際の例は以下の通りです：</p>
+<p>次に、プロットして確かめてみます。</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は同じ値です"</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は異なります"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0と0は同じ値です</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">2</span>π, <span class="fl">1000</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xc <span class="op">=</span> ((r, θ) <span class="op">-&gt;</span> <span class="fu">r*cos</span>(θ)).(<span class="fl">1</span>, t)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>yc <span class="op">=</span> ((r, θ) <span class="op">-&gt;</span> <span class="fu">r*sin</span>(θ)).(<span class="fl">1</span>, t)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> <span class="fu">plot</span>(</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    xc, yc, </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    xlims<span class="op">=</span>(<span class="fl">0</span>, <span class="fl">1</span>), ylims<span class="op">=</span>(<span class="fl">0</span>, <span class="fl">1</span>), </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    linewidth <span class="op">=</span> <span class="fl">3</span>, linecolor<span class="op">=:</span>black, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    aspect_ratio<span class="op">=</span><span class="fl">1.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(plt, x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<p><img src="page-julia-numericalanalysis-MonteCarlo_files/figure-html/cell-3-output-1.svg" class="img-fluid"></p>
 </div>
 </div>
+<p>パラメータ <span class="math inline">\(p\)</span> は以下のように計算できます。</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は同じ値です"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は異なります"</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1と0は異なります</code></pre>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p / 4 = n' / n</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> y<span class="op">.^</span><span class="fl">2</span> <span class="op">.&lt;</span> <span class="fl">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> n_ <span class="op">/</span> n</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>3.076</code></pre>
 </div>
 </div>
-<p><code>if ~ elseif ~ else</code>文は真理値1が<code>true</code>のときコード1を実行し、真理値k-1までが<code>false</code>のとき、真理値kが<code>true</code>ならばコードkを実行します。また、真理値nまで実行してコードが全部実行できなかったとき、<code>else</code>の内部のコードn+1を実行します。</p>
-<p>まあ要するに、上から順番にどの条件が真になるかを確かめて、実行していく感じです。</p>
-<pre><code>if     真理値1
-  コード1
-elseif 真理値2
-  コード2
-...
-elseif 真理値k-1
-  コードk-1
-elseif 真理値k
-  コードk
-...
-elseif 真理値n
-  コードn
-else 
-  コードn+1
-end</code></pre>
-<p>実際の例は以下の通りです：</p>
+<p>よって、予測した円の面積の公式は以下の通りです。本来 <span class="math inline">\(p=π=3.141...\)</span> なので、ちょっと惜しい感じですね。</p>
+<p><span class="math display">\[
+A = 3.076 r^2
+\]</span></p>
+</section>
+<section id="四角錐正方形を底面とする錐" class="level4">
+<h4 class="anchored" data-anchor-id="四角錐正方形を底面とする錐">四角錐（正方形を底面とする錐）</h4>
+<ul>
+<li><p>数理モデル</p>
+<p>四角錐の体積 <span class="math inline">\(A = p h a^2\)</span></p></li>
+<li><p>囲う境界内部</p>
+<p>立方体の体積 <span class="math inline">\(B = 8 h a^2\)</span></p>
+<p>よって、<span class="math inline">\(\frac{A}{B} = p\)</span></p></li>
+<li><p>境界の判定式</p>
+<p>判定式 <span class="math inline">\((x + z &lt; 1) \wedge (y + z &lt; 1), \;\;\; h=a=1\)</span></p></li>
+</ul>
 <div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="op">-</span><span class="fl">3</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">==</span> <span class="fl">0</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">と0は同じ値です"</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="cf">elseif</span> <span class="op">-</span><span class="fl">3</span> <span class="op">&lt;</span> x <span class="op">&lt;=</span> <span class="fl">3</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">は、集合(-3,+3]に含まれます"</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>(x)<span class="st">は集合(-∞, -3]と(+3, ∞)の和集合に含まれます"</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>-3は集合(-∞, -3]と(+3, ∞)の和集合に含まれます</code></pre>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n       <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>((x <span class="op">+</span> z <span class="op">.&lt;</span> <span class="fl">1</span>) <span class="op">.&amp;</span> (y <span class="op">+</span> z <span class="op">.&lt;</span> <span class="fl">1</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># p = n' / n</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span>  n_ <span class="op">/</span> n</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>0.354</code></pre>
 </div>
 </div>
+<p>よって、予測した球の体積の公式は以下の通りです。本来は <span class="math inline">\(p=\frac{1}{3}=0.333...\)</span> です。</p>
+<p><span class="math display">\[
+A = 0.354 h a^2
+\]</span></p>
 </section>
-<section id="for文" class="level3">
-<h3 class="anchored" data-anchor-id="for文"><code>for</code>文</h3>
-<p><code>for</code>文は、n回連続で『似た』処理を実行したいときに使います。 何かの順番を持つオブジェクト（イテレーティブオブジェクト）に応じて、順次、内部のコード(i)を実行します。</p>
-<pre><code>for i = イテレーティブオブジェクト
-  コード(i)
-end</code></pre>
+<section id="球" class="level4">
+<h4 class="anchored" data-anchor-id="球">球</h4>
+<ul>
+<li><p>数理モデル</p>
+<p>球の体積 <span class="math inline">\(A = p r^3\)</span></p></li>
+<li><p>囲う境界内部</p>
+<p>立方体の体積 <span class="math inline">\(B = 8 r^3\)</span></p>
+<p>よって、<span class="math inline">\(\frac{A}{B} = \frac{p}{8}\)</span></p></li>
+<li><p>境界の判定式</p>
+<p>判定式 <span class="math inline">\(x^2 + y^2 &lt; r^2\)</span></p></li>
+</ul>
 <div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># iとi^2をnまで足し合わせるプログラム</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span> <span class="co"># UnitRange型オブジェクト</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  k <span class="op">=</span> k <span class="op">+</span> i</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> n <span class="op">+</span> i<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>n<span class="st">, </span><span class="sc">$</span>k<span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>385, 55</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n       <span class="op">=</span> <span class="fl">1000</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> y<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> z<span class="op">.^</span><span class="fl">2</span> <span class="op">.&lt;</span> <span class="fl">1</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># p / 8 = n_ / n</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span> <span class="fl">8</span> <span class="op">*</span> n_ <span class="op">/</span> n</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>4.296</code></pre>
 </div>
 </div>
-<p>ベクトルでもできます。勿論、タプルでも……。</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">=</span> [<span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5</span>, <span class="fl">6</span>, <span class="fl">7</span>, <span class="fl">8</span>, <span class="fl">9</span>, <span class="fl">10</span>]</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  k <span class="op">=</span> k <span class="op">+</span> i</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> n <span class="op">+</span> i<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>n<span class="st">, </span><span class="sc">$</span>k<span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>385, 55</code></pre>
-</div>
-</div>
-<p>ベクトルとか行列を作りたいとき、for文を使った内包表記という書き方ができます。</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1から10まで、2乗の和を計算する</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>[i<span class="op">^</span><span class="fl">2</span> for i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="74">
-<pre><code>10-element Vector{Int64}:
-   1
-   4
-   9
-  16
-  25
-  36
-  49
-  64
-  81
- 100</code></pre>
-</div>
-</div>
+<p>よって、予測した球の体積の公式は以下の通りです。本来は <span class="math inline">\(p=\frac{4}{3} \pi=4.188...\)</span> です。</p>
+<p><span class="math display">\[
+A = 4.296 r^3
+\]</span></p>
 </section>
-<section id="while文" class="level3">
-<h3 class="anchored" data-anchor-id="while文"><code>while</code>文</h3>
-<p><code>while</code>文は真理値が<code>true</code>の間に限り内部のコードが実行されるループです。</p>
-<pre><code>while 真理値
-  コード
-end</code></pre>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># n^2の和を合計が1000を越えるまで足していく。</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">0</span></span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> N <span class="op">&lt;</span> <span class="fl">1000</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  N <span class="op">=</span> N <span class="op">+</span> n<span class="op">^</span><span class="fl">2</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> n <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span>(<span class="st">"0 から </span><span class="sc">$</span>(n<span class="op">-</span><span class="fl">1</span>)<span class="st"> までの値の2乗の和は </span><span class="sc">$</span>N<span class="st"> となる"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0 から 14 までの値の2乗の和は 1015 となる</code></pre>
-</div>
-</div>
 </section>
-<section id="continue文" class="level3">
-<h3 class="anchored" data-anchor-id="continue文"><code>continue</code>文</h3>
-<p><code>continue</code>はループ<code>for</code>, <code>while</code>の内部のコードをその回の終了までスキップします。</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># １～１０までの間で偶数だけを出力する</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> i <span class="op">%</span> <span class="fl">2</span> <span class="op">==</span> <span class="fl">1</span> </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">continue</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>i<span class="st"> は偶数です"</span>)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2 は偶数です
-4 は偶数です
-6 は偶数です
-8 は偶数です
-10 は偶数です</code></pre>
-</div>
-</div>
+<section id="モンテカルロ法で数値積分" class="level3">
+<h3 class="anchored" data-anchor-id="モンテカルロ法で数値積分">モンテカルロ法で数値積分</h3>
+<p>上記の通り、モンテカルロ法は体積や面積を求めるのに使えます。</p>
+<p>これは積分ができることと同義です。</p>
+<section id="自然な手法" class="level4">
+<h4 class="anchored" data-anchor-id="自然な手法">自然な手法</h4>
 </section>
-<section id="break文" class="level3">
-<h3 class="anchored" data-anchor-id="break文"><code>break</code>文</h3>
-<p><code>break</code>はループ<code>for</code>, <code>while</code>をその場で抜けます。</p>
-<div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">10</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> i <span class="op">==</span> <span class="fl">7</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">break</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span>(<span class="st">"</span><span class="sc">$</span>i<span class="st"> は 7 未満です"</span>)</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1 は 7 未満です
-2 は 7 未満です
-3 は 7 未満です
-4 は 7 未満です
-5 は 7 未満です
-6 は 7 未満です</code></pre>
-</div>
-</div>
+<section id="miser法" class="level4">
+<h4 class="anchored" data-anchor-id="miser法">MISER法</h4>
+</section>
+<section id="vegas法" class="level4">
+<h4 class="anchored" data-anchor-id="vegas法">VEGAS法</h4>
 
 
+</section>
 </section>
 </section>
 

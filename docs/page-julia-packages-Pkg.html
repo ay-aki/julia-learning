@@ -112,6 +112,11 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./page-julia-langwiredpart.html" class="sidebar-item-text sidebar-link">Juliaの変なところ</a>
   </div>
 </li>
@@ -140,12 +145,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link active">Base</a>
+  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">Base</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">Pkgパッケージ</a>
+  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link active">Pkgパッケージ</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -171,6 +176,11 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">LinearAlgebraパッケージ</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">TaylorSeriesパッケージ</a>
   </div>
 </li>
       </ul>
@@ -256,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#juliaのパッケージ" id="toc-juliaのパッケージ" class="nav-link active" data-scroll-target="#juliaのパッケージ">Juliaのパッケージ</a>
   <ul class="collapse">
-  <li><a href="#baseとは" id="toc-baseとは" class="nav-link" data-scroll-target="#baseとは">Baseとは？</a></li>
+  <li><a href="#pkgとは" id="toc-pkgとは" class="nav-link" data-scroll-target="#pkgとは">Pkgとは？</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -283,14 +293,35 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="juliaのパッケージ" class="level1">
 <h1>Juliaのパッケージ</h1>
-<p>インストールしなくても最初から用意されている機能のパッケージです。</p>
-<section id="baseとは" class="level3">
-<h3 class="anchored" data-anchor-id="baseとは">Baseとは？</h3>
-<p>Juliaでは、built-inの関数が大抵はこの名前空間にあります。</p>
-<p>例えば、<code>rand</code>関数は<code>Base.rand</code>関数と同じ関数を表しています。</p>
-<p>Juliaでは多重ディスパッチが許されているため、定義の違う<code>Base.rand</code>を定義したりすることもできます。</p>
+<p>インストールしなくても最初から用意されているパッケージです。 主にPEPLで、使いたいタイミングで<code>using Pkg</code>と指定して読み込んでください。</p>
+<section id="pkgとは" class="level3">
+<h3 class="anchored" data-anchor-id="pkgとは">Pkgとは？</h3>
+<p>Juliaのパッケージインストーラです。</p>
+<p>主に、パッケージのインストールを行う際に使うものです。 プログラム中で使うことはあまり想定されてないため、JuliaのREPL上で実行してください。</p>
+<section id="パッケージのインストール" class="level4">
+<h4 class="anchored" data-anchor-id="パッケージのインストール">パッケージのインストール</h4>
+<p>インストール方法は２つあります（やり方が違うだけで両方同じです）。</p>
+<ul>
+<li><p>Pkgパッケージの関数<code>add</code>を使ってインストールする。</p>
+<p><code>using Pkg; Pkg.add("パッケージ名")</code>というコマンドによって、インストールできます。</p></li>
+<li><p><code>]add パッケージ名</code>でパッケージインストーラを起動する。</p>
+<p>REPL上で<code>julia&gt; ]</code>として、<code>(***) pkg&gt;</code>と出た時点で、<code>add パッケージ名</code>としてください。</p></li>
+</ul>
+</section>
+<section id="プロジェクトの操作" class="level4">
+<h4 class="anchored" data-anchor-id="プロジェクトの操作">プロジェクトの操作</h4>
+<ul>
+<li><p>パッケージの作成</p>
+<p>以下のコマンドを実行して、新しいパッケージを作成します。 これにより、パッケージのskeltonが生成されます。</p>
+<p><code>] generate パッケージのパス</code></p></li>
+<li><p>パッケージのアクティベート</p>
+<p>JuliaのREPL（対話型環境）で以下のコマンドを実行します。このコマンドは、作成したプロジェクトのディレクトリをアクティブな環境として設定します。</p>
+<p><code>] activate パッケージのパス</code></p>
+<p>Juliaで開発を行う際には、Revise.jlというパッケージを使うと便利です。 Reviseは、外部から与えられる変更を監視してREPL上で扱われるパッケージの内容が自動で更新されるので便利です。</p></li>
+</ul>
 
 
+</section>
 </section>
 </section>
 
