@@ -304,6 +304,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="./page-julia-numericalanalysis-LU.html" class="sidebar-item-text sidebar-link">LU分解</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Cholesky.html" class="sidebar-item-text sidebar-link active">Cholesky分解</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -354,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link active">モンテカルロ法</a>
+  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">モンテカルロ法</a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -380,9 +385,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#数値解析の基礎" id="toc-数値解析の基礎" class="nav-link active" data-scroll-target="#数値解析の基礎">数値解析の基礎</a>
   <ul class="collapse">
-  <li><a href="#モンテカルロ法" id="toc-モンテカルロ法" class="nav-link" data-scroll-target="#モンテカルロ法">モンテカルロ法</a></li>
-  <li><a href="#モンテカルロ法で公式を求める" id="toc-モンテカルロ法で公式を求める" class="nav-link" data-scroll-target="#モンテカルロ法で公式を求める">モンテカルロ法で公式を求める</a></li>
-  <li><a href="#モンテカルロ法で数値積分" id="toc-モンテカルロ法で数値積分" class="nav-link" data-scroll-target="#モンテカルロ法で数値積分">モンテカルロ法で数値積分</a></li>
+  <li><a href="#cholesky分解" id="toc-cholesky分解" class="nav-link" data-scroll-target="#cholesky分解">Cholesky分解</a></li>
+  <li><a href="#具体的な手法" id="toc-具体的な手法" class="nav-link" data-scroll-target="#具体的な手法">具体的な手法</a></li>
+  <li><a href="#実装" id="toc-実装" class="nav-link" data-scroll-target="#実装">実装</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -409,136 +414,166 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <section id="数値解析の基礎" class="level1">
 <h1>数値解析の基礎</h1>
-<section id="モンテカルロ法" class="level3">
-<h3 class="anchored" data-anchor-id="モンテカルロ法">モンテカルロ法</h3>
-<p>モンテカルロ法とは、シミュレーションや数値計算を乱数を用いて行う手法の総称です。 元々は、中性子が物質中を動き回る様子を探るためにスタニスワフ・ウラムが考案しジョン・フォン・ノイマンにより命名された手法です。 カジノで有名な国家モナコ公国の4つの地区（カルティ）の1つであるモンテカルロから名付けられた。ランダム法とも呼ばれます。</p>
-<p>円周率の計算が例として挙げられますが、上記の通りとてもふわふわした定義なので、応用範囲もとても膨大です。</p>
-<p><a href="https://ja.wikipedia.org/wiki/%E3%83%A2%E3%83%B3%E3%83%86%E3%82%AB%E3%83%AB%E3%83%AD%E6%B3%95">参考</a></p>
+<section id="cholesky分解" class="level3">
+<h3 class="anchored" data-anchor-id="cholesky分解">Cholesky分解</h3>
+<p>コレスキー分解とは、正定値エルミート行列 <span class="math inline">\(A\)</span> を下三角行列 <span class="math inline">\(L\)</span> を用いて以下のような分解形式で表すことである。 この分解の手法は、ガウスの消去法の自然な拡張とも言える。</p>
 </section>
-<section id="モンテカルロ法で公式を求める" class="level3">
-<h3 class="anchored" data-anchor-id="モンテカルロ法で公式を求める">モンテカルロ法で公式を求める</h3>
-<p>円周率や四角錐や球などの公式は、<strong>数理モデルを上手く予測できれば</strong>、モンテカルロ法で簡単に解くことができます。</p>
-<section id="円の公式を求める" class="level4">
-<h4 class="anchored" data-anchor-id="円の公式を求める">円の公式を求める</h4>
-<p>円の面積の公式を求めたいものとします。 面積は <span class="math inline">\(r^2\)</span> に比例するというモデルを採用し、 <span class="math inline">\(A = p r^2\)</span> という式を予測します。</p>
-<p>円を囲う正方形の面積は、<span class="math inline">\(B=4r^2\)</span> であり、<span class="math inline">\(A:B = p:4\)</span> となることが分かります。</p>
-<p>ここで、一様に乱数を <span class="math inline">\(B\)</span> 内部に発生させた場合、その乱数が <span class="math inline">\(A\)</span> に入っている割合は <span class="math inline">\(\frac{A}{B}=\frac{p}{4}\)</span> に収束するはずです。</p>
-<p>実際にやってみます。</p>
-<p>まず、乱数を生成します。なお、0~1範囲で考えます。</p>
+<section id="具体的な手法" class="level3">
+<h3 class="anchored" data-anchor-id="具体的な手法">具体的な手法</h3>
+<p><span class="math display">\[
+A_1 = A
+\]</span></p>
+<p>ここで、以下のように各変数を定める。</p>
+<p><span class="math display">\[
+A_1
+=
+\begin{bmatrix}
+  a_{11} &amp; \begin{bmatrix} a_{12} &amp; \dots &amp; a_{1n} \end{bmatrix} \\
+  \begin{bmatrix} a_{12} \\ \vdots \\ a_{1n} \end{bmatrix} &amp; *
+\end{bmatrix}
+=
+\begin{bmatrix}
+  a_{11} &amp; c_1^* \\
+  c_1 &amp; B_1
+\end{bmatrix}
+\]</span></p>
+<p>この行列を <span class="math inline">\(a_{11} \gets 1\)</span> （<span class="math inline">\(a_{11}\)</span> の場所が1になるようにしたい）かつ、<span class="math inline">\(c_1=1\)</span>（列要素をガウスの消去法的に削除したい） にしたい。 そのため、以下のように変形する。</p>
+<p><span class="math display">\[
+\begin{bmatrix}
+  a_{11} &amp; c_1^* \\
+  c_1 &amp; B_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \sqrt{a_{11}} &amp; 0 \\
+  \frac{1}{\sqrt{a_{11}}} c_1 &amp; I
+\end{bmatrix}
+\begin{bmatrix}
+  \sqrt{a_{11}} &amp; \frac{1}{\sqrt{a_{11}}} c_1^* \\
+  0 &amp; B_1 - \frac{1}{a_{11}} c_1 c_1^*
+\end{bmatrix}
+\]</span></p>
+<p><span class="math display">\[
+\begin{bmatrix}
+  a_{11} &amp; c_1^* \\
+  c_1 &amp; B_1
+\end{bmatrix}
+=
+\begin{bmatrix}
+  \sqrt{a_{11}} &amp; 0^* \\
+  \frac{1}{\sqrt{a_{11}}} c_1 &amp; I
+\end{bmatrix}
+\begin{bmatrix}
+  1 &amp; 0^* \\
+  0 &amp; B_1 - \frac{1}{a_{11}} c_1 c_1^*
+\end{bmatrix}
+\begin{bmatrix}
+  \sqrt{a_{11}} &amp; \frac{1}{\sqrt{a_{11}}} c_1^* \\
+   0 &amp; I
+\end{bmatrix}
+\]</span></p>
+<p>まとめると、<span class="math inline">\(A_1\)</span> は以下のようになる。 <span class="math display">\[
+A_1 =
+L_1
+\begin{bmatrix}  
+  1 &amp; 0^* \\
+  0 &amp; A_2
+\end{bmatrix}
+L_1^*
+, \;\;\;
+L_1 =
+\begin{bmatrix}
+  \sqrt{a_{11}} &amp; 0^* \\
+  \frac{1}{\sqrt{a_{11}}} c_1 &amp; I
+\end{bmatrix}
+, \;\;\;
+A_2 = B_1 - \frac{1}{a_{11}} c_1 c_1^*
+\]</span></p>
+<p>この行列 <span class="math inline">\(A_2\)</span> に対して、同じことをやっていけば、最終的には以下のような行列になります。 <span class="math display">\[
+A = (L_n \dots L_2 L_1) (L_1^* L_2^* \dots L_n^*)
+\]</span></p>
+<p>よって、以下の式が求められました。</p>
+<p><span class="math display">\[
+A = L L^*
+\]</span></p>
+</section>
+<section id="実装" class="level3">
+<h3 class="anchored" data-anchor-id="実装">実装</h3>
+<p>消去法の実装は以下の通りです。</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Random</span>, <span class="bu">Plots</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n    <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>([0.4552384158732863, 0.5476424498276177, 0.7733535276924052, 0.9405848223512736, 0.02964765308691042, 0.74694291453392, 0.7468008914093891, 0.9766699015845924, 0.32933536727734813, 0.6720006783993265  …  0.7072449674757433, 0.15432438066942566, 0.3355867684577334, 0.11787146264666937, 0.4326256342755368, 0.3263459955343042, 0.5040915702513394, 0.4363318426010223, 0.06184246643407698, 0.5336768573898811], [0.16014320814891514, 0.5011358617291459, 0.018743665453639813, 0.8601828553599953, 0.6556360448565952, 0.7746656838366666, 0.7817315740767116, 0.5553797706980106, 0.6028345068808697, 0.5690620902865082  …  0.6889826593908546, 0.9148951558240528, 0.1436759291283286, 0.5991633714310699, 0.312059069800222, 0.5199998247362753, 0.7200565636157686, 0.05883652803392858, 0.7601316084452316, 0.7233055822178146])</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cholelim!</span>(LL, AA, idx)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">size</span>(AA, <span class="fl">1</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  jdx <span class="op">=</span> <span class="fl">2</span><span class="op">:</span><span class="fu">size</span>(idx, <span class="fl">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  L, A <span class="op">=</span> <span class="fu">view</span>(LL, idx, idx), <span class="fu">view</span>(AA, idx, idx)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 行列Lの要素を作成</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  L[<span class="fl">1</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fu">√</span>(A[<span class="fl">1</span>, <span class="fl">1</span>])</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  L[jdx, <span class="fl">1</span>] <span class="op">=</span> A[jdx, <span class="fl">1</span>] <span class="op">/</span> <span class="fu">√</span>(A[<span class="fl">1</span>, <span class="fl">1</span>])</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> j <span class="op">=</span> jdx</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    L[j, j] <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 行列Aの要素を作成</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  A[jdx, jdx] <span class="op">=</span> A[jdx, jdx] <span class="op">-</span> A[jdx, <span class="fl">1</span>] <span class="op">*</span> A[jdx, <span class="fl">1</span>]<span class="ch">' / A[1, 1]</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  A[jdx, <span class="fl">1</span>] <span class="op">.=</span> <span class="fl">0</span>; A[<span class="fl">1</span>, jdx] <span class="op">.=</span> <span class="fl">0</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  A[<span class="fl">1</span>, <span class="fl">1</span>] <span class="op">=</span> <span class="fl">1</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> (x <span class="op">-&gt;</span> <span class="fu">tril</span>(x, <span class="op">-</span><span class="fl">1</span>) <span class="op">+</span> <span class="fu">triu</span>(x))(<span class="fu">rand</span>(<span class="fl">5</span>, <span class="fl">5</span>))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fu">zeros</span>(<span class="fu">size</span>(A))</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>A_orig <span class="op">=</span> <span class="fu">copy</span>(A)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">cholelim!</span>(L, A, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.([L, A]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>5×5 Matrix{Float64}:
+ 0.896486   0.0  0.0  0.0  0.0
+ 0.832987   1.0  0.0  0.0  0.0
+ 0.494651   0.0  1.0  0.0  0.0
+ 0.0813545  0.0  0.0  1.0  0.0
+ 0.0992239  0.0  0.0  0.0  1.0</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>5×5 Matrix{Float64}:
+ 1.0   0.0         0.0       0.0       0.0
+ 0.0   0.175474   -0.168414  0.423201  0.600195
+ 0.0  -0.0333654  -0.17168   0.841061  0.634558
+ 0.0   0.45925     0.014949  0.831753  0.0624153
+ 0.0   0.560973    0.313459  0.522894  0.271689</code></pre>
 </div>
 </div>
-<p>次に、プロットして確かめてみます。</p>
+<p>コレスキー分解の実装は以下の通りです。</p>
 <div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> <span class="fu">range</span>(<span class="fl">0</span>, <span class="fl">2</span>π, <span class="fl">1000</span>)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>xc <span class="op">=</span> ((r, θ) <span class="op">-&gt;</span> <span class="fu">r*cos</span>(θ)).(<span class="fl">1</span>, t)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>yc <span class="op">=</span> ((r, θ) <span class="op">-&gt;</span> <span class="fu">r*sin</span>(θ)).(<span class="fl">1</span>, t)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plt <span class="op">=</span> <span class="fu">plot</span>(</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    xc, yc, </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    xlims<span class="op">=</span>(<span class="fl">0</span>, <span class="fl">1</span>), ylims<span class="op">=</span>(<span class="fl">0</span>, <span class="fl">1</span>), </span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    linewidth <span class="op">=</span> <span class="fl">3</span>, linecolor<span class="op">=:</span>black, </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    aspect_ratio<span class="op">=</span><span class="fl">1.0</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="fu">scatter!</span>(plt, x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<p><img src="page-julia-numericalanalysis-MonteCarlo_files/figure-html/cell-3-output-1.svg" class="img-fluid"></p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">colesky_func</span>(A)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  n <span class="op">=</span> <span class="fu">size</span>(A, <span class="fl">1</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  AA <span class="op">=</span> <span class="fu">copy</span>(A)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  L  <span class="op">=</span> <span class="fu">zeros</span>(n, n)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> i <span class="op">=</span> <span class="fl">1</span><span class="op">:</span>n<span class="op">-</span><span class="fl">1</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    idx <span class="op">=</span> i<span class="op">:</span>n</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="fu">size</span>(idx, <span class="fl">1</span>) <span class="op">&lt;=</span> <span class="fl">1</span> </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="cf">continue</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">end</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cholelim!</span>(L, AA, idx)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> L</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> (x <span class="op">-&gt;</span> <span class="fu">tril</span>(x) <span class="op">*</span> <span class="fu">tril</span>(x)<span class="ch">')(rand(5,5))</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fu">colesky_func</span>(A)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>A <span class="op">-</span> L <span class="op">*</span> L<span class="op">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>5×5 Matrix{Float64}:
+ 0.0  0.0   0.0           0.0           0.0
+ 0.0  0.0   0.0           0.0           0.0
+ 0.0  0.0   0.0          -5.55112e-17   0.0
+ 0.0  0.0  -5.55112e-17  -2.22045e-16   0.0
+ 0.0  0.0   0.0           0.0          -0.728</code></pre>
 </div>
 </div>
-<p>パラメータ <span class="math inline">\(p\)</span> は以下のように計算できます。</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p / 4 = n' / n</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> y<span class="op">.^</span><span class="fl">2</span> <span class="op">.&lt;</span> <span class="fl">1</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span> <span class="fl">4</span> <span class="op">*</span> n_ <span class="op">/</span> n</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>3.076</code></pre>
-</div>
-</div>
-<p>よって、予測した円の面積の公式は以下の通りです。本来 <span class="math inline">\(p=π=3.141...\)</span> なので、ちょっと惜しい感じですね。</p>
-<p><span class="math display">\[
-A = 3.076 r^2
-\]</span></p>
-</section>
-<section id="四角錐正方形を底面とする錐" class="level4">
-<h4 class="anchored" data-anchor-id="四角錐正方形を底面とする錐">四角錐（正方形を底面とする錐）</h4>
-<ul>
-<li><p>数理モデル</p>
-<p>四角錐の体積 <span class="math inline">\(A = p h a^2\)</span></p></li>
-<li><p>囲う境界内部</p>
-<p>立方体の体積 <span class="math inline">\(B = 8 h a^2\)</span></p>
-<p>よって、<span class="math inline">\(\frac{A}{B} = p\)</span></p></li>
-<li><p>境界の判定式</p>
-<p>判定式 <span class="math inline">\((x + z &lt; 1) \wedge (y + z &lt; 1), \;\;\; h=a=1\)</span></p></li>
-</ul>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>n       <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>((x <span class="op">+</span> z <span class="op">.&lt;</span> <span class="fl">1</span>) <span class="op">.&amp;</span> (y <span class="op">+</span> z <span class="op">.&lt;</span> <span class="fl">1</span>))</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># p = n' / n</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span>  n_ <span class="op">/</span> n</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>0.354</code></pre>
-</div>
-</div>
-<p>よって、予測した球の体積の公式は以下の通りです。本来は <span class="math inline">\(p=\frac{1}{3}=0.333...\)</span> です。</p>
-<p><span class="math display">\[
-A = 0.354 h a^2
-\]</span></p>
-</section>
-<section id="球" class="level4">
-<h4 class="anchored" data-anchor-id="球">球</h4>
-<ul>
-<li><p>数理モデル</p>
-<p>球の体積 <span class="math inline">\(A = p r^3\)</span></p></li>
-<li><p>囲う境界内部</p>
-<p>立方体の体積 <span class="math inline">\(B = 8 r^3\)</span></p>
-<p>よって、<span class="math inline">\(\frac{A}{B} = \frac{p}{8}\)</span></p></li>
-<li><p>境界の判定式</p>
-<p>判定式 <span class="math inline">\(x^2 + y^2 &lt; r^2\)</span></p></li>
-</ul>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n       <span class="op">=</span> <span class="fl">1000</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>x, y, z <span class="op">=</span> <span class="fu">rand</span>(n), <span class="fu">rand</span>(n), <span class="fu">rand</span>(n)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>n_ <span class="op">=</span> <span class="fu">sum</span>(x<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> y<span class="op">.^</span><span class="fl">2</span> <span class="op">+</span> z<span class="op">.^</span><span class="fl">2</span> <span class="op">.&lt;</span> <span class="fl">1</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># p / 8 = n_ / n</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>p  <span class="op">=</span> <span class="fl">8</span> <span class="op">*</span> n_ <span class="op">/</span> n</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>p</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>4.296</code></pre>
-</div>
-</div>
-<p>よって、予測した球の体積の公式は以下の通りです。本来は <span class="math inline">\(p=\frac{4}{3} \pi=4.188...\)</span> です。</p>
-<p><span class="math display">\[
-A = 4.296 r^3
-\]</span></p>
-</section>
-</section>
-<section id="モンテカルロ法で数値積分" class="level3">
-<h3 class="anchored" data-anchor-id="モンテカルロ法で数値積分">モンテカルロ法で数値積分</h3>
-<p>上記の通り、モンテカルロ法は体積や面積を求めるのに使えます。</p>
-<p>これは積分ができることと同義です。</p>
-<section id="自然な手法" class="level4">
-<h4 class="anchored" data-anchor-id="自然な手法">自然な手法</h4>
-</section>
-<section id="miser法" class="level4">
-<h4 class="anchored" data-anchor-id="miser法">MISER法</h4>
-</section>
-<section id="vegas法" class="level4">
-<h4 class="anchored" data-anchor-id="vegas法">VEGAS法</h4>
 
 
-</section>
 </section>
 </section>
 
