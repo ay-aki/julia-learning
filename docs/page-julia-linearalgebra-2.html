@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>mysite</title>
+<title>mysite - Julia入門「アルゴリズムと数値計算を極める！」</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -118,10 +89,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
@@ -131,11 +104,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">mysite</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-numbertheory-1.html">Mathematics</a></li><li class="breadcrumb-item"><a href="./page-julia-linearalgebra-2.html">固有値、固有ベクトルと行列関数</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -143,128 +121,155 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">mysite</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Juliaの教科書</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaを使ってみよう</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-wiredpart.html" class="sidebar-item-text sidebar-link">Juliaの変なところ</a>
+  <a href="./page-julia-lang-wiredpart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaの変なところ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  <a href="./page-julia-lang-basic-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">値と演算</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  <a href="./page-julia-lang-basic-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">制御構文</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-3.html" class="sidebar-item-text sidebar-link">行列の使い方</a>
+  <a href="./page-julia-lang-basic-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列の使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link">Juliaのマクロ</a>
+  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaのマクロ</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">パッケージの紹介</a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
+ <span class="menu-text">パッケージの紹介</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">Base</a>
+  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">Pkgパッケージ</a>
+  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pkgパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Revise.html" class="sidebar-item-text sidebar-link">Reviseパッケージ</a>
+  <a href="./page-julia-packages-Revise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reviseパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">Randomパッケージ</a>
+  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">MATパッケージ</a>
+  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MATパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Plots.html" class="sidebar-item-text sidebar-link">Plotsパッケージ</a>
+  <a href="./page-julia-packages-Plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plotsパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">LinearAlgebraパッケージ</a>
+  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LinearAlgebraパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">TaylorSeriesパッケージ</a>
+  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TaylorSeriesパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Images.html" class="sidebar-item-text sidebar-link">Imagesパッケージ</a>
+  <a href="./page-julia-packages-Images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Imagesパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-MLDatasets.html" class="sidebar-item-text sidebar-link">MLDatasetsパッケージ</a>
+  <a href="./page-julia-packages-MLDatasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MLDatasetsパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-DataFrames.html" class="sidebar-item-text sidebar-link">DataFramesパッケージ</a>
+  <a href="./page-julia-packages-DataFrames.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DataFramesパッケージ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-packages-ForwardDiff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ForwardDiffパッケージ</span></a>
   </div>
 </li>
       </ul>
@@ -273,120 +278,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Algorithms</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Algorithms</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号の土台</a>
+  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">暗号の土台</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-crypto-2.html" class="sidebar-item-text sidebar-link">原初の暗号</a>
+  <a href="./page-julia-crypto-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">原初の暗号</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-QR.html" class="sidebar-item-text sidebar-link">QR分解</a>
+  <a href="./page-julia-numericalanalysis-QR.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">QR分解</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-LU.html" class="sidebar-item-text sidebar-link">LU分解</a>
+  <a href="./page-julia-numericalanalysis-LU.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LU分解</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-Cholesky.html" class="sidebar-item-text sidebar-link">Cholesky分解</a>
+  <a href="./page-julia-numericalanalysis-Cholesky.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Cholesky分解</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Mathematics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Mathematics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
+  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">漸化式</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">微分と積分</a>
+  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">微分と積分</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
+  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列とその種類</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link active">固有値、固有ベクトルと行列関数</a>
+  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">固有値、固有ベクトルと行列関数</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-calculus-vartrans.html" class="sidebar-item-text sidebar-link">変数変換とヤコビアン</a>
+  <a href="./page-julia-calculus-vartrans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">変数変換とヤコビアン</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Physics</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">temp</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">モンテカルロ法</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-tech-programgen.html" class="sidebar-item-text sidebar-link">プログラム生成</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-complexanalysis-useful.html" class="sidebar-item-text sidebar-link">複素解析の便利さ</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link">線積分</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-ForwardDiff.html" class="sidebar-item-text sidebar-link">ForwardDiffパッケージ</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link">Genパッケージ</a>
-  </div>
-</li>
-      </ul>
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">temp</span></span>
   </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -407,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">mysite</h1>
+<h1 class="title">Julia入門「アルゴリズムと数値計算を極める！」</h1>
 </div>
 
 
@@ -439,18 +422,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="fu">rand</span>(<span class="fl">3</span>, <span class="fl">3</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>F <span class="op">=</span> <span class="fu">eigen</span>(A) <span class="co"># F.valuesが固有値, F.vectorsが固有ベクトル</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>F</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="65">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>Eigen{ComplexF64, ComplexF64, Matrix{ComplexF64}, Vector{ComplexF64}}
 values:
 3-element Vector{ComplexF64}:
- -0.17368081196005505 - 0.3039770069012261im
- -0.17368081196005505 + 0.3039770069012261im
-   1.5431914300861154 + 0.0im
+ 0.08308200761683276 - 0.44573113013363286im
+ 0.08308200761683276 + 0.44573113013363286im
+  1.7044633459422398 + 0.0im
 vectors:
 3×3 Matrix{ComplexF64}:
-  0.526931+0.302582im   0.526931-0.302582im  0.532166+0.0im
- -0.251746-0.400011im  -0.251746+0.400011im  0.644524+0.0im
- -0.638281-0.0im       -0.638281+0.0im       0.548988+0.0im</code></pre>
+ -0.333971-0.430515im  -0.333971+0.430515im  -0.393287+0.0im
+ -0.396317+0.263419im  -0.396317-0.263419im  -0.687586+0.0im
+  0.690408-0.0im        0.690408+0.0im       -0.610369+0.0im</code></pre>
 </div>
 </div>
 <p><code>F.values</code>を見ると内部が昇順にソートされてるのが分かると思います。 固有値は大きさで挙動が変わるので確かめておくと便利です。</p>
@@ -458,11 +441,11 @@ vectors:
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>P, D <span class="op">=</span> F.vectors, <span class="fu">diagm</span>(F.values)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">-</span> P <span class="op">*</span> D <span class="op">*</span> <span class="fu">inv</span>(P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="66">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>3×3 Matrix{ComplexF64}:
- -2.22045e-16-0.0im  -1.11022e-15+3.04406e-17im   7.21645e-16-2.61836e-17im
- -2.22045e-16-0.0im   3.33067e-16+3.68676e-17im  -1.11022e-16-4.55896e-17im
- -3.33067e-16-0.0im  -1.11022e-16+3.14028e-17im   1.11022e-16-8.25225e-17im</code></pre>
+ -1.11022e-16-4.66675e-17im  …  6.10623e-16+4.19441e-17im
+          0.0-1.23175e-16im     7.77156e-16+2.48059e-17im
+ -3.33067e-16-1.43258e-16im     1.11022e-16-5.73539e-18im</code></pre>
 </div>
 </div>
 <p>誤差が十分小さいので、<span class="math inline">\(A\)</span> を表現できたと確認できましたね。</p>
@@ -475,8 +458,8 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span>(A) <span class="op">-</span> <span class="fu">sum</span>(F.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="67">
-<pre><code>2.220446049250313e-16 - 0.0im</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>8.881784197001252e-16 - 0.0im</code></pre>
 </div>
 </div>
 <ul>
@@ -484,8 +467,8 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">det</span>(A) <span class="op">-</span> <span class="fu">prod</span>(F.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="68">
-<pre><code>-3.885780586188048e-16 - 0.0im</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>-3.3306690738754696e-16 - 0.0im</code></pre>
 </div>
 </div>
 <ul>
@@ -494,11 +477,11 @@ vectors:
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>inv_D <span class="op">=</span> <span class="fu">diagm</span>(F.values <span class="op">.^</span> <span class="op">-</span><span class="fl">1</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(A) <span class="op">-</span> (P <span class="op">*</span> inv_D <span class="op">*</span> <span class="fu">inv</span>(P))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="69">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3×3 Matrix{ComplexF64}:
- 1.44329e-15-0.0im  -8.88178e-16+1.27824e-17im  8.88178e-16-1.22017e-16im
- 8.88178e-16-0.0im  -1.77636e-15+1.54812e-17im  6.66134e-16-1.33162e-17im
-  -2.498e-15-0.0im   1.77636e-15+1.31865e-17im          0.0+9.96799e-17im</code></pre>
+  1.11022e-15-1.3664e-16im   …  4.44089e-16-1.6165e-16im
+  2.44249e-15+6.62355e-17im             0.0+6.40496e-17im
+ -3.55271e-15-1.20016e-17im     2.77556e-16+7.57959e-18im</code></pre>
 </div>
 </div>
 <ul>
@@ -507,11 +490,11 @@ vectors:
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="fl">10</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">^</span>n <span class="op">-</span> P <span class="op">*</span> (D<span class="op">^</span>n) <span class="op">*</span> <span class="fu">inv</span>(P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="70">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>3×3 Matrix{ComplexF64}:
- -7.81597e-14-0.0im   -7.4607e-14+1.51088e-15im  -2.13163e-14-1.29959e-15im
- -8.52651e-14-0.0im  -7.81597e-14+1.82988e-15im  -1.77636e-14-1.57398e-15im
- -8.52651e-14-0.0im  -7.81597e-14+1.55864e-15im   -2.4869e-14-1.34068e-15im</code></pre>
+ 1.84741e-13-9.03642e-15im  …  3.19744e-13+1.7228e-15im
+ 3.48166e-13-1.57984e-14im     5.96856e-13+3.01193e-15im
+ 2.84217e-13-1.40243e-14im     4.83169e-13+2.67367e-15im</code></pre>
 </div>
 </div>
 </section>
@@ -525,11 +508,11 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">^</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="71">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>3×3 Matrix{Float64}:
- 3.55706  2.68683  1.88119
- 4.31038  3.26062  2.2685
- 3.6689   2.78246  1.92869</code></pre>
+ 2.38053  3.88034  3.36437
+ 4.13445  6.78976  5.89316
+ 3.6911   6.00212  5.24617</code></pre>
 </div>
 </div>
 <ul>
@@ -537,11 +520,11 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="72">
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>3×3 Matrix{Float64}:
- 2.31989  1.47959   0.55023
- 1.89464  2.07686   1.21898
- 1.75728  0.927806  1.88681</code></pre>
+ 1.54178   1.51131  0.846944
+ 0.950071  3.23801  1.93422
+ 1.69066   1.53527  2.67958</code></pre>
 </div>
 </div>
 <ul>
@@ -549,11 +532,11 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="73">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>3×3 Matrix{Float64}:
- -0.931117   2.84258  -2.01411
-  0.611082  -1.90257   2.15066
-  1.7123    -2.03951   1.16845</code></pre>
+ -1.11638    1.22603   -0.318213
+ -0.661488   0.21397    0.785896
+  1.92048   -0.495273  -0.14627</code></pre>
 </div>
 </div>
 <ul>
@@ -561,11 +544,11 @@ vectors:
 </ul>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="74">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>3×3 Matrix{Float64}:
- 0.228515  0.710166    -0.0862748
- 0.563834  0.0543052    0.563262
- 0.653641  0.00929941   0.355089</code></pre>
+  0.0596995  0.53024    0.00280859
+ -0.0860126  0.641437   0.449297
+  0.753893   0.0289707  0.472678</code></pre>
 </div>
 </div>
 <ul>
@@ -580,11 +563,11 @@ vectors:
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">f_MatrixFunction</span>(x <span class="op">-&gt;</span> <span class="fu">tan</span>(x<span class="op">+</span><span class="cn">pi</span>), A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="75">
+<div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>3×3 Matrix{ComplexF64}:
- 14.5569+0.0im  11.5316-7.14392e-16im  7.45733+5.86732e-16im
- 17.8917+0.0im  13.1833-8.65224e-16im  9.69777+7.58104e-16im
- 15.4125+0.0im  11.1748-7.36975e-16im  8.15657+6.33912e-16im</code></pre>
+ -1.33408-3.52467e-16im    -1.759-1.17877e-16im  -1.95063+2.72109e-17im
+ -2.48043-5.67696e-16im  -3.35218-1.47176e-16im  -3.00296+1.0823e-16im
+ -1.44085-4.76187e-16im  -3.45766-7.6695e-17im   -2.61318+9.60753e-17im</code></pre>
 </div>
 </div>
 
@@ -620,9 +603,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -687,6 +684,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

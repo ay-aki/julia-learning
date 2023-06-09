@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.361">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>mysite</title>
+<title>mysite - Julia入門「アルゴリズムと数値計算を極める！」</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -118,7 +89,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
@@ -133,11 +105,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">mysite</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-howtoinstall.html">Juliaの教科書</a></li><li class="breadcrumb-item"><a href="./page-julia-packages-Base.html">パッケージの紹介</a></li><li class="breadcrumb-item"><a href="./page-julia-packages-Images.html">Imagesパッケージ</a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -145,240 +122,165 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">mysite</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Home</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./about.html" class="sidebar-item-text sidebar-link">About</a>
+  <a href="./about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">About</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Juliaの教科書</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Juliaの教科書</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">Juliaを使ってみよう</a>
+  <a href="./page-julia-howtoinstall.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaを使ってみよう</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-wiredpart.html" class="sidebar-item-text sidebar-link">Juliaの変なところ</a>
+  <a href="./page-julia-lang-wiredpart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaの変なところ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-1.html" class="sidebar-item-text sidebar-link">値と演算</a>
+  <a href="./page-julia-lang-basic-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">値と演算</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-2.html" class="sidebar-item-text sidebar-link">制御構文</a>
+  <a href="./page-julia-lang-basic-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">制御構文</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-basic-3.html" class="sidebar-item-text sidebar-link">行列の使い方</a>
+  <a href="./page-julia-lang-basic-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列の使い方</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link">Juliaのマクロ</a>
+  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Juliaのマクロ</span></a>
   </div>
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">パッケージの紹介</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">パッケージの紹介</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">Base</a>
+  <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Base</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">Pkgパッケージ</a>
+  <a href="./page-julia-packages-Pkg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Pkgパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Revise.html" class="sidebar-item-text sidebar-link">Reviseパッケージ</a>
+  <a href="./page-julia-packages-Revise.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reviseパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">Randomパッケージ</a>
+  <a href="./page-julia-packages-Random.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Randomパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">MATパッケージ</a>
+  <a href="./page-julia-packages-MAT.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MATパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Plots.html" class="sidebar-item-text sidebar-link">Plotsパッケージ</a>
+  <a href="./page-julia-packages-Plots.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Plotsパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">LinearAlgebraパッケージ</a>
+  <a href="./page-julia-packages-LinearAlgebra.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">LinearAlgebraパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">TaylorSeriesパッケージ</a>
+  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">TaylorSeriesパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Images.html" class="sidebar-item-text sidebar-link active">Imagesパッケージ</a>
+  <a href="./page-julia-packages-Images.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Imagesパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link">Genパッケージ</a>
+  <a href="./page-julia-packages-MLDatasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MLDatasetsパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-MLDatasets.html" class="sidebar-item-text sidebar-link">MLDatasetsパッケージ</a>
+  <a href="./page-julia-packages-DataFrames.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">DataFramesパッケージ</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-DataFrames.html" class="sidebar-item-text sidebar-link">DataFramesパッケージ</a>
+  <a href="./page-julia-packages-ForwardDiff.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">ForwardDiffパッケージ</span></a>
   </div>
 </li>
       </ul>
   </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Algorithms</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-crypto-1.html" class="sidebar-item-text sidebar-link">暗号の土台</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-crypto-2.html" class="sidebar-item-text sidebar-link">原初の暗号</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-QR.html" class="sidebar-item-text sidebar-link">QR分解</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-LU.html" class="sidebar-item-text sidebar-link">LU分解</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-Cholesky.html" class="sidebar-item-text sidebar-link">Cholesky分解</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Mathematics</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numbertheory-1.html" class="sidebar-item-text sidebar-link">漸化式</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-calculus-1.html" class="sidebar-item-text sidebar-link">微分と積分</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-calculus-2.html" class="sidebar-item-text sidebar-link">線積分</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-linearalgebra-1.html" class="sidebar-item-text sidebar-link">行列とその種類</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-linearalgebra-2.html" class="sidebar-item-text sidebar-link">固有値、固有ベクトルと行列関数</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Physics</span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">temp</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">モンテカルロ法</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-tech-programgen.html" class="sidebar-item-text sidebar-link">プログラム生成</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-complexanalysis-useful.html" class="sidebar-item-text sidebar-link">複素解析の便利さ</a>
-  </div>
-</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -398,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">mysite</h1>
+<h1 class="title">Julia入門「アルゴリズムと数値計算を極める！」</h1>
 </div>
 
 
@@ -460,7 +362,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>グレイスケールにする。</p>
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>img1_gray <span class="op">=</span> <span class="fu">Gray</span>.(img1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <img src="data:image/png;base64,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">
 </div>
 </div>
@@ -468,14 +370,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>siz <span class="op">=</span> (<span class="fl">10</span>, <span class="fl">10</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>img1_resized <span class="op">=</span> <span class="fu">imresize</span>(img1, siz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAIAAAD/gAIDAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAg9JREFUeAHtwb+rzXEcx/Hn9/ZaiMGie8WiOEomJxaLulHXPWUTXT8i69muRTqkDAbllpXcRZnU7ZJ7R6VukcVgsN8rE9tFffwFb706ujG8Hg+11giPCJsImwibCJsImwibCJsImwib2DIrKyvUNjc3qc3OzlLruo5/QYRNhE2ETYRNhE2ETYRNhE2ETWyZU2+HjO39PH9w+xO1czevUnt+7wm11ho1ETYRNhE2ETYRNhE2ETYRNhE2rT9+SW3v9QG1+fl5aj8/bqf2YPkDtTbqMa53x79Sm7p1jNrMzAw1ETYRNhE2ETYRNhE2ETYRNhE27bl2htri/QVql24MqQ0O7qA2HA75k9dsjW393dQOfNtPTYRNhE2ETYRNhE2ETYRNhE2ETRMTE9QG+45Qa6Me4+ruLFB7OOpR67qO2qEXZ6n96H5RW15epibCJsImwibCJsImwibCJsImwqZ+v09t1/mT1NqoR+3Zo+/U2qjHuFprjGswGFBb+vyZmgibCJsImwibCJsImwibCJsIm9bW1hjXxsYGtQt3pqjN3f1C7enpRWoXu45aa43a0tIS4xJhE2ETYRNhE2ETYRNhE2ETYRN/YXJyktr0iWlql3deoXbx1Ry1o4f7/AsibCJsImwibCJsImwibCJsImxiy6y+WaW2vr5OrU01/j8ibCJsImwibCJsImwibCJsImy/AX8kWpATzE/EAAAAAElFTkSuQmCC">
 </div>
 </div>
 <p>回転する。</p>
 <div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>img1_rotated <span class="op">=</span> <span class="fu">imrotate</span>(img1, <span class="fl">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGwAAAByCAIAAAA52KNxAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAIABJREFUeAHtwQl4VIW5N/D/e+bMJJnMTHYSsocQ9h0iEgQURERRsRHcgKLXtS1XbEVlADdwKBdcqHAv0FJpkQr2C8hSRFEUQfYQCISQBJKQPZNkklkzy5nzfv2m39yHPBhISMJyn/v7ifhfHSbif3WYiNsNM8OHiHBrEHFbYWb4MTMR4RYg4jbBzLhVibgdMDN+DjMTEW42Ebc2ZsZVMTMR4aYScatiZtwmRNySmBltxsxEhJtHxC2GmXG7EXErYWZcF2YmItwkIm4NzIyOYWYiws0g4maz2+0AJEkSRRG3JxE31apVq371q1+lpaWNGjVqzJgxSqUSHcDMRIQbTsRNsn//fr1eP2fOHIVCIYpidHT0zJkzFy9ejNuQiBvOZrPp9fpx48bBR/IpKytbsmTJ/fffP3r0aHQAMxMRbiwRN1ZxcfHMmTN37NgBvwl3jS2pqiguLiaiZcuW7dixAx3DzESEG0jEjcLMAI4fP56Tk+P1egHcd8ddf5j174FRYWXdA8aOHcvMVqv1zJkzAwcOxG1FxA3BzPDJz893uVwA4uPjX50zJy04UQCdzs1LTU29ePFiRUVFYmIiOoyZiQg3ioguxszwW79+/bJly6qrqwEkJCTEU7AAApCujqksrwBQWlr66aefzp07Fx3GzESEG0JEl2Fm+OXk5MyfP//rr79WKBTw0QUFJweEwCc6Nem9xe+9/sYbRJSbm2s2m0NCQnD7ENE1mBl+f/3rX1esWJGXlwfA6/XCJzk23uOVoFABkBRUU1MbHBxst9ujoqLUajU6AzMTEbqeiM7GzPDLysp69913jUajxWKRZRlAcnJyaWmpUqm8ePFiiDIIPnYlNzY12u32oKCglJQUZsZtRUTnYWb4Xbp0af78+Z9//jkuExsb+4l+8b+9/opDcsekJlVItkSlFoCuwlJcUARAEASTyaRSqdBJmJmI0MVEdBJmht+uXbt+97vfXbhwAT4qlcrj8TBzVVXV+Z+Ob3zD8ENp3pSUIYlKLQA5RH2wubLRZgEgSZJSqbRarVqtFp2EmYkIXUlEhzEz/H744YclS5aUlJTU19fLsgxgxr1Thg8cfKTqwpYtWxQKxbpDXx2c+NB9vYfCL68w/8Pdn505cwbAiBEjpk6dqtVqcVsR0THMDB+r1arX61etWoXL9O3b98WZs0eFJv56QMKl3Pz8qks9e/ZsEr3d8P8ds1a+tG7pmTNnmFmn0z399NNJSUnobMxMROgyIq4XM8Pv9OnTM2bMyMvLQ0vV1dVydaNCm6A4Xbbm1/pthSfGRfbopQqDj9xNd6D4QFFRkSRJgiC8+OKLzz77rEqlQhdgZiJC1xDRfsyMls6ePWs0GpkZwKOj7kkb2P/w8aMHco6HhIQYowLgMzg2ZXBsCvwa3I75S5ev/2qrLMshISGvvvrq22+/zcy4Fq/Xq1AovF6vQqHArUFEOzEzWmpubi4oKLBYLESUkZHx9m9+11PQ2UY9+MquP4vm5pFiFH5OkbXuSFmBLMsAwsPD77vvPgBEhKvatWtXYGBgWVlZt27dwsLChg0bRkQBAQFEhGthZiJCFxDRZsyMnxMQEBAcHOx0OokoJjq6hxgSrFAFhwR89Mhz3TWh+Dlels/bjJWVlQBSU1NXr149atQotKKxsVGhUBw/fvzdd98tLy+32WxmszkwMDDVZ+zYsc8884xWq8XNI6INmBmtk2UZgE6ns1gsaq+gJAE+3TWh8GGA0IKChMAaKwAi6t+//5AhQ3AFr9cL4I9//GNFRcX58+ezsrLgp1KprFbrKZ/du3cfO3Zs9OjRI0aMSE9Px1UxMxGhs4m4FmbGVYmiGBcXZ7FYAGzc/n9eu/vRQUk94bcj5ydxcMpgV3BcUAj8JJYfTR9nUlN4r6SpU6cGBgbW1NSoVKra2lqPx9PY2Gg2m+vq6n7/+98bjUaXD3xEgR5/8ilTQwOIiouLKyoq7Hb7F1988be//e2OO+5YsmTJvffei6tiZiJCpxLROmZG28yYMePPf/7z999/D2DBpv/aqf8AQJOn+d2tn67fvTUhIeHJex9cePdj8Pni8Hc/NpREBOvU0RFNxcWrV69uaGjIzc0FUFhYGBIScvbs2e7du5eUlMAvOTlZkqRxEfb3xoUFJTdrYgdZQnt6+05atuTdvd//aKyrM5vN2dnZr7322qlTp3DDiWgFM6M9DAbDqFGjAOw6cXDDvl2zx0+pbrYcvJhntVoLCwv5F4+ZZXdVVZX+s//cceKAKIputzskJMRmswUEBLjdbgCSJMGvpKREEARZlqM14pznZqX27JV4ISsjxIJ/MufBnKcF+MxfF/YIflob9bXmqRUrVjgcjtOnTy9evHjRokW4KmYmInQeEVdgZrTfnXfe+dprr61YsQKAftN/JicnL9i4+uSZUwBiYmL6p6R9kvXZos/XwsftdqtUKrPZHBgY6PF4JEnCZZRK5ZAhQ+Lj43tbst9MDwgMOR9QdwghjJbIVtcddd21GDlCDH+499zNOQDeeuutzMzMfv364QYScRlmRgcYDIasrKySkpLqxoZnVy+x2WyyLAOora196c3f1tXVwW/Oyy94SQw0X5Kj0j799FOz2YzLSJKk8NhX32EruqDMUj+Y6KxM0sSl2XLRCsWJTa/0xtYk9Y+XHAD0ev2XX36Jq2JmIkInEeHHzOgYpVJpMBiefPJJACUlJfDzeDx1dXXwGZMYZJgQlTHK66wr+TL70u8+P2E2m+E3e/bsDRs2MPORU+eeaio9ZoRW+zmA4UMHr+nPCRpC6wwTIu/6cxmA7du3b9y4cebMmbgqZiYidAYRADOjkzzxxBNZWVn79u0zmUxoSa0UDBMiXxkZhn+6ePCUOHhFfn2tsQh+27ZtmzJlSlRU1PLlywH8UOoA4HA4ABw6cmwlx6y4k9G60QlBr94Z9tGRRgB6vT4zM1OtVuOGENHZVq5cuWHDhgMHDhw6dMhiscBn5iCdYUJUvE6EX5lVzsnJwWU2bNgwderUpUuXbt269eLFi/AZN27c/v37bTZbUPpjjar9YW4jWmeYEJWVbyszeyoqKvR6/ccff4yrYmYiQoeJAIiImdFJYmNjX3jhhaNHj1osFgBpaWlLJ8VlRlSjpYoGa0BAgMvlgt/27ds/++yzGTNmzJs376WXXgLQq1evjxa+8tPgqMLSimmWrWEKL64qUCTDhMgZW6sBrFy5MjMzc8yYMbgqZiYidIwIHyJiZnQGp9O5cuXK/fv3A0hPT3970cLx1m9RWI2WpgQWznO5cBlBEFasWFFXV/fOO+/AR6VS1V7IfSk0Txwqo22eHqjLOmfddt4GQK/XHzhwAF1PRGerq6s7deqU2WxWqVQPJAmjTy4OYiuu0CdStWR85MJ99fCTZfns2bO//e1v4XdnYHVG9VaRZLSHYULUtvM2AAcPHvz444/nzp2Lq2JmIkIHiPAjImZGx7DPhQsXAAwcOHBS/+hQLoCPV1ApZDerY8hRA58FYyKy8m3FjgCLxcLMALxeL3wGdAswTIh8qJcGcKGd+kSqloyPXLivHoBer8/MzExISEBXEnEZImJmdAARHTlyxGq1AtAGKgdxCQhNbmFHc6/ePQYMzD6umDhLmf8fguiCzx8f77MrdOqPP/5otVorKyslSTIajW+Pi3jn7kgAMgQBsksICJBdaI8FYyKyzllzalzNzc2LFi3asGEDroqZiQjXS0Sn8nq90dHRbrcbQGT3eNud46QvN2719lu0fddDYvZr2tCI4x+qegcFD3LBZ3hI8+BRmueGPdQkhDR9u/a0nHC3N6dfpAhgT30I9RxTeWSXc/SzPcw5vZWNKc0F8GkOCFNKDjNpEBwRYS7EzzFMiJq8qQLAt99+e/jw4VGjRuGqmJmIcF1EtEREzIzrpVAorFarSqUiotOnTjXXPhxwMXJU+YnfSmSXnOGik5udXvUYWdMo2PLhIx76YxwQByAEo9EEiNlVTv2++mMNtWp1RVNTk/jVWxEREQNitf8xdUis69Jfj1aW9Jjkqcw7bfSk9wl9NxLBSlxp5KA+D1Ql7v7+kCiKNTU16EoiOltSUpJSqWTm+IQEm+TRFRR2A57RhFR4JfxLzSXySGiF/ru6pQdN8GlqaoKPxWKpqFDWedWW2rKCslpB+C+PxyMIQnZ2tmdAwMr7o3AFtzpSHSEpFIrKykqHw+H1ehUKBa6KmYkI7SfiCkTEzLhe9fX1LpdLEITy8nLdffeqTuS4/7EHQAgJ8JEKytzRQkAaoaWsc1b9vvrCBjf8xo8fX11d3bt37127dnk8niNHjsDH6/UCkGXZbrdvKdX8myVwkM6JlsLunk0/rvd6vVFRUW63m4jQZUT8HCJiZrQfM4eGhgYGBsqy3LNnTyo+oRjQH//YAyBfcjczjwsIAtB8QlYlK0iJfyltkuZ/V7f5rAV+oihOmTJlzZo1zBwZGWkwGFavXm00GgEQ0ciRI2suXQhja56Ju3Xr1ph6H+p2oKW6zQsuXJCJKDg4OC4uThAEtAEzExHaSUSnIqKGhobm5mYAe/bsKYs9F+lMgk93hTjZWLE7Ki5RVMoONJ+Q1aMEAMfF/k9sP1FyyYrLSJL09ddf7927d8aMGYWFhd98843RaAQgCMIvfvGLZ4boRjksFlfkEvNdqZXfjKvbgSs0xw6NialkZlmWu3XrxsxEhDZgZiJCe4hoBRExM9rv3nvvHTly5Pbt2wHov6v//vEgpxLsQYJCnBWsW2IxrQuPBuCqCVM5ZFFtrW8wmZoszIyWmpubFyxYkJmZuXfv3oKCAvgMig54ITh7okcFJcKU+EB9VBcXhJ8TVn2iptKrUCiampry8/OHDBmCLiOidUTEzGg/g8Gwfft2AD9ecqw9b3tmRLDjsAzgJU3oRGP5zmbbA0EaMSyM+4xB2cbJIdV9NK4jTbiS1WrdsmVLz549JUkC8N49kYvGRuAyOsGN1uiiRwyNzMk9o1AolEql1+tVKBRoG2YmIrSZiE5lMpnOnDmTmJj43nvvvfXWW6IobqqJfmKiR1nq9FRzI3MvZcBb5gYHyynBAQPqjsbj/zFMiBz/l3L4CIJARF6vF4AkSdnZ2WfPno2MjPzdPUkLBznRZkaL83RePhFZrdby8nIiQnswMxGhbURcFRExM9pm3bp1ixcv1mg0UVFRn3zyyfr16y9duiQGaSv6TOhr/hy1Q1PL8xSoq2sSF1kbZymqRkkq+NyTrP51eujq400AmFmn0zkcDq/Xa7fbV61aJQiCSqVqnv7bJuX+UE892sA7JPNoU1pl9UJmDg4O1mg0kiSpVCp0DRGd4cKFC6+88sru3bvhU1RU9PLLL+t0OgD79+93z8gQI1kdVqHo53y3MTnRMnBY4/5nh1jhwX8zTIg6aFKXmZqtVqvZbCYi9gEgyzLL3iF134bGmtE6j6hWSg74WEizfft2o9EIYMaMGc8//zzaj5mJCG0g4lqIiJnROkmSNm/efOTIEfh5vd7Dhw+r1Wr4vP/hJ1unxymEWgBDwzwfhp5WJWnRki5AWDutz+mUx9etW5eXlyf5aLVaq9U6vb/WMCEqNcyMVlRYvdttPXqNGDuxciN8jla5T58+7fF4unXrdv/99zMzEaHLiGgDImJmtKKsrOyHH34wmUwAHuw9paapOrs2G4DD4YDPtnzbpjOWpwfq4KMiL37OyIDKESHnhs0cceBs5NeFlokPZ9bkHx/dfGRqWiBa94fjljf31gqq6rRjxlUPJPeTLur31a858Q4AIhowYEBycjIR4bowMxHhWkR0mMPhqKqqAjB48OBJwyc5ihwmtcloNNrtdvjpv6vP7KsNFAlXpcjfMwIYEYeXYwRl9wuCLZc4EK37Sjl6VdEBp1QDyWG1Wj+tHLj9/3xXb5fgExAQMH369AEDBqADmJmIcFUi2oaImBlXkGU5Pz+/oaGBiJKSkoKbgsM0Ya/cM9fdx/X666/Dr8zs0e+rW/ZSprL4ANogUCGj8HtcVaNHsXH3N0VFFfApKSm5ePEi/J544gmDwZCSkoKuJ6JjBEE4d+6cy+ViZlORSZWsAhBRHRGXFDcyZuTRmqPw++hw4+AX7xoZWJ+mcSvqL6Jj3EOmrcnxfn1xLfxkWYZPWlqawWB47LHH0EmYmYjQOhFtRkTMjCsMHTrUbDYDOHnp5IXICz01PQFUHqmc1nv68drjMsvwW7BgwcC+vZYu/zDhq7kRrhp0wL6ixo1/32cymdDSm2++aTAYiAitcLvdKpUKnUpEexARM6OlBx544MEHH/zHP/6hVquFoYQi/Eu0Onpar+lbCjbDr7Kysra2tv755yf11Czpjetjavbqv6tfm70aLU2cONFgMIwYMQKtsNlsGzduTEhI0Gg0iYmJQUFBOp0uODgYbcDMRIRWiOiwuro6t9tNRGazWW5gXGZKjynHa47VeGqcTmdaRFojNRqNxhMnThQW6hLt6mcfGS+WZ6M9/njSrP+urt7hhY9SqRw+fHh1dfX8+fNffPFFtC4nJ+epp56qqKgQRTEuLg5AX5+MjIwBAwbEx8fjWpiZiPBzRLQTETEzLqNUKoODg5k5JiYm5Y5k7MHlXhj54oXIIuU5VUb3jPKkssNFh3d+t9Niscw/gNRXnu1XXdldqkEbnKx26vfVf33BDr9HH330gw8+sNlsSUlJOp0OrcjPzz906FBubm5DQ4PNZgPQ1NQEIC8vT6VSJScnDxo06O9//zs6QET7EREzw0+SJFmWBUEoLy+vqqzqGdLTZXbDL04RF9sUS90JQEJ1YoIq8UTwiRpHjanJMnfu3PE9NCuH4poW7Ks3HGjAZfr16/fqq6+mpKTgqt55551ly5Zptdq6ujoAKpVKo9FotVqlUmk0Gq1Wa2FhYXFx8fLly+fNm4drYWYiwhVEdFhMTMzgwYN37NgB4OP//Hjp6N+rBBX8lN1FT7VECmIvw41/eqr/059X/K2qqurs2bMlJcFpnuDf3BGGK0hhyWJj6dZ8q35ffUG9Gy2dO3fO4/GgdTt37lywYMGZM2cAOJ1OAESk1WpTXxy5ed7a/Qd/bCwx5p48vWHDBkmS3n777enTpyclJeFamJmI0JKI60JEzAy/N954Y8OGDeXl5ZJKKtEW97b3ASCJnr1138YPjAvUBCZrkpU5KvgMiRiSeFfiDznfb/t+m91u13/XnNR3yCCtQwUpBk0ENrvxjXdA+JiX/7Twhc1HquAXNDgyfFbfpq0X7T9VAdDr9UeOHMEVqqqq9Hr9X/7yF/hlZGRotdqTrsLAx5LqE4SHf3o1MjCU+mBe38f37NlTU1MTFBS0d+/e5557DtdFRGewWq3p6enl5eUOhyMsPhxF6H5XjKe/5+zCM5tXfK5QKKKjo59N+bc0TRp8wgvDfxGYeUJ7otxabnXLc7+8EK4J6tu3d9/kEYpzX609blJoc0s+vF+SJFxGlagN6BkSPrO3/XA1ZD569Ojy5cvnzZuHy3zyySd6vd5ms8FHUIvhM/s8Pfff9xcc0ZISPg6vs8xRMzPpwZx/nHQ4HADsdntcXJwsy4Ig4FqYmYhwGRHXi4iYGT4xMTEOhwOA0+n82+ZNaX3ShimGbXl3S25uLgBZlhsbG8tHlKe50vAvXvzT9F7TV51d5XK5SktLi2X5RG6eTqezWCxExDWNAFQqldvtjouLq6ysBGDeWRKc0T2wX3j4zD6mv+QD0Ov1mZmZQUFBbre7srJSr9fv378fftoJCeEz+yjCAj4s3MTEuIzU4Px45VLzvjIAYWFher1+8uTJuF4iOoCImBk+L7/88p49ewBk12SfbTy7+YfN8BEEQZZlu92uClAyMTkJfkO6Df3V/b+2R9uOHTvW2NhYUVHR3NwMgJlTUlLGjBnjcDief/75mpqaTZs2ffPNNwBMG8/HLs0I/UWq/VC1q6hJkqTMzExm7tat2969e+GnStaFz+yjHtENPgzGZXh/Q9WabMnhBkBEWq127NixaA9mJiL4iegkDz/88KxZs3bt2mUymVwuF3yUSmV6evqhQ4cAfLnzy9Fj7wLhciMDRw7NHOKe5cnNO21ym5YtW2Y0GhMSEo4dO2a32xMSEuCTnp7er18/AM5zJvPOkpCHUsJn9ql+6wiAU6dOCYIgyzL8wp7qFfZ4L7QixRIh5nlKmz3wGTp06Jo1a9LT09FOzExE8BHRMUTEzPD54IMPevXqVVRUVFFRUV1dPWjQIIPBEBYW1rt3b6PRWOuo3Vm+4+HER3AZj8Vz7OPjAboASevdeWlnZWUlgNDQ0JMnT957773w69u37+LFixctWgTAtPG8JqN70OBI3eQky1eXAMiyHB0dbbPZuL8mfGYfVaIWrSvRNRjLT8JHFMWmpqaFCxeuXbs2OTkZ10tE54mMjHzzzTcbGxsVCkVpaenQoUMBMPN777330ksvCYLQFNvk1rpVVhVacllc1SFVBYUFzEw+KSkpaGnhwoWbNm06f/68CiLtrsPMhPCZfXo7YytKyyb98pGxA+/8sOAzR38VriXcpZ44LnNd/loAkiQVFxdXVFS88cYbW7ZsQTsxMxEBENFhRMTM8FEoFJGRkQDCwsLgQ0QhISHR0dG1tbXczGKkAleo1dYu/3x5g7UBwLBhw9atW5eamoqWioqKevTocf78eZfLNTX+nhNSQ1VwozwrVhsUka2tO87bm/ur0AamAMfOwlOhoaGNjY3JycmlpaVut/uLL7548sknp06dinZiZiIS0RmIiJnRioaGhtraWiIqriq2RtlCEIKWSoUSSZAACIJwxx139OzZE1dIS0uzWq3w2fzTdvU9/QE0hrsASFIz2iPk6bTfTJidkZFx+vTp9evX5+bmBgYG7tmz55FHHiEitJ+Irnfx4sWAgACPxxMTE6NN0qIA/02CtLU466uLX0mSREQPP/zw66+/rtVq8XMMBsOYMWMA2M/XB2dbeLgO10Hm5IbwMWPGqNXqoUOHOp1OAJIkJSUl2Ww2rVaLNiMi+IjoJETEzGiJmc+dO3f69GmXyyUIwsCBA6me4McC1w+vO3bymCRJAARBmDx5cnJyMlrhcrn69u2bn58fEBDwTLcH/4KfvJDRHo5DNe6t5TlWesD+5aBBg06cOOFyuYho2rRp8+fPR3sQEfxEdB4iYmZchohKSkrOnj0LIFAZFFYUTgEEP6/Km5eXV1tbC585c+ZkZmaidQkJCfn5+QDMZnNW0TfehCC0WXCzsnzNSfP+MkEQvF4vgJ9++gk+SqVy0qRJkiSJoog2ICK0JKKL1dTUWK1WIgqPCotXx8GL/xYUEFRVVwUfnU6XmpoaERGBqxo/fvy+ffsUCkU60g6x0UFutM2ohlTbpVNNzF6vFz5qtVqj0cTFxS1dunTSpEloAyLCzxHRqYiImeHHzJWVlYIgMHNsbGxT76bE3on1x+sVZtGuto3993EhS0PgI8vysGHDcFWhoaF5eXkAnE5ngbnURSq02TfiKZVSqdPpHIEeydgMQKPRrFq1atq0aWgbIkIrRHQlIurXr5/dbgdw7NixgoKChISE0NBQa73V5rH94cgfzp8/DyA+Pv7999/PyMjAVQUGBk6cOPGzzz4TRVFZ5Q12qywqJ9pGiAnsNneIkm1myVbxyo8AjEZjY2Mj2oCIcFUiOhsRMTP8pk2b9vjjj2/ZsgWA2QctEVFKSkpGRgauRRTF+vp6AJIkKYKVOiHYAifarCrOAQg6b8TQB0bl7D6sVCq3bt361FNPaTQatI6IcC0iugARMTP8li1bZrFYqqqqampqPB6PyWRKSEgoLy9XKBTMbDAY3njjDbSBWq0eNmzYnj17BEHIzz4b+ugwhOCaBnoSm1WSHc5qNgFQykK4JxiALMuxsbE2m02j0eDnEBHaRkTXS0pKWrt2rclkqqmpyc3NTU9Pr62trampaWhomDVrVs+ePdE2Xq9XkqTAwECn05mYmJgU0OMwCtG6IEkZcwj204VisOrRiRPXhn9rza+r2HjeXWoBoFarhw8fHhoaiisQEdpDRNcgImaGX4LP4MGDJ02axMxEJMuyIAhoD4VCMWjQIKfTCeDgwYPFD8qB/cLROgULyDV/++23RHT4h5+84QpbiQl+d9xxx4QJEwIDA9ESEaGdRNxwRARAEAS039NPP52VlbVt2zYApo3nY5dm4DJqI6bG3v036Qf4/LLPI0fDdgFgZrPZDDP+RaPRGAyGOXPmoCUiwnUR0WWIiJnR2QwGw7Zt2wA4z5nMO0pCHk4BwF42bTzftL/xeLpH2c/huTtEa1Mufemt+oOlAIiImeHzy1/+0mAwxMbG4jJEhA4Q0ZWIiJnRqfr06bNkyZKFCxcCMG08H5wR48xvNG08L9U6iOj777/vcakH+gWNdPTaU5YNgIhSU1PT0tLsdvtrr7320EMPoSUiQseIuA0tWLAgKysrJyeH3d6qNw9Jdc3wYWa3211TU6Nc49hQ/pPbaAcwfPjw9evX63S65ORktERE6AwiuhgRMTM6m8FgmDx5MgCprhk+ISEhZrMZQFNTE7Kb4CMIwvDhwxMTE0NDQ9ESEaGTiOh6RMTM6FT333//c88996c//Qk+v/nNbwwGg16v379//5kzZ+DTvXt3g8Ewe/ZstERE6FQibltLly5tampyOBzz5s27++67AbzzzjtWq3X27NkFBQXTpk17//33tVotLkNE6AIibggiYmZ0qsjIyI8++ig+Ph5+ET6rV68G0L9/f7REROgaIm5n8fHxuEL//v3REhGhK4m4UYiImXFjERG6nogbiIiYGTcKEeGGEPE/ERHhBhJxYxERM6MrERFuLBE3HBExM7oAEeFmEPE/AhHh5hFxMxARM6OTEBFuKhG3MyLCLUDETUJEzIzrRUS4ZYi4eYiImdF+RIRbiYjbChHh1iPipiIiZkbbEBFuSSJuB0SEW5iIm42ImBmtICLc8kTSJf/ZAAAALklEQVTcAoiImXEFIsLtQMQtiYhw+xBxayAiZoYPEeG2IuKWQUS4PYn4Xx32fwEFbqoFYbQw8QAAAABJRU5ErkJg">
 </div>
 </div>
@@ -483,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ss <span class="op">=</span> <span class="fu">size</span>(img1)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>img1_cropped <span class="op">=</span> img1[<span class="fl">1</span><span class="op">:</span>ss[<span class="fl">1</span>] <span class="op">÷</span> <span class="fl">2</span>, <span class="fl">1</span><span class="op">:</span>ss[<span class="fl">2</span>]  <span class="op">÷</span> <span class="fl">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <img src="data:image/png;base64,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">
 </div>
 </div>
@@ -521,9 +423,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -588,6 +504,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
