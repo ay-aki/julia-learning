@@ -486,9 +486,9 @@ e_i = \frac{u_i}{\|u_i\|}, \;\;\; u_i = x_i - \sum_{j=1}^{i-1} e_j e_j^\mathrm{T
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>E<span class="op">'</span> <span class="op">*</span> E <span class="co"># 単位行列になっている。</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>3×3 Matrix{Float64}:
-  1.0          -3.60822e-16  -8.88178e-16
- -3.60822e-16   1.0           1.05471e-15
- -8.88178e-16   1.05471e-15   1.0</code></pre>
+  1.0          -1.38778e-16   2.825e-15
+ -1.38778e-16   1.0          -4.16334e-15
+  2.825e-15    -4.16334e-15   1.0</code></pre>
 </div>
 </div>
 </section>
@@ -500,7 +500,9 @@ a_i = \sum_{j=1}^{i} e_j e_j' a_i = [e_1, \dots, e_i, e_{i+1}, \dots, e_n] \begi
 \]</span></p>
 <p>よって、<span class="math inline">\(A\)</span> は以下のようになります。</p>
 <p><span class="math display">\[
-A = \begin{bmatrix}
+A =
+[e_1, \dots, e_i, e_{i+1}, \dots, e_n]
+\begin{bmatrix}
   e_1'a_1 &amp; e_1'a_2 &amp; e_1'a_3 &amp; \dots \\
   0       &amp; e_2'a_2 &amp; e_2'a_3 &amp; \dots \\
   0       &amp; 0       &amp; e_2'a_3 &amp; \dots \\
@@ -526,10 +528,10 @@ A = \begin{bmatrix}
 <span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fu">Q_to_R</span>(Q, A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>4×4 Matrix{Float64}:
- 1.38986  0.768571  1.55875    0.929791
- 0.0      0.897478  0.647178  -0.127088
- 0.0      0.0       0.844311   0.973667
- 0.0      0.0       0.0        0.393711</code></pre>
+ 1.34233  0.600099  1.00745    1.17048
+ 0.0      0.416433  0.0472873  0.0345776
+ 0.0      0.0       0.304262   0.886146
+ 0.0      0.0       0.0        0.257766</code></pre>
 </div>
 </div>
 </section>
@@ -548,7 +550,7 @@ A = \begin{bmatrix}
 <span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>6.562392647709663e-16</code></pre>
+<pre><code>2.1722866501229847e-16</code></pre>
 </div>
 </div>
 </section>
@@ -701,11 +703,11 @@ b_1 = B_k[:, 1]
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>Q <span class="op">*</span> A</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>5×5 Matrix{Float64}:
-  0.510881      0.918488   0.649733     0.63135     0.601804
- -3.15588e-17   0.221955   0.334637     0.149022    0.00241317
- -1.10957e-16  -0.343959  -0.402003    -0.0759852   0.119281
- -3.27052e-18   0.17631    0.603643     0.124452   -0.0380358
- -6.22882e-18   0.496062  -0.00917068   0.254652    0.877774</code></pre>
+  1.38814       1.43119     0.530641     0.678766   1.27723
+ -4.90001e-17   0.0161042   0.304189     0.483365   0.587817
+ -2.28095e-16   0.125782    0.00282696  -0.13343    0.00567238
+ -1.54828e-16   0.304675   -0.260161     0.369015  -0.414681
+ -1.45743e-16  -0.488619   -0.26358     -0.13766   -0.275991</code></pre>
 </div>
 </div>
 <p>漸化式を適用していく部分を実装すると以下の通りになります。</p>
@@ -737,7 +739,7 @@ b_1 = B_k[:, 1]
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
-<pre><code>6.959765930514777e-16</code></pre>
+<pre><code>8.03594618170779e-16</code></pre>
 </div>
 </div>
 <p><a href="https://en.wikipedia.org/w/index.php?title=QR_decomposition&amp;oldid=983984255">参考</a></p>
@@ -799,7 +801,7 @@ b_1 = B_k[:, 1]
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">norm</span>(A <span class="op">-</span> Q<span class="op">*</span>R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
-<pre><code>4.965068306494546e-16</code></pre>
+<pre><code>4.783309287441108e-16</code></pre>
 </div>
 </div>
 <p><a href="https://www.kaggle.com/code/navidkhezrian/qr-decomposition-using-givens-rotation">参考</a></p>
