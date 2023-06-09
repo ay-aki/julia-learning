@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-howtoinstall.html">Juliaの教科書</a></li><li class="breadcrumb-item"><a href="./page-julia-packages-Base.html">パッケージの紹介</a></li><li class="breadcrumb-item"><a href="./page-julia-packages-TaylorSeries.html">TaylorSeriesパッケージ</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-numericalanalysis-MonteCarlo.html">temp</a></li><li class="breadcrumb-item"><a href="./page-julia-packages-Gen.html">Genパッケージ</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -191,13 +191,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
  <span class="menu-text">パッケージの紹介</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 show">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth2 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-Base.html" class="sidebar-item-text sidebar-link">
@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link active">
+  <a href="./page-julia-packages-TaylorSeries.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TaylorSeriesパッケージ</span></a>
   </div>
 </li>
@@ -395,7 +395,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link">
+  <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Genパッケージ</span></a>
   </div>
 </li>
@@ -413,8 +413,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#juliaのパッケージ" id="toc-juliaのパッケージ" class="nav-link active" data-scroll-target="#juliaのパッケージ">Juliaのパッケージ</a>
   <ul class="collapse">
-  <li><a href="#taylorseriesとは" id="toc-taylorseriesとは" class="nav-link" data-scroll-target="#taylorseriesとは">TaylorSeriesとは？</a></li>
-  <li><a href="#taylorseriesの使い方" id="toc-taylorseriesの使い方" class="nav-link" data-scroll-target="#taylorseriesの使い方">TaylorSeriesの使い方</a></li>
+  <li><a href="#genとは" id="toc-genとは" class="nav-link" data-scroll-target="#genとは">Genとは？</a></li>
+  <li><a href="#genの使い方" id="toc-genの使い方" class="nav-link" data-scroll-target="#genの使い方">Genの使い方</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -441,47 +441,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="juliaのパッケージ" class="level1">
 <h1>Juliaのパッケージ</h1>
-<p>インストールするには、JuliaのREPLで<code>using Pkg; Pkg.add("TaylorSeries")</code>を実行してください。 使いたいタイミングで<code>using TaylorSeries</code>と指定して読み込んでください。</p>
+<p>インストールするには、JuliaのREPLで<code>using Pkg; Pkg.add("Gen")</code>を実行してください。 使いたいタイミングで<code>using Gen</code>と指定して読み込んでください。</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">TaylorSeries</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Gen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="taylorseriesとは" class="level3">
-<h3 class="anchored" data-anchor-id="taylorseriesとは">TaylorSeriesとは？</h3>
-<p>マクローリン展開やテイラー展開を扱うライブラリです。</p>
+<section id="genとは" class="level3">
+<h3 class="anchored" data-anchor-id="genとは">Genとは？</h3>
+<p>MITが開発した、オープンソースの生成モデルと確率的推論のためのパッケージです。 一般的な仕様が できることが多いので、何から手を付けたらいいやら……。</p>
+<ul>
+<li><p>Genは確率的推論アルゴリズムの細かい実装を自動化する。</p>
+<p>トリッキーな数学や低レベルの実装を自動化しながら、ユーザのモデルに併せた効率的な確率的推論アルゴリズムを書くためのブロックを提供します。</p></li>
+<li><p>Genはパフォーマンスのトレードオフを柔軟に操作することを可能としています。</p>
+<p>アルゴリズムの一部はユーザの指定する言語やアルゴリズムに置き換えることができます。</p></li>
+<li><p>Genはカスタムハイブリッド推論アルゴリズムをサポートします。</p>
+<p>ニューラルネットワークによる計算（低コスト）とモデルベースの計算（高コスト）の両方の長所を生かしたアルゴリズムをサポートしています。</p></li>
+<li><p>コンパイラを拡張することなく、カスタム推論アルゴリズムを書くことができる。</p></li>
+<li><p>確率的構造を持つモデルにおける効率的な推論</p></li>
+</ul>
+<p><a href="https://www.gen.dev/">Why Gen</a></p>
 </section>
-<section id="taylorseriesの使い方" class="level3">
-<h3 class="anchored" data-anchor-id="taylorseriesの使い方">TaylorSeriesの使い方</h3>
-<p>以下のように、テイラー展開のモデルと変数を定義できます。</p>
-<p>※<code>Taylor1</code>とか<code>TaylorN</code>という関数で変数を定義する方法もありますが、あまり有用性が分かりませんでした。</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>taylor_vars <span class="op">=</span> <span class="fu">set_variables</span>(</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"x"</span>,      <span class="co"># 変数の組</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  order <span class="op">=</span> <span class="fl">5</span> <span class="co"># テイラー展開で計算する次数</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> taylor_vars[<span class="fl">1</span>]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>taylor_expr <span class="op">=</span> <span class="fu">sin</span>(x)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>taylor_expr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code> 1.0 x - 0.16666666666666666 x³ + 0.008333333333333333 x⁵ + 𝒪(‖x‖⁶)</code></pre>
-</div>
-</div>
-<p>変数が２つの場合は以下のようになります。</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>taylor_vars <span class="op">=</span> <span class="fu">set_variables</span>(</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"x y"</span>,    <span class="co"># 変数の組</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  order <span class="op">=</span> <span class="fl">7</span> <span class="co"># テイラー展開で計算する次数</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> taylor_vars</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>taylor_expr <span class="op">=</span> <span class="fu">exp</span>(x <span class="op">+</span> y)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>taylor_expr</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code> 1.0 + 1.0 x + 1.0 y + 0.5 x² + 1.0 x y + 0.5 y² + 0.16666666666666666 x³ + 0.5 x² y + 0.5 x y² + 0.16666666666666666 y³ + 0.041666666666666664 x⁴ + 0.16666666666666666 x³ y + 0.25 x² y² + 0.16666666666666666 x y³ + 0.041666666666666664 y⁴ + 0.008333333333333333 x⁵ + 0.041666666666666664 x⁴ y + 0.08333333333333333 x³ y² + 0.08333333333333333 x² y³ + 0.041666666666666664 x y⁴ + 0.008333333333333333 y⁵ + 0.001388888888888889 x⁶ + 0.008333333333333333 x⁵ y + 0.020833333333333332 x⁴ y² + 0.027777777777777776 x³ y³ + 0.020833333333333332 x² y⁴ + 0.008333333333333333 x y⁵ + 0.001388888888888889 y⁶ + 0.0001984126984126984 x⁷ + 0.001388888888888889 x⁶ y + 0.004166666666666667 x⁵ y² + 0.006944444444444443 x⁴ y³ + 0.006944444444444443 x³ y⁴ + 0.004166666666666667 x² y⁵ + 0.001388888888888889 x y⁶ + 0.0001984126984126984 y⁷ + 𝒪(‖x‖⁸)</code></pre>
-</div>
-</div>
+<section id="genの使い方" class="level3">
+<h3 class="anchored" data-anchor-id="genの使い方">Genの使い方</h3>
+<p><a href="https://www.gen.dev/tutorials/intro-to-modeling/tutorial">Tutorial</a></p>
 
 
 </section>
