@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -109,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-howtoinstall.html">Juliaの教科書</a></li><li class="breadcrumb-item"><a href="./page-julia-lang-macro.html">Juliaのマクロ</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./page-julia-crypto-1.html">Algorithms</a></li><li class="breadcrumb-item"><a href="./page-julia-numericalanalysis-Bunchkaufman.html">Bunchkaufman</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -187,7 +153,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link active">
+  <a href="./page-julia-lang-macro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Juliaのマクロ</span></a>
   </div>
 </li>
@@ -323,7 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./page-julia-numericalanalysis-Bunchkaufman.html" class="sidebar-item-text sidebar-link">
+  <a href="./page-julia-numericalanalysis-Bunchkaufman.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Bunchkaufman</span></a>
   </div>
 </li>
@@ -331,6 +297,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./page-julia-numericalanalysis-MINRES.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">MINRES法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Lanczos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lanczos法</span></a>
   </div>
 </li>
       </ul>
@@ -423,6 +395,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Genパッケージ</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-BlockLanczosProcedure" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Block-Lanczos分解</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -435,16 +413,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#juliaのマクロ" id="toc-juliaのマクロ" class="nav-link active" data-scroll-target="#juliaのマクロ">Juliaのマクロ</a>
+  <li><a href="#数値解析の基礎" id="toc-数値解析の基礎" class="nav-link active" data-scroll-target="#数値解析の基礎">数値解析の基礎</a>
   <ul class="collapse">
-  <li><a href="#マクロとは" id="toc-マクロとは" class="nav-link" data-scroll-target="#マクロとは">マクロとは</a></li>
-  <li><a href="#マクロの記述方法" id="toc-マクロの記述方法" class="nav-link" data-scroll-target="#マクロの記述方法">マクロの記述方法</a></li>
-  <li><a href="#クオート引用" id="toc-クオート引用" class="nav-link" data-scroll-target="#クオート引用">クオート（引用）</a></li>
-  <li><a href="#アンクオート引用解除" id="toc-アンクオート引用解除" class="nav-link" data-scroll-target="#アンクオート引用解除">アンクオート（引用解除）</a></li>
-  <li><a href="#評価" id="toc-評価" class="nav-link" data-scroll-target="#評価">評価</a></li>
-  <li><a href="#astの生成" id="toc-astの生成" class="nav-link" data-scroll-target="#astの生成">ASTの生成</a></li>
-  <li><a href="#エスケープ" id="toc-エスケープ" class="nav-link" data-scroll-target="#エスケープ">エスケープ</a></li>
-  <li><a href="#マクロの例" id="toc-マクロの例" class="nav-link" data-scroll-target="#マクロの例">マクロの例</a></li>
+  <li><a href="#bunchkaufmanの方法" id="toc-bunchkaufmanの方法" class="nav-link" data-scroll-target="#bunchkaufmanの方法">Bunchkaufmanの方法</a></li>
+  <li><a href="#具体的な手法" id="toc-具体的な手法" class="nav-link" data-scroll-target="#具体的な手法">具体的な手法</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -469,153 +441,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="juliaのマクロ" class="level1">
-<h1>Juliaのマクロ</h1>
-<section id="マクロとは" class="level3">
-<h3 class="anchored" data-anchor-id="マクロとは">マクロとは</h3>
-<p>マクロとは、コンパイル時に実行されるコード生成機能であり、柔軟なコード記述と静的なコード変換を可能にします。</p>
-<p>マクロはソースコードのAST（抽象構文木）に対して操作を行い、新しいコードを生成します。</p>
-<p>Juliaのマクロは、<code>@</code>を使って呼び出せます。</p>
-<p>呼び出しは、マクロに渡される引数を含んだ式として解釈され、マクロ内の処理が実行されます。その後、マクロは評価結果として新しい式を返します。この返された式は、通常のコードとして実行されます。</p>
-<p>つまり、マクロはプログラムを生成するプログラムと言えます。</p>
-<p>マクロは、繰り返しパターンやコードの自動生成、ドメイン固有言語（DSL）の構築など、柔軟なコード記述を可能とします。 マクロは、静的なコード解析やコード変換を行うための強力なツールです。</p>
+<section id="数値解析の基礎" class="level1">
+<h1>数値解析の基礎</h1>
+<section id="bunchkaufmanの方法" class="level3">
+<h3 class="anchored" data-anchor-id="bunchkaufmanの方法">Bunchkaufmanの方法</h3>
+<p>Bunchkaufman分解とは、対称行列 <span class="math inline">\(A\)</span> に対する分解の手法です。</p>
+<p>Cholesky分解を一般化したもので、以下のように分解する手法です。なお、<span class="math inline">\(P\)</span> は置換行列、<span class="math inline">\(L\)</span> は単位下三角行列（対角成分が1の下三角行列）であり、<span class="math inline">\(D\)</span> はブロック対角行列（行列の対角線上に配置される行列全てが、<span class="math inline">\(M_i \in \mathbb{R}^n, n=1,2\)</span> となり他の成分全てが0の行列）です。</p>
+<p><span class="math display">\[
+A = P L D L^\mathrm{T} P^\mathrm{T}
+\]</span></p>
 </section>
-<section id="マクロの記述方法" class="level3">
-<h3 class="anchored" data-anchor-id="マクロの記述方法">マクロの記述方法</h3>
-<p>マクロは以下のコードで定義されます。</p>
-<div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">macro</span> <span class="fu">マクロ名</span>(引数<span class="fl">1</span>, 引数<span class="fl">2</span>, <span class="op">...</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  処理内容</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> 式</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>マクロの使用方法は以下のように<code>@</code>を使えばよいです。</p>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>@マクロ名 引数<span class="fl">1</span> 引数<span class="fl">2</span> <span class="op">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="クオート引用" class="level3">
-<h3 class="anchored" data-anchor-id="クオート引用">クオート（引用）</h3>
-<p>クオートは以下のどちらかの方法で行われます。 なお、<code>expr1</code>, <code>expr2</code>は、そのものがプログラムだと考えてください。</p>
-<p><code>:(expr)</code>を使う方法</p>
-<div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>expr1 <span class="op">=</span> <span class="op">:</span>(x <span class="op">+</span> <span class="fl">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>:(x + 1)</code></pre>
-</div>
-</div>
-<p><code>quote(), quote ~ end</code>を使う方法</p>
-<div class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>expr2 <span class="op">=</span> <span class="kw">quote</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">+</span> <span class="fl">1</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<div class="ansi-escaped-output">
-<pre>quote
-    <span class="ansi-bright-black-fg">#= In[3]:2 =#</span>
-    x + 1
-end</pre>
-</div>
-</div>
-</div>
-</section>
-<section id="アンクオート引用解除" class="level3">
-<h3 class="anchored" data-anchor-id="アンクオート引用解除">アンクオート（引用解除）</h3>
-<p><code>quote</code>, <code>:()</code>でクオートした式（プログラム）の内部でアンクオート<code>$</code>という動作を行わせることができます。 アンクオートした部分の式(以下の<code>$(y+1)</code>)は、マクロの展開時に評価されます。</p>
-<div class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">3</span> <span class="co"># マクロ展開時</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> <span class="kw">quote</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> <span class="op">$</span>(y <span class="op">+</span> <span class="fl">1</span>) <span class="op">+</span> y</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<div class="ansi-escaped-output">
-<pre>quote
-    <span class="ansi-bright-black-fg">#= In[4]:3 =#</span>
-    z = 4 + y
-end</pre>
-</div>
-</div>
-</div>
-</section>
-<section id="評価" class="level3">
-<h3 class="anchored" data-anchor-id="評価">評価</h3>
-<p>クオートした式を実行して評価するには、<code>eval</code>を使ってください。 例えば、上で作成した <span class="math inline">\(z \gets y+1\)</span> を表現する式<code>expr</code>は、以下のように評価できます。</p>
-<div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="fl">1</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(expr)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>(z)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display">
-<pre><code>5</code></pre>
-</div>
-</div>
-</section>
-<section id="astの生成" class="level3">
-<h3 class="anchored" data-anchor-id="astの生成">ASTの生成</h3>
-<p>AST(抽象構文木)を作成するには、以下のように<code>dump</code>が使えます。</p>
-<div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>expr <span class="op">=</span> <span class="op">:</span>(x <span class="op">+</span> y <span class="op">/</span> z)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dump</span>(expr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Expr
-  head: Symbol call
-  args: Array{Any}((3,))
-    1: Symbol +
-    2: Symbol x
-    3: Expr
-      head: Symbol call
-      args: Array{Any}((3,))
-        1: Symbol /
-        2: Symbol y
-        3: Symbol z</code></pre>
-</div>
-</div>
-</section>
-<section id="エスケープ" class="level3">
-<h3 class="anchored" data-anchor-id="エスケープ">エスケープ</h3>
-<p>マクロの展開時に式が評価されることから保護するため、<code>esc</code>が使えます。</p>
-<p>これを使わないと、マクロを展開するときに勝手に式が評価されてしまいます。</p>
-<p>なので、以下のように、式をエスケープしてコードに埋め込んでからアンクオートすることでプログラムの順序が守られます。</p>
-<div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">macro</span> <span class="fu">mymacro</span>(expr)</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">quote</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"-"</span><span class="op">^</span><span class="fl">10</span>)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>        <span class="op">$</span>(<span class="fu">esc</span>(expr))</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"-"</span><span class="op">^</span><span class="fl">10</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="st">"YAMADA"</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="pp">@mymacro</span> <span class="fu">println</span>(<span class="st">"Hello "</span>, name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>----------
-Hello YAMADA
-----------</code></pre>
-</div>
-</div>
-</section>
-<section id="マクロの例" class="level3">
-<h3 class="anchored" data-anchor-id="マクロの例">マクロの例</h3>
-<p>時間計測のマクロは以下の通りです。 実のところ、<code>@time</code>とか<code>@timed</code>などのマクロが既にあるので、あまり意味はないのですが……。</p>
-<div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">macro</span> <span class="fu">time_measure</span>(expr)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">quote</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> start_time <span class="op">=</span> <span class="fu">time</span>()</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> result <span class="op">=</span> <span class="op">$</span>(<span class="fu">esc</span>(expr))</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">local</span> end_time <span class="op">=</span> <span class="fu">time</span>()</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">println</span>(<span class="st">"Execution time: "</span>, end_time <span class="op">-</span> start_time, <span class="st">" seconds"</span>)</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        result</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">end</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="pp">@time_measure</span> <span class="cf">begin</span></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sleep</span>(<span class="fl">0.05</span>)</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="cf">end</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Execution time: 0.05200004577636719 seconds</code></pre>
-</div>
-</div>
+<section id="具体的な手法" class="level3">
+<h3 class="anchored" data-anchor-id="具体的な手法">具体的な手法</h3>
+<p>※制作中</p>
 
 
 </section>

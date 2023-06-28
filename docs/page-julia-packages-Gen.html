@@ -414,7 +414,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#juliaのパッケージ" id="toc-juliaのパッケージ" class="nav-link active" data-scroll-target="#juliaのパッケージ">Juliaのパッケージ</a>
   <ul class="collapse">
   <li><a href="#genとは" id="toc-genとは" class="nav-link" data-scroll-target="#genとは">Genとは？</a></li>
-  <li><a href="#genの使い方" id="toc-genの使い方" class="nav-link" data-scroll-target="#genの使い方">Genの使い方</a></li>
+  <li><a href="#生成関数" id="toc-生成関数" class="nav-link" data-scroll-target="#生成関数">生成関数</a></li>
+  <li><a href="#関数生成" id="toc-関数生成" class="nav-link" data-scroll-target="#関数生成">関数生成</a></li>
+  <li><a href="#関数生成のトレース" id="toc-関数生成のトレース" class="nav-link" data-scroll-target="#関数生成のトレース">関数生成のトレース</a></li>
+  <li><a href="#関数生成トレースから" id="toc-関数生成トレースから" class="nav-link" data-scroll-target="#関数生成トレースから">関数生成（トレースから）</a></li>
+  <li><a href="#値の参照トレースから" id="toc-値の参照トレースから" class="nav-link" data-scroll-target="#値の参照トレースから">値の参照（トレースから）</a></li>
+  <li><a href="#乱数の取り出しトレースから" id="toc-乱数の取り出しトレースから" class="nav-link" data-scroll-target="#乱数の取り出しトレースから">乱数の取り出し（トレースから）</a></li>
+  <li><a href="#事後推論" id="toc-事後推論" class="nav-link" data-scroll-target="#事後推論">事後推論</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -441,13 +447,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="juliaのパッケージ" class="level1">
 <h1>Juliaのパッケージ</h1>
+<p>※Genについては他のサイトを作ってそこで説明します。</p>
 <p>インストールするには、JuliaのREPLで<code>using Pkg; Pkg.add("Gen")</code>を実行してください。 使いたいタイミングで<code>using Gen</code>と指定して読み込んでください。</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Gen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="genとは" class="level3">
 <h3 class="anchored" data-anchor-id="genとは">Genとは？</h3>
-<p>MITが開発した、オープンソースの生成モデルと確率的推論のためのパッケージです。 一般的な仕様が できることが多いので、何から手を付けたらいいやら……。</p>
+<p>MITのグループが開発した、オープンソースの生成モデルと確率的推論のためのパッケージです。 一部、DSL的な記述があります。 できることが多いので、何から手を付けたらいいやら……。</p>
 <ul>
 <li><p>Genは確率的推論アルゴリズムの細かい実装を自動化する。</p>
 <p>トリッキーな数学や低レベルの実装を自動化しながら、ユーザのモデルに併せた効率的な確率的推論アルゴリズムを書くためのブロックを提供します。</p></li>
@@ -459,10 +466,156 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>確率的構造を持つモデルにおける効率的な推論</p></li>
 </ul>
 <p><a href="https://www.gen.dev/">Why Gen</a></p>
-</section>
-<section id="genの使い方" class="level3">
-<h3 class="anchored" data-anchor-id="genの使い方">Genの使い方</h3>
 <p><a href="https://www.gen.dev/tutorials/intro-to-modeling/tutorial">Tutorial</a></p>
+</section>
+<section id="生成関数" class="level3">
+<h3 class="anchored" data-anchor-id="生成関数">生成関数</h3>
+<p><code>Gen</code>の<code>@gen</code>マクロはDSL（ドメイン固有言語）的な特殊な記述を可能とします。 導入される記述として、以下のような式があります。</p>
+<ul>
+<li><p><code>{addr} ~ distribution(parameters)</code></p>
+<p>この式は、<code>addr</code>というアドレスに対して、ランダムチョイスを生成する確率分布を割り当てることを表しています。</p>
+<p>ここで言うアドレスとは、何らかの名前として使う値であり、任意で構いません（多くのサンプルでは、アドレスに<code>Symbol</code>や<code>Tuple</code>を使っています）。</p></li>
+</ul>
+<p>生成関数（関数を生成する関数）は以下のように<code>@gen</code>マクロを用いて記述できます。 <code>{addr} ~ distribution(parameters)</code>と記述した部分は、値を生成してあとで使用されます。</p>
+<p>ここで作る関数は単体ではほとんど意味がなく、変数やパラメータの分布について示しただけのものです。</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">Plots</span>, <span class="bu">Random; Random</span>.<span class="fu">seed!</span>(<span class="fl">0</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="pp">@gen</span> <span class="kw">function</span> <span class="fu">line_model</span>(xs)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 傾き(slope)と切片(intercept)の生成</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  slope     <span class="op">=</span> {<span class="op">:</span>slope}     <span class="op">~</span> <span class="fu">normal</span>(<span class="fl">0</span>, <span class="fl">1</span>) <span class="co"># slope    : mean=0 v=1 の正規分布</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  intercept <span class="op">=</span> {<span class="op">:</span>intercept} <span class="op">~</span> <span class="fu">normal</span>(<span class="fl">0</span>, <span class="fl">2</span>) <span class="co"># intercept: mean=0 v=2 の正規分布</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 生成する関数: y(x) = a x + b</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">y</span>(x)      <span class="op">=</span> intercept <span class="op">+</span> slope <span class="op">*</span> x</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># y: mean=y(xs) v=0.1 の正規分布</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i, x) <span class="op">=</span> <span class="fu">enumerate</span>(xs)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    {(<span class="op">:</span>y, i)} <span class="op">~</span> <span class="fu">normal</span>(<span class="fu">y</span>(x), <span class="fl">0.1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> y</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>DynamicDSLFunction{Any}(Dict{Symbol, Any}(), Dict{Symbol, Any}(), Type[Any], false, Union{Nothing, Some{Any}}[nothing], var"##line_model#312", Bool[0], false)</code></pre>
+</div>
+</div>
+</section>
+<section id="関数生成" class="level3">
+<h3 class="anchored" data-anchor-id="関数生成">関数生成</h3>
+<p>点列を与えると、以下のように関数が生成されます。</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [<span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5.0</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y  <span class="op">=</span> <span class="fu">line_model</span>(xs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+<pre><code>y (generic function with 1 method)</code></pre>
+</div>
+</div>
+</section>
+<section id="関数生成のトレース" class="level3">
+<h3 class="anchored" data-anchor-id="関数生成のトレース">関数生成のトレース</h3>
+<p>関数を生成する際に、トレースという機能を用いると良いです。 この方法では、生成された関数の生成途中で作られた値を参照できます。</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>trace <span class="op">=</span> Gen.<span class="fu">simulate</span>(line_model, (xs,))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
+<pre><code>Gen.DynamicDSLTrace{DynamicDSLFunction{Any}}(DynamicDSLFunction{Any}(Dict{Symbol, Any}(), Dict{Symbol, Any}(), Type[Any], false, Union{Nothing, Some{Any}}[nothing], var"##line_model#312", Bool[0], false), Trie{Any, Gen.ChoiceOrCallRecord}(Dict{Any, Gen.ChoiceOrCallRecord}((:y, 11) =&gt; Gen.ChoiceOrCallRecord{Float64}(-4.388263900849594, 0.8600312321254504, NaN, true), (:y, 3) =&gt; Gen.ChoiceOrCallRecord{Float64}(-0.42127061450108316, 1.3409663803365661, NaN, true), :intercept =&gt; Gen.ChoiceOrCallRecord{Float64}(-1.888778048255967, -2.0580210282113205, NaN, true), (:y, 1) =&gt; Gen.ChoiceOrCallRecord{Float64}(0.6908058367474368, -0.2804310214227761, NaN, true), (:y, 8) =&gt; Gen.ChoiceOrCallRecord{Float64}(-2.9054845706142807, 1.216339171977207, NaN, true), (:y, 7) =&gt; Gen.ChoiceOrCallRecord{Float64}(-2.4893136480645293, 0.6503220335309043, NaN, true), (:y, 5) =&gt; Gen.ChoiceOrCallRecord{Float64}(-1.4522752751776742, 1.2915078761733116, NaN, true), (:y, 6) =&gt; Gen.ChoiceOrCallRecord{Float64}(-1.8912893049811799, 1.3833312392723764, NaN, true), (:y, 10) =&gt; Gen.ChoiceOrCallRecord{Float64}(-3.9060757563192117, 0.8878730243908639, NaN, true), :slope =&gt; Gen.ChoiceOrCallRecord{Float64}(-0.4794303128671186, -1.0338652456526043, NaN, true)…), Dict{Any, Trie{Any, Gen.ChoiceOrCallRecord}}()), false, 7.0686482238402295, 0.0, ([-5.0, -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0],), var"#y#11"{Float64, Float64}(-1.888778048255967, -0.4794303128671186))</code></pre>
+</div>
+</div>
+</section>
+<section id="関数生成トレースから" class="level3">
+<h3 class="anchored" data-anchor-id="関数生成トレースから">関数生成（トレースから）</h3>
+<p>以下のいずれかの方法でトレースから関数を生成できます。</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> Gen.<span class="fu">get_retval</span>(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>y (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> trace[]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>y (generic function with 1 method)</code></pre>
+</div>
+</div>
+</section>
+<section id="値の参照トレースから" class="level3">
+<h3 class="anchored" data-anchor-id="値の参照トレースから">値の参照（トレースから）</h3>
+<p>関数の生成に用いた引数は以下のように取得できます。</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>xs_get <span class="op">=</span> Gen.<span class="fu">get_args</span>(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>([-5.0, -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0],)</code></pre>
+</div>
+</div>
+</section>
+<section id="乱数の取り出しトレースから" class="level3">
+<h3 class="anchored" data-anchor-id="乱数の取り出しトレースから">乱数の取り出し（トレースから）</h3>
+<p>生成の途中で作成したランダムチョイスの値も取り出すことができます。</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>choices <span class="op">=</span> Gen.<span class="fu">get_choices</span>(trace)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>│
+├── (:y, 11) : -4.388263900849594
+│
+├── (:y, 3) : -0.42127061450108316
+│
+├── :intercept : -1.888778048255967
+│
+├── (:y, 1) : 0.6908058367474368
+│
+├── (:y, 8) : -2.9054845706142807
+│
+├── (:y, 7) : -2.4893136480645293
+│
+├── (:y, 5) : -1.4522752751776742
+│
+├── (:y, 6) : -1.8912893049811799
+│
+├── (:y, 10) : -3.9060757563192117
+│
+├── :slope : -0.4794303128671186
+│
+├── (:y, 4) : -0.8052261983375637
+│
+├── (:y, 2) : -0.07688651860452052
+│
+└── (:y, 9) : -3.3193832238801115</code></pre>
+</div>
+</div>
+<p>以下のようにして、一部を参照することも可能です。</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>choices[(<span class="op">:</span>y, <span class="fl">2</span>)], choices[<span class="op">:</span>slope]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(-0.07688651860452052, -0.4794303128671186)</code></pre>
+</div>
+</div>
+</section>
+<section id="事後推論" class="level3">
+<h3 class="anchored" data-anchor-id="事後推論">事後推論</h3>
+<p>※制作中</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">do_inference</span>(model, xs, ys, amount_of_computation)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ysによりyのとる乱数の値（ランダムチョイス）を観測値に固定する</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  observations <span class="op">=</span> Gen.<span class="fu">choicemap</span>()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i, y) <span class="op">=</span> <span class="fu">enumerate</span>(ys)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    observations[(<span class="op">:</span>y, i)] <span class="op">=</span> y</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">end</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># 観測値を用いてtraceっぽいものを作成</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  trace, _ <span class="op">=</span> Gen.<span class="fu">importance_resampling</span>(</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    model, (xs,), observations, amount_of_computation</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> trace</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="kw">end</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>do_inference (generic function with 1 method)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> [<span class="op">-</span><span class="fl">5</span>, <span class="op">-</span><span class="fl">4</span>, <span class="op">-</span><span class="fl">3</span>, <span class="op">-</span><span class="fl">2</span>, <span class="op">-</span><span class="fl">1</span>, <span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">2</span>, <span class="fl">3</span>, <span class="fl">4</span>, <span class="fl">5.0</span>]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> [<span class="fl">6.75003</span>, <span class="fl">6.1568</span>, <span class="fl">4.26414</span>, <span class="fl">1.84894</span>, <span class="fl">3.09686</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>      <span class="fl">1.94026</span>, <span class="fl">1.36411</span>, <span class="op">-</span><span class="fl">0.83959</span>, <span class="op">-</span><span class="fl">0.976</span>, <span class="op">-</span><span class="fl">1.93363</span>, <span class="op">-</span><span class="fl">2.91303</span>];</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>trace <span class="op">=</span> <span class="fu">do_inference</span>(line_model, xs, ys, <span class="fl">100</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>Gen.DynamicDSLTrace{DynamicDSLFunction{Any}}(DynamicDSLFunction{Any}(Dict{Symbol, Any}(), Dict{Symbol, Any}(), Type[Any], false, Union{Nothing, Some{Any}}[nothing], var"##line_model#312", Bool[0], false), Trie{Any, Gen.ChoiceOrCallRecord}(Dict{Any, Gen.ChoiceOrCallRecord}((:y, 11) =&gt; Gen.ChoiceOrCallRecord{Float64}(-2.91303, -5.609132072052121, NaN, true), (:y, 3) =&gt; Gen.ChoiceOrCallRecord{Float64}(4.26414, -2.925988887054952, NaN, true), :intercept =&gt; Gen.ChoiceOrCallRecord{Float64}(1.2489702737862338, -1.8070765568648253, NaN, true), (:y, 1) =&gt; Gen.ChoiceOrCallRecord{Float64}(6.75003, -45.18597642040253, NaN, true), (:y, 8) =&gt; Gen.ChoiceOrCallRecord{Float64}(-0.83959, -2.3748427257739793, NaN, true), (:y, 7) =&gt; Gen.ChoiceOrCallRecord{Float64}(1.36411, -50.87472642124648, NaN, true), (:y, 5) =&gt; Gen.ChoiceOrCallRecord{Float64}(3.09686, -42.861720151410005, NaN, true), (:y, 6) =&gt; Gen.ChoiceOrCallRecord{Float64}(1.94026, -22.510427718645825, NaN, true), (:y, 10) =&gt; Gen.ChoiceOrCallRecord{Float64}(-1.93363, -8.570098152239924, NaN, true), :slope =&gt; Gen.ChoiceOrCallRecord{Float64}(-0.9071945926960107, -1.330439547713113, NaN, true)…), Dict{Any, Trie{Any, Gen.ChoiceOrCallRecord}}()), false, -347.77008723965207, 0.0, ([-5.0, -4.0, -3.0, -2.0, -1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0],), var"#y#11"{Float64, Float64}(1.2489702737862338, -0.9071945926960107))</code></pre>
+</div>
+</div>
 
 
 </section>

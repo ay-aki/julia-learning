@@ -315,6 +315,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Cholesky分解</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Bunchkaufman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bunchkaufman</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-MINRES.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MINRES法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Lanczos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lanczos法</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -363,14 +381,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Physics</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Machine Learning(with Gen)</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
  <span class="menu-text">temp</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">
@@ -399,6 +421,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Genパッケージ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-BlockLanczosProcedure" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Block-Lanczos分解</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-lang-na-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列の分解手法</span></a>
   </div>
 </li>
       </ul>
@@ -539,18 +573,14 @@ L = \int_{C} |d \mathbb{r}|
 <h3 class="anchored" data-anchor-id="線積分の実装">線積分の実装</h3>
 <p>ベクトル場の線積分を自然に実装すると、以下のようになります。</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span></span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">using</span> <span class="bu">LinearAlgebra</span>, <span class="bu">ForwardDiff</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(x, y, z) <span class="op">=</span> [z, x, y]</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(r) <span class="op">=</span> <span class="fu">F</span>(r[<span class="fl">1</span>], r[<span class="fl">2</span>], r[<span class="fl">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
-<pre><code>F (generic function with 2 methods)</code></pre>
-</div>
-</div>
-<div class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">C</span>(t) <span class="op">=</span> [<span class="fu">cos</span>(t), <span class="fu">sin</span>(t), <span class="fl">3</span><span class="op">*</span>t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
-<pre><code>C (generic function with 1 method)</code></pre>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(r) <span class="op">=</span> <span class="fu">F</span>(r[<span class="fl">1</span>], r[<span class="fl">2</span>], r[<span class="fl">3</span>])</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">r</span>(t) <span class="op">=</span> [<span class="fu">cos</span>(t), <span class="fu">sin</span>(t), <span class="fl">3</span><span class="op">*</span>t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>r (generic function with 1 method)</code></pre>
 </div>
 </div>
 <p><a href="https://kitchingroup.cheme.cmu.edu/blog/2018/11/16/Line-integrals-in-Python-with-autograd/">参考</a></p>
