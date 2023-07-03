@@ -315,6 +315,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Cholesky分解</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Bunchkaufman.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bunchkaufman</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-MINRES.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">MINRES法</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-Lanczos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lanczos法</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -363,14 +381,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Physics</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Machine Learning(with Gen)</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
  <span class="menu-text">temp</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./page-julia-numericalanalysis-MonteCarlo.html" class="sidebar-item-text sidebar-link">
@@ -399,6 +421,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./page-julia-packages-Gen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Genパッケージ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-numericalanalysis-BlockLanczosProcedure" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Block-Lanczos分解</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-lang-na-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列の分解手法</span></a>
   </div>
 </li>
       </ul>
@@ -451,6 +485,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>行列Aが与えられたとき、ベクトル <span class="math inline">\(v\)</span> とスカラー <span class="math inline">\(\lambda\)</span> に対して以下の式が成り立つとき、<span class="math inline">\(v\)</span> を <span class="math inline">\(A\)</span> の固有ベクトル、<span class="math inline">\(\lambda\)</span> を <span class="math inline">\(A\)</span> の固有値と呼びます。</p>
 <p><span class="math display">\[ A v = \lambda v \]</span></p>
 <p>この式は、行列 <span class="math inline">\(A\)</span> によってベクトル <span class="math inline">\(v\)</span> が <span class="math inline">\(\lambda\)</span> 倍に変換されることを表しています。 固有ベクトルは方向が変化せずにスケールされるため、行列の変換の中で特別な役割を果たします。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tmp\eigenpair.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption">固有値と固有ベクトル</figcaption>
+</figure>
+</div>
 <p>固有ベクトルは、行列を関数として扱いたいときに効力を発揮します。 超便利！</p>
 <p>行列が異なる固有値を持つ <span class="math inline">\(n\)</span> 個の線形独立な固有ベクトルを持つ場合、その行列は対角化可能だと言えます。 この『対角化』とは、行列 <span class="math inline">\(A\)</span> を以下の形式で表せるということです。 実際、式をいじってみるとこうなります。 <span class="math display">\[ A = PDP^{-1} \]</span></p>
 <p>Juliaで固有値、固有ベクトルを求める方法は以下の通りです：</p>
@@ -463,14 +503,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>Eigen{ComplexF64, ComplexF64, Matrix{ComplexF64}, Vector{ComplexF64}}
 values:
 3-element Vector{ComplexF64}:
- 0.08308200761683276 - 0.44573113013363286im
- 0.08308200761683276 + 0.44573113013363286im
-  1.7044633459422398 + 0.0im
+ 0.3374996072523366 - 0.35148011975691845im
+ 0.3374996072523366 + 0.35148011975691845im
+   1.77723008018176 + 0.0im
 vectors:
 3×3 Matrix{ComplexF64}:
- -0.333971-0.430515im  -0.333971+0.430515im  -0.393287+0.0im
- -0.396317+0.263419im  -0.396317-0.263419im  -0.687586+0.0im
-  0.690408-0.0im        0.690408+0.0im       -0.610369+0.0im</code></pre>
+    0.3886+0.312874im     0.3886-0.312874im  -0.432128+0.0im
+  0.198655-0.434407im   0.198655+0.434407im  -0.747607+0.0im
+ -0.723136-0.0im       -0.723136+0.0im        -0.50433+0.0im</code></pre>
 </div>
 </div>
 <p><code>F.values</code>を見ると内部が昇順にソートされてるのが分かると思います。 固有値は大きさで挙動が変わるので確かめておくと便利です。</p>
@@ -480,9 +520,9 @@ vectors:
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">-</span> P <span class="op">*</span> D <span class="op">*</span> <span class="fu">inv</span>(P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>3×3 Matrix{ComplexF64}:
- -1.11022e-16-4.66675e-17im  …  6.10623e-16+4.19441e-17im
-          0.0-1.23175e-16im     7.77156e-16+2.48059e-17im
- -3.33067e-16-1.43258e-16im     1.11022e-16-5.73539e-18im</code></pre>
+ -1.11022e-16-0.0im          …  2.22045e-16+3.56932e-17im
+  2.22045e-16+6.93889e-18im     9.99201e-16+7.3756e-17im
+  3.33067e-16-0.0im             4.44089e-16+6.3633e-17im</code></pre>
 </div>
 </div>
 <p>誤差が十分小さいので、<span class="math inline">\(A\)</span> を表現できたと確認できましたね。</p>
@@ -496,7 +536,7 @@ vectors:
 <div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tr</span>(A) <span class="op">-</span> <span class="fu">sum</span>(F.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
-<pre><code>8.881784197001252e-16 - 0.0im</code></pre>
+<pre><code>4.440892098500626e-16 - 0.0im</code></pre>
 </div>
 </div>
 <ul>
@@ -505,7 +545,7 @@ vectors:
 <div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">det</span>(A) <span class="op">-</span> <span class="fu">prod</span>(F.values)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
-<pre><code>-3.3306690738754696e-16 - 0.0im</code></pre>
+<pre><code>5.551115123125783e-17 - 0.0im</code></pre>
 </div>
 </div>
 <ul>
@@ -516,9 +556,9 @@ vectors:
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">inv</span>(A) <span class="op">-</span> (P <span class="op">*</span> inv_D <span class="op">*</span> <span class="fu">inv</span>(P))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>3×3 Matrix{ComplexF64}:
-  1.11022e-15-1.3664e-16im   …  4.44089e-16-1.6165e-16im
-  2.44249e-15+6.62355e-17im             0.0+6.40496e-17im
- -3.55271e-15-1.20016e-17im     2.77556e-16+7.57959e-18im</code></pre>
+  2.22045e-16-5.55112e-17im  …           0.0+1.34974e-17im
+   1.4988e-15-0.0im             -8.88178e-16-4.40434e-18im
+ -2.22045e-16-0.0im             -3.33067e-16+1.57526e-17im</code></pre>
 </div>
 </div>
 <ul>
@@ -529,9 +569,9 @@ vectors:
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>A<span class="op">^</span>n <span class="op">-</span> P <span class="op">*</span> (D<span class="op">^</span>n) <span class="op">*</span> <span class="fu">inv</span>(P)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>3×3 Matrix{ComplexF64}:
- 1.84741e-13-9.03642e-15im  …  3.19744e-13+1.7228e-15im
- 3.48166e-13-1.57984e-14im     5.96856e-13+3.01193e-15im
- 2.84217e-13-1.40243e-14im     4.83169e-13+2.67367e-15im</code></pre>
+ 3.55271e-13-0.0im          …   3.2685e-13+7.54101e-15im
+ 7.10543e-13-0.0im             6.25278e-13+1.30464e-14im
+ 4.54747e-13-2.71051e-20im     4.12115e-13+8.801e-15im</code></pre>
 </div>
 </div>
 </section>
@@ -547,9 +587,9 @@ vectors:
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">^</span> <span class="fl">5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>3×3 Matrix{Float64}:
- 2.38053  3.88034  3.36437
- 4.13445  6.78976  5.89316
- 3.6911   6.00212  5.24617</code></pre>
+ 5.70923  4.10542  4.21439
+ 9.90279  7.1052   7.26546
+ 6.64935  4.82451  4.88124</code></pre>
 </div>
 </div>
 <ul>
@@ -559,9 +599,9 @@ vectors:
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>3×3 Matrix{Float64}:
- 1.54178   1.51131  0.846944
- 0.950071  3.23801  1.93422
- 1.69066   1.53527  2.67958</code></pre>
+ 2.59026  1.34956   0.846878
+ 2.30774  3.19851   2.04721
+ 2.25924  0.823986  2.7562</code></pre>
 </div>
 </div>
 <ul>
@@ -571,9 +611,9 @@ vectors:
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">log</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>3×3 Matrix{Float64}:
- -1.11638    1.22603   -0.318213
- -0.661488   0.21397    0.785896
-  1.92048   -0.495273  -0.14627</code></pre>
+ -0.647129   0.772429  -0.0978187
+  0.295805  -0.137421   0.802702
+  1.37253   -0.352649  -0.0782168</code></pre>
 </div>
 </div>
 <ul>
@@ -583,9 +623,9 @@ vectors:
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode julia code-with-copy"><code class="sourceCode julia"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sin</span>(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>3×3 Matrix{Float64}:
-  0.0596995  0.53024    0.00280859
- -0.0860126  0.641437   0.449297
-  0.753893   0.0289707  0.472678</code></pre>
+ 0.408787   0.343875  -0.0213715
+ 0.17071    0.629551   0.3714
+ 0.608006  -0.125616   0.644017</code></pre>
 </div>
 </div>
 <ul>
@@ -602,9 +642,9 @@ vectors:
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">f_MatrixFunction</span>(x <span class="op">-&gt;</span> <span class="fu">tan</span>(x<span class="op">+</span><span class="cn">pi</span>), A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>3×3 Matrix{ComplexF64}:
- -1.33408-3.52467e-16im    -1.759-1.17877e-16im  -1.95063+2.72109e-17im
- -2.48043-5.67696e-16im  -3.35218-1.47176e-16im  -3.00296+1.0823e-16im
- -1.44085-4.76187e-16im  -3.45766-7.6695e-17im   -2.61318+9.60753e-17im</code></pre>
+ -1.49069+0.0im          -0.959882-3.53951e-17im   -1.39135+1.14546e-16im
+ -3.02975-1.38778e-17im   -1.70447-6.12356e-17im   -1.95592+1.98172e-16im
+ -1.49932+2.77556e-17im   -1.70247-4.13091e-17im  -0.966794+1.19807e-16im</code></pre>
 </div>
 </div>
 

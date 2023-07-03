@@ -484,6 +484,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>凄く単純に言えば線積分とは、『線に沿って』積分を行うことです。</p>
 <p>線積分のパラメータとして、以下に曲線を <span class="math inline">\(C\)</span> 、空間の任意のベクトルを <span class="math inline">\(\mathbb{r} \in \mathbb{R}^{n}\)</span> 、<span class="math inline">\(C\)</span> 上の極小の <span class="math inline">\(\mathbb{r}\)</span> の変位を <span class="math inline">\(d\mathbb{r} \in \mathbb{R}^{n}\)</span> とします。</p>
 <p><span class="math inline">\(d\mathbb{r}\)</span> は、その系での座標の表現方法によって、例えば、以下の3つのケースがあると思います。それぞれのケースで以下のような置換を行うことで、積分を計算しやすい形に変換できる可能性があります。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tmp\lineinte01.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption">線積分の概念図</figcaption>
+</figure>
+</div>
 <hr>
 <section id="媒介変数-mathbbrmathbbrt" class="level4">
 <h4 class="anchored" data-anchor-id="媒介変数-mathbbrmathbbrt">媒介変数 <span class="math inline">\(\mathbb{r}=\mathbb{r}(t)\)</span></h4>
@@ -501,6 +507,12 @@ L = \int_C |d\mathbb{r}| = \int_{t_0}^{t_1} |\frac{d\mathbb{r}}{dt}| dt
   = \int_{t_0}^{t_1} \sqrt{(\frac{dx}{dt})^2 + (\frac{dy}{dt})^2 + (\frac{dz}{dt})^2} dt
 \]</span></p>
 </details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tmp\lineinte02.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption">線積分の媒介変数表示</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 <section id="y-や-x-が-yfx-などと関数で表されるケース-rleftbeginmatrix-x-fx-endmatrixright" class="level4">
@@ -520,6 +532,12 @@ L = \int_C |d\mathbb{r}| = \int_{x_0}^{x_1} |\frac{d\mathbb{r}}{dx}| dx
   = \int_{x_0}^{x_1} \sqrt{1 + (\frac{dy(x)}{dx})^2} dx
 \]</span></p>
 </details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tmp\lineinte03.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption">線積分の関数表示</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 <section id="極形式-mathbbrpolarr-theta" class="level4">
@@ -540,6 +558,12 @@ L = \int_C |d\mathbb{r}| = \int_{\theta_0}^{\theta_1} |dr \mathbb{i}_r + r d\the
 \]</span></p>
 <p>※この導出は数学的には微妙ですが、実際この式で解けます。</p>
 </details>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="tmp\lineinte04.png" class="img-fluid figure-img" width="300"></p>
+<figcaption class="figure-caption">線積分の曲形式</figcaption>
+</figure>
+</div>
 <hr>
 </section>
 </section>
@@ -579,7 +603,7 @@ L = \int_{C} |d \mathbb{r}|
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">F</span>(r) <span class="op">=</span> <span class="fu">F</span>(r[<span class="fl">1</span>], r[<span class="fl">2</span>], r[<span class="fl">3</span>])</span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">r</span>(t) <span class="op">=</span> [<span class="fu">cos</span>(t), <span class="fu">sin</span>(t), <span class="fl">3</span><span class="op">*</span>t]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>r (generic function with 1 method)</code></pre>
 </div>
 </div>

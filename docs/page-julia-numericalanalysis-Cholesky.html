@@ -191,12 +191,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Juliaのマクロ</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./page-julia-lang-na-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">行列の分解手法</span></a>
-  </div>
-</li>
           <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
@@ -435,6 +429,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Block-Lanczos分解</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./page-julia-lang-na-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">行列の分解手法</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -481,6 +481,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="cholesky分解" class="level3">
 <h3 class="anchored" data-anchor-id="cholesky分解">Cholesky分解</h3>
 <p>コレスキー分解とは、正定値エルミート行列 <span class="math inline">\(A\)</span> を下三角行列 <span class="math inline">\(L\)</span> を用いて以下のような分解形式で表すことである。 この分解の手法は、ガウスの消去法の自然な拡張とも言える。</p>
+<p><span class="math display">\[
+A = L L^*
+\]</span></p>
 </section>
 <section id="具体的な手法" class="level3">
 <h3 class="anchored" data-anchor-id="具体的な手法">具体的な手法</h3>
@@ -592,19 +595,19 @@ A = L L^*
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">display</span>.([L, A]);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float64}:
- 0.900252  0.0  0.0  0.0  0.0
- 0.346827  1.0  0.0  0.0  0.0
- 0.591462  0.0  1.0  0.0  0.0
- 0.810241  0.0  0.0  1.0  0.0
- 1.10622   0.0  0.0  0.0  1.0</code></pre>
+ 0.536884  0.0  0.0  0.0  0.0
+ 1.31061   1.0  0.0  0.0  0.0
+ 1.50733   0.0  1.0  0.0  0.0
+ 1.00108   0.0  0.0  1.0  0.0
+ 1.12123   0.0  0.0  0.0  1.0</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <pre><code>5×5 Matrix{Float64}:
- 1.0   0.0         0.0        0.0        0.0
- 0.0   0.671009    0.738131   0.535455  -0.269104
- 0.0  -0.192149    0.269381   0.251301  -0.0610811
- 0.0   0.37925     0.518042  -0.100037  -0.694046
- 0.0   0.0819181  -0.291624  -0.415095  -0.625166</code></pre>
+ 1.0   0.0        0.0        0.0         0.0
+ 0.0  -1.44677   -1.79423   -0.52454    -0.664488
+ 0.0  -1.67592   -1.3156    -0.601466   -1.08214
+ 0.0  -0.857739  -0.718293  -0.0427647  -0.701023
+ 0.0  -0.849518  -1.54893   -0.504592   -1.02151</code></pre>
 </div>
 </div>
 <p>コレスキー分解の実装は以下の通りです。</p>
@@ -627,13 +630,13 @@ A = L L^*
 <span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="fu">colesky_func</span>(A)</span>
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>A <span class="op">-</span> L <span class="op">*</span> L<span class="op">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>5×5 Matrix{Float64}:
- 0.0   0.0           0.0          0.0   0.0
- 0.0   2.22045e-16  -5.55112e-17  0.0   0.0
- 0.0  -5.55112e-17  -2.22045e-16  0.0   1.11022e-16
- 0.0   0.0           0.0          0.0   0.0
- 0.0   0.0           1.11022e-16  0.0  -0.863632</code></pre>
+ 0.0  0.0          0.0  0.0           0.0
+ 0.0  1.11022e-16  0.0  5.55112e-17   0.0
+ 0.0  0.0          0.0  0.0           0.0
+ 0.0  5.55112e-17  0.0  0.0           0.0
+ 0.0  0.0          0.0  0.0          -0.431458</code></pre>
 </div>
 </div>
 
